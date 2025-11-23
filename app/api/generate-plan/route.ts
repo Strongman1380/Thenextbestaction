@@ -142,10 +142,10 @@ export async function POST(request: NextRequest) {
     // Load organizational knowledge base context
     const knowledgeBaseContext = formatKnowledgeBaseContext(primary_need, zip_code);
 
-    // Build the prompt for GPT
-    const prompt = `You are an AI assistant helping social workers create comprehensive case plans for clients in crisis situations. Analyze the following case information and create a detailed, actionable case plan.${knowledgeBaseContext}
+    // Build the prompt for case plan generation
+    const prompt = `You are creating a case plan to help a social worker address a client's needs. Your job is to carefully analyze ALL information provided and create a comprehensive, actionable plan.${knowledgeBaseContext}
 
-**Case Information:**
+**CLIENT CASE INFORMATION:**
 - Primary Need: ${primary_need}
 - Urgency Level: ${urgency}
 ${client_initials ? `- Client Initials: ${client_initials}` : ''}
@@ -153,36 +153,60 @@ ${caseworker_name ? `- Case Worker: ${caseworker_name}` : ''}
 ${zip_code ? `- Location (ZIP): ${zip_code}` : ''}
 ${additional_context ? `- Additional Context: ${additional_context}` : ''}
 
-${localResources ? `**Local Resources Found (ZIP ${zip_code}):**\n${localResources}\n` : ''}
+${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localResources}\n` : ''}
 
-**Please provide a comprehensive case plan that includes:**
+**YOUR TASK:**
+1. Read and understand ALL the information above - the client's needs, the context, the urgency, and the resources available
+2. Identify the BEST and MOST RELEVANT resources from those listed above
+3. Create a prioritized, actionable plan that connects the client to the right help
 
-1. **Identified Need(s)**: Clearly summarize the primary need(s) and any secondary concerns based on the information provided.
+**CRITICAL INSTRUCTIONS:**
+- Focus ONLY on resources that directly address the primary need: "${primary_need}"
+- When local resources are provided, SELECT THE BEST MATCHES from that list - do NOT make up new resources
+- Prioritize based on urgency level: ${urgency}
+- Every recommendation must be specific and actionable
+- Consider what the client needs RIGHT NOW vs. what can wait
 
-2. **Recommended Steps**: List 3-5 concrete, actionable steps to address or stabilize the situation. Each step should be:
-   - Specific and trauma-informed
-   - Prioritized by urgency
-   - Realistic and achievable
-   - Include who should take the action (caseworker, client, or both)
+**CREATE A CASE PLAN WITH THESE SECTIONS:**
 
-3. **Local Resources** ${zip_code ? `(for ZIP code ${zip_code})` : ''}: ${localResources ? 'Use the local resources found above and organize them by relevance to the case. Include:' : 'Suggest relevant community resources, services, or organizations that could help. Include:'}
-   - Type of resource (hotline, shelter, clinic, support group, etc.)
-   - Brief description of how it helps
-   - Contact information (phone, website) when available
-   ${!localResources ? '- General national resources and hotlines' : ''}
+1. **Identified Need(s)**:
+   - State the primary need clearly
+   - Note any secondary concerns from the context
+   - Assess severity based on urgency and context
 
-4. **Risk Assessment**: Brief note on any immediate safety concerns or red flags
+2. **Immediate Action Steps** (what needs to happen first):
+   - List 3-5 concrete steps in priority order
+   - Each step should specify WHO does WHAT and WHEN
+   - Be specific (not "find housing" but "call [specific resource] at [number] today")
+   - Include trauma-informed approaches
 
-5. **Follow-up Timeline**: Suggest when the next check-in should occur
+3. **Best-Matched Local Resources** ${zip_code ? `(ZIP ${zip_code})` : ''}:
+   ${localResources ? '**SELECT ONLY THE MOST RELEVANT resources from the list above.** For each selected resource:' : 'Recommend specific resources:'}
+   - Explain WHY this resource is the best match for this client's need
+   - Provide the contact information
+   - Note any eligibility requirements or barriers
+   - Prioritize by relevance to the primary need
 
-Format your response in clear, easy-to-read sections with bullet points. Use compassionate, professional language that honors the client's dignity. Be trauma-informed and culturally sensitive.`;
+4. **Risk Assessment**:
+   - Identify immediate safety concerns
+   - Note any red flags from the context
+   - Recommend crisis intervention if needed
+
+5. **Follow-up Plan**:
+   - When should the next check-in occur?
+   - What should the caseworker monitor?
+   - What does success look like?
+
+**REMEMBER:** This plan is for a REAL CLIENT in need. Choose resources carefully. Be specific. Make every recommendation count.
+
+Format in clear sections with bullet points. Use compassionate, professional language.`;
 
     const completion = await perplexity.chat.completions.create({
       model: DEFAULT_MODEL,
       messages: [
         {
           role: 'system',
-          content: 'You are an expert social work assistant specializing in trauma-informed care and crisis intervention. You help create comprehensive, actionable case plans.'
+          content: 'You are an expert case manager specializing in trauma-informed care and crisis intervention. You excel at reading case information carefully, understanding context deeply, and selecting the BEST resources from available options. You never recommend random resources - you always choose based on what truly fits the client\'s specific situation. You create actionable, prioritized plans that connect clients to real help.'
         },
         {
           role: 'user',
