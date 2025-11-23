@@ -26,6 +26,9 @@ export default function Home() {
   // Skill Building State (for workers)
   const [skillResource, setSkillResource] = useState<string | null>(null);
   const [skillTopic, setSkillTopic] = useState<string>('');
+  const [skillWorkerName, setSkillWorkerName] = useState<string>('');
+  const [skillContext, setSkillContext] = useState<string>('');
+  const [skillResourceType, setSkillResourceType] = useState<'worksheet' | 'reading' | 'exercise' | 'any'>('any');
   const [skillLoading, setSkillLoading] = useState(false);
   const [skillError, setSkillError] = useState<string | null>(null);
 
@@ -96,6 +99,9 @@ export default function Home() {
       if (data.success) {
         setSkillResource(data.skill_resource);
         setSkillTopic(formData.skill_topic);
+        setSkillWorkerName(formData.worker_name);
+        setSkillContext(formData.context);
+        setSkillResourceType(formData.resource_type);
         setLastActivity(`Skill resource generated • ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
       } else {
         setSkillError(data.error || 'Failed to generate skill building resource');
@@ -114,7 +120,12 @@ export default function Home() {
   };
 
   const handleRegenerateSkillResource = () => {
-    handleSkillSubmit({ skill_topic: skillTopic });
+    handleSkillSubmit({
+      skill_topic: skillTopic,
+      worker_name: skillWorkerName,
+      context: skillContext,
+      resource_type: skillResourceType
+    });
   };
 
   const handleClientResourceSubmit = async (formData: SkillBuildingData) => {
