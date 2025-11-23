@@ -1,0 +1,152 @@
+[
+  {
+    "id": "acute-crisis-withdrawal",
+    "domain": "Acute Crisis",
+    "triggers": {
+      "crisis_type": "withdrawal",
+      "urgency": "high"
+    },
+    "action": "Call Crisis Hotline",
+    "script": "Hi, I'm [Your Name] with Next Right Step Recovery. My client [Client Initials] is experiencing withdrawal symptoms. They're open to support—can we connect them safely to immediate care?",
+    "resource_link": "tel:+18006624357",
+    "resource_label": "SAMHSA National Helpline",
+    "button_type": "call",
+    "rationale": "Immediate safety first; honors client's agency without overwhelm.",
+    "compassion_note": "In crisis, presence matters more than perfection. This call opens a door to safety."
+  },
+  {
+    "id": "isolation-loneliness",
+    "domain": "Connection & Community",
+    "triggers": {
+      "crisis_type": "isolation",
+      "urgency": "medium"
+    },
+    "action": "Book Peer Support Meetup",
+    "script": "Hey [Client Name], I've got a spot in our NRS circle tonight—it's a safe space to share one story, listen to another. Sound like a step you'd be ready for?",
+    "resource_link": "https://calendly.com/nrs-peer-circle",
+    "resource_label": "Schedule Peer Circle",
+    "button_type": "schedule",
+    "rationale": "Builds connection gently; draws on hope through shared stories and lived experience.",
+    "compassion_note": "Isolation ends with one brave hello. Your presence matters."
+  },
+  {
+    "id": "family-conflict",
+    "domain": "Family & Relationships",
+    "triggers": {
+      "crisis_type": "family_conflict",
+      "urgency": "low"
+    },
+    "action": "Send Family Education Resource",
+    "script": "This guide on boundaries in recovery might ease some of that tension at home. It's short, practical, and judgment-free. Let's chat after you've had a chance to read?",
+    "resource_link": "https://nrsrecovery.org/resources/family-guide",
+    "resource_label": "Download Family Guide",
+    "button_type": "link",
+    "rationale": "Empowers without blame; promotes accountability with grace and education.",
+    "compassion_note": "Healing relationships start with understanding. One conversation at a time."
+  },
+  {
+    "id": "relapse-risk",
+    "domain": "Relapse Prevention",
+    "triggers": {
+      "crisis_type": "relapse_risk",
+      "urgency": "high"
+    },
+    "action": "Connect with Sponsor/Accountability Partner",
+    "script": "Quick grace note: 'One day at a time—I'm here if you need to talk, vent, or just breathe.' Plan to follow up tomorrow.",
+    "resource_link": "sms:+1XXXXXXXXXX",
+    "resource_label": "Text Sponsor",
+    "button_type": "text",
+    "rationale": "Motivational interviewing lite; reminds them 'You're not alone in this moment.'",
+    "compassion_note": "Relapse risk is a signal, not a failure. This reach-out is courage."
+  },
+  {
+    "id": "housing-instability",
+    "domain": "Basic Needs",
+    "triggers": {
+      "crisis_type": "housing",
+      "urgency": "medium"
+    },
+    "action": "Schedule Shelter Intake Call",
+    "script": "This shelter aligns with your values—faith-rooted, trauma-aware, and they've got space. Ready for me to bridge the connection?",
+    "resource_link": "https://bit.ly/local-shelter-nrs",
+    "resource_label": "View Shelter Details",
+    "button_type": "link",
+    "rationale": "Practical hope; one call closes the gap between instability and stability.",
+    "compassion_note": "Home is more than walls—it's safety, dignity, and rest. Let's find yours."
+  },
+  {
+    "id": "mental-health-cooccurring",
+    "domain": "Mental Health",
+    "triggers": {
+      "crisis_type": "mental_health",
+      "urgency": "low"
+    },
+    "action": "Share Grounding Journal Prompt",
+    "script": "Try this when things feel heavy: 'What one truth grounds me today?' Journal it, and let's reflect together when you're ready.",
+    "resource_link": "https://nrsrecovery.org/resources/reflection-journal",
+    "resource_label": "Download Journal Prompts",
+    "button_type": "link",
+    "rationale": "Mindfulness anchor; integrates CBT principles simply, without clinical jargon.",
+    "compassion_note": "Your mind deserves kindness. Small reflections create big shifts."
+  },
+  {
+    "id": "employment-barrier",
+    "domain": "Employment & Purpose",
+    "triggers": {
+      "crisis_type": "employment",
+      "urgency": "medium"
+    },
+    "action": "Send Job Readiness Resources",
+    "script": "Small win: Tailor your story to your strengths. Here's a template rooted in your growth, not your gaps.",
+    "resource_link": "https://nrsrecovery.org/resources/job-tools",
+    "resource_label": "Access Job Tools",
+    "button_type": "link",
+    "rationale": "Dignity in work; celebrates progress and frames employment as identity restoration.",
+    "compassion_note": "Your gifts matter. This step toward purpose is worth celebrating."
+  },
+  {
+    "id": "spiritual-disconnect",
+    "domain": "Spiritual Support",
+    "triggers": {
+      "crisis_type": "spiritual",
+      "urgency": "low"
+    },
+    "action": "Send Daily Reflection/Devotional",
+    "script": "In the quiet: 'Progress, not perfection.' Here's today's reflection when you're ready to receive it.",
+    "resource_link": "https://nrsrecovery.org/devotional",
+    "resource_label": "Read Today's Devotional",
+    "button_type": "link",
+    "rationale": "Inclusive faith nudge; restores hope without pressure or religious coercion.",
+    "compassion_note": "Faith meets you where you are—messy, honest, hopeful."
+  },
+  {
+    "id": "reentry-support",
+    "domain": "Re-Entry",
+    "triggers": {
+      "crisis_type": "reentry",
+      "urgency": "high"
+    },
+    "action": "Connect to Re-Entry Mentor",
+    "script": "This peer walked your path—from incarceration to purpose. Let's link you both for coffee and real talk.",
+    "resource_link": "https://nrsrecovery.org/reentry-mentors",
+    "resource_label": "Find a Mentor",
+    "button_type": "link",
+    "rationale": "Accountability through connection; trauma-aware and rooted in lived experience.",
+    "compassion_note": "Re-entry is a journey, not a moment. You don't walk it alone."
+  },
+  {
+    "id": "followup-checkin",
+    "domain": "Ongoing Support",
+    "triggers": {
+      "crisis_type": "followup",
+      "urgency": "low"
+    },
+    "action": "Send Gentle Check-In Message",
+    "script": "How's that step feeling? One honest share changes everything. I'm here when you're ready.",
+    "resource_link": "sms:+1XXXXXXXXXX",
+    "resource_label": "Send Check-In Text",
+    "button_type": "text",
+    "rationale": "Sustains momentum; compassion over checkbox, relationship over task completion.",
+    "compassion_note": "Follow-up is love in action. Your consistency plants seeds of hope."
+  }
+]
