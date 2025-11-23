@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
+import { formatKnowledgeBaseContext } from '@/lib/knowledge-base';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -140,8 +141,11 @@ export async function POST(request: NextRequest) {
       localResources = await search211Resources(zip_code, primary_need);
     }
 
+    // Load organizational knowledge base context
+    const knowledgeBaseContext = formatKnowledgeBaseContext(primary_need, zip_code);
+
     // Build the prompt for GPT
-    const prompt = `You are an AI assistant helping social workers create comprehensive case plans for clients in crisis situations. Analyze the following case information and create a detailed, actionable case plan.
+    const prompt = `You are an AI assistant helping social workers create comprehensive case plans for clients in crisis situations. Analyze the following case information and create a detailed, actionable case plan.${knowledgeBaseContext}
 
 **Case Information:**
 - Primary Need: ${primary_need}

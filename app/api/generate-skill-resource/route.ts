@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
+import { getBestPractices, loadKnowledgeBase } from '@/lib/knowledge-base';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -9,6 +10,19 @@ export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
     const { skill_topic, worker_name, context, resource_type } = body;
+
+    // Get organizational knowledge
+    const kb = loadKnowledgeBase();
+    const bestPractices = getBestPractices(skill_topic);
+
+    // Build best practices context
+    let bestPracticesContext = '';
+    if (bestPractices.length > 0) {
+      bestPracticesContext = `\n**${kb.organization.name} Best Practices:**\n`;
+      bestPractices.forEach(practice => {
+        bestPracticesContext += `- ${practice}\n`;
+      });
+    }
 
     // Build resource type instruction
     const resourceTypeInstruction = resource_type === 'worksheet'
@@ -20,7 +34,9 @@ export async function POST(request: NextRequest) {
       : 'Create the most appropriate resource type (worksheet, reading material, or exercise) based on the topic and context.';
 
     // Build the prompt for GPT
-    const prompt = `You are a professional development specialist for social workers and case managers. Create a high-quality, evidence-based learning resource to help develop professional skills.
+    const prompt = `You are a professional development specialist for social workers and case managers at ${kb.organization.name}. Our mission: ${kb.organization.mission}. Our philosophy: ${kb.organization.philosophy}
+
+Create a high-quality, evidence-based learning resource to help develop professional skills.
 
 **Topic/Skill to Address:**
 ${skill_topic}
@@ -28,7 +44,7 @@ ${skill_topic}
 ${worker_name ? `**Social Worker:** ${worker_name}` : ''}
 
 **Context & Situation:**
-${context}
+${context}${bestPracticesContext}
 
 **Resource Type:**
 ${resourceTypeInstruction}

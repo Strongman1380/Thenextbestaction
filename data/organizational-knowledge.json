@@ -1,0 +1,75 @@
+{
+  "organization": {
+    "name": "Next Right Step Recovery",
+    "location": "Hastings, NE 68901",
+    "mission": "Trauma-informed recovery support and case management",
+    "philosophy": "Compassion in the chaos. Accountability without shame. Hope that's practical, not pie-in-the-sky."
+  },
+  "internal_resources": [
+    {
+      "name": "Example Internal Program",
+      "type": "housing",
+      "description": "Description of your internal housing program",
+      "contact": "Contact information",
+      "eligibility": "Who can access this"
+    }
+  ],
+  "local_partnerships": [
+    {
+      "organization": "Example Partner Organization",
+      "services": "What services they provide",
+      "contact": "How to reach them",
+      "notes": "Special arrangements or referral process"
+    }
+  ],
+  "best_practices": {
+    "housing_crisis": [
+      "Always assess immediate safety first",
+      "Connect with housing navigator within 24 hours",
+      "Document current living situation",
+      "Check for veterans benefits if applicable"
+    ],
+    "substance_use": [
+      "Use harm reduction approach",
+      "Never shame or judge",
+      "Assess readiness for change",
+      "Provide immediate naloxone access"
+    ],
+    "mental_health": [
+      "Screen for crisis/suicide risk",
+      "Trauma-informed approach always",
+      "Connect with peer support if available",
+      "Coordinate with existing providers"
+    ]
+  },
+  "common_referral_paths": {
+    "emergency_housing": {
+      "immediate": ["Call Salvation Army", "Emergency shelter hotline"],
+      "short_term": ["Transitional housing programs", "Hotel voucher programs"],
+      "long_term": ["Housing authority waitlist", "Permanent supportive housing"]
+    }
+  },
+  "staff_contacts": {
+    "housing_navigator": {
+      "name": "Example Name",
+      "phone": "555-1234",
+      "email": "example@nrs.org",
+      "hours": "Monday-Friday 8am-5pm"
+    }
+  },
+  "client_forms_documents": [
+    {
+      "name": "Housing Application",
+      "location": "Front desk or online portal",
+      "required_for": "All housing referrals"
+    }
+  ],
+  "community_specific_info": {
+    "hastings_ne": {
+      "transportation": "Public bus limited hours - most clients need rides",
+      "food_resources": "Food bank open Tuesday/Thursday",
+      "healthcare": "Community health center accepts Medicaid",
+      "notes": "Rural area - limited public transportation, plan accordingly"
+    }
+  }
+}

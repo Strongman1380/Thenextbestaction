@@ -1,5 +1,6 @@
 import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
+import { getBestPractices } from '@/lib/knowledge-base';
 
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
@@ -10,10 +11,20 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { skill_topic, context } = body;
 
+    // Get relevant best practices from knowledge base
+    const bestPractices = getBestPractices(skill_topic);
+    let bestPracticesContext = '';
+    if (bestPractices.length > 0) {
+      bestPracticesContext = `\n**Organizational Best Practices for ${skill_topic}:**\n`;
+      bestPractices.forEach(practice => {
+        bestPracticesContext += `- ${practice}\n`;
+      });
+    }
+
     // Build the prompt for client-focused resources
     const prompt = `You are a compassionate recovery coach creating self-help resources for clients in recovery. A client is working on: "${skill_topic}"
 
-${context ? `Additional context: ${context}` : ''}
+${context ? `Additional context: ${context}` : ''}${bestPracticesContext}
 
 Create a comprehensive, client-friendly resource that the person can use on their own. This should be trauma-informed, strengths-based, and empowering. Include:
 
