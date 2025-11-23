@@ -1,10 +1,8 @@
-import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 import { getBestPractices, loadKnowledgeBase } from '@/lib/knowledge-base';
+import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const perplexity = createPerplexityClient();
 
 export async function POST(request: NextRequest) {
   try {
@@ -84,8 +82,8 @@ ${resourceTypeInstruction}
 
 Create a resource that is immediately usable and genuinely helpful for professional growth.`;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const completion = await perplexity.chat.completions.create({
+      model: DEFAULT_MODEL,
       messages: [
         {
           role: 'system',
@@ -106,7 +104,7 @@ Create a resource that is immediately usable and genuinely helpful for professio
       success: true,
       skill_resource: skillResource,
       metadata: {
-        model: 'gpt-4o-mini',
+        model: DEFAULT_MODEL,
         skill_topic,
         resource_type,
         timestamp: new Date().toISOString(),

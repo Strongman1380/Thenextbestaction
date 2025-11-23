@@ -1,10 +1,8 @@
-import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 import { formatKnowledgeBaseContext } from '@/lib/knowledge-base';
+import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const perplexity = createPerplexityClient();
 
 /**
  * Search 211 database for local resources based on ZIP code and need type
@@ -107,8 +105,8 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
  */
 async function searchLocalResourcesWithAI(zip_code: string, primary_need: string): Promise<string> {
   try {
-    const resourceSearch = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const resourceSearch = await perplexity.chat.completions.create({
+      model: DEFAULT_MODEL,
       messages: [
         {
           role: 'system',
@@ -179,8 +177,8 @@ ${localResources ? `**Local Resources Found (ZIP ${zip_code}):**\n${localResourc
 
 Format your response in clear, easy-to-read sections with bullet points. Use compassionate, professional language that honors the client's dignity. Be trauma-informed and culturally sensitive.`;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const completion = await perplexity.chat.completions.create({
+      model: DEFAULT_MODEL,
       messages: [
         {
           role: 'system',
@@ -201,7 +199,7 @@ Format your response in clear, easy-to-read sections with bullet points. Use com
       success: true,
       case_plan: casePlan,
       metadata: {
-        model: 'gpt-4o-mini',
+        model: DEFAULT_MODEL,
         urgency,
         timestamp: new Date().toISOString(),
       }

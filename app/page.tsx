@@ -107,10 +107,14 @@ export default function Home() {
     }
   };
 
-  const handleNewResource = () => {
+  const handleNewSkillResource = () => {
     setSkillResource(null);
     setSkillError(null);
     setLastActivity('Preparing a new skill resource');
+  };
+
+  const handleRegenerateSkillResource = () => {
+    handleSkillSubmit({ skill_topic: skillTopic });
   };
 
   const handleClientResourceSubmit = async (formData: SkillBuildingData) => {
@@ -146,6 +150,10 @@ export default function Home() {
     setClientResource(null);
     setClientError(null);
     setLastActivity('Preparing a new client resource');
+  };
+
+  const handleRegenerateClientResource = () => {
+    handleClientResourceSubmit({ skill_topic: clientTopic });
   };
 
   return (
@@ -355,7 +363,8 @@ export default function Home() {
                 <SkillResourceCard
                   skillResource={skillResource}
                   skillTopic={skillTopic}
-                  onNewResource={handleNewResource}
+                  onRegenerate={handleRegenerateSkillResource}
+                  onCreateNew={handleNewSkillResource}
                 />
               )}
             </>
@@ -398,7 +407,8 @@ export default function Home() {
                 <SkillResourceCard
                   skillResource={clientResource}
                   skillTopic={clientTopic}
-                  onNewResource={handleNewClientResource}
+                  onRegenerate={handleRegenerateClientResource}
+                  onCreateNew={handleNewClientResource}
                 />
               )}
             </>

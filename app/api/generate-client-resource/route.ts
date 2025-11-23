@@ -1,10 +1,8 @@
-import OpenAI from 'openai';
 import { NextRequest, NextResponse } from 'next/server';
 import { getBestPractices } from '@/lib/knowledge-base';
+import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 
-const openai = new OpenAI({
-  apiKey: process.env.OPENAI_API_KEY,
-});
+const perplexity = createPerplexityClient();
 
 export async function POST(request: NextRequest) {
   try {
@@ -52,8 +50,8 @@ Use warm, encouraging language that emphasizes the client's strengths and capaci
 
 Format your response in clear sections with headings. Use bullet points and numbered lists where appropriate.`;
 
-    const completion = await openai.chat.completions.create({
-      model: 'gpt-4o-mini',
+    const completion = await perplexity.chat.completions.create({
+      model: DEFAULT_MODEL,
       messages: [
         {
           role: 'system',
@@ -74,7 +72,7 @@ Format your response in clear sections with headings. Use bullet points and numb
       success: true,
       client_resource: clientResource,
       metadata: {
-        model: 'gpt-4o-mini',
+        model: DEFAULT_MODEL,
         topic: skill_topic,
         timestamp: new Date().toISOString(),
       }

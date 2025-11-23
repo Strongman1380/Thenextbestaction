@@ -6,10 +6,11 @@ import ReactMarkdown from 'react-markdown';
 interface Props {
   skillResource: string;
   skillTopic: string;
-  onNewResource: () => void;
+  onRegenerate: () => void;
+  onCreateNew: () => void;
 }
 
-export default function SkillResourceCard({ skillResource, skillTopic, onNewResource }: Props) {
+export default function SkillResourceCard({ skillResource, skillTopic, onRegenerate, onCreateNew }: Props) {
   const [copied, setCopied] = useState(false);
 
   const copyResource = () => {
@@ -127,15 +128,24 @@ export default function SkillResourceCard({ skillResource, skillTopic, onNewReso
       </div>
 
       {/* Action Buttons */}
-      <div className="flex justify-center">
+      <div className="flex justify-center gap-4">
         <button
-          onClick={onNewResource}
+          onClick={onRegenerate}
+          className="btn-secondary flex items-center gap-2"
+        >
+          <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M7 8l5-5 5 5" />
+          </svg>
+          Make another resource
+        </button>
+        <button
+          onClick={onCreateNew}
           className="btn-accent flex items-center gap-2"
         >
           <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
             <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v18M7 8l5-5 5 5" />
           </svg>
-          Create another resource
+          Create a new resource
         </button>
       </div>
 
