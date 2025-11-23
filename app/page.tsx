@@ -36,6 +36,7 @@ export default function Home() {
   const [clientResource, setClientResource] = useState<string | null>(null);
   const [clientTopic, setClientTopic] = useState<string>('');
   const [clientContext, setClientContext] = useState<string>('');
+  const [clientResourceType, setClientResourceType] = useState<'worksheet' | 'reading' | 'exercise' | 'any'>('any');
   const [clientLoading, setClientLoading] = useState(false);
   const [clientError, setClientError] = useState<string | null>(null);
 
@@ -148,6 +149,7 @@ export default function Home() {
         setClientResource(data.client_resource);
         setClientTopic(formData.skill_topic);
         setClientContext(formData.context);
+        setClientResourceType(formData.resource_type);
         setLastActivity(`Client resource generated • ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
       } else {
         setClientError(data.error || 'Failed to generate client resource');
@@ -170,7 +172,7 @@ export default function Home() {
       skill_topic: clientTopic,
       worker_name: '',
       context: clientContext,
-      resource_type: 'any'
+      resource_type: clientResourceType
     });
   };
 

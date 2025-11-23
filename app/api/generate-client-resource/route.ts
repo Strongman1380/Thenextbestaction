@@ -7,7 +7,7 @@ const perplexity = createPerplexityClient();
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { skill_topic, context } = body;
+    const { skill_topic, context, resource_type } = body;
 
     // Get relevant best practices from knowledge base
     const bestPractices = getBestPractices(skill_topic);
@@ -19,6 +19,15 @@ export async function POST(request: NextRequest) {
       });
     }
 
+    // Build resource type instruction
+    const resourceTypeInstruction = resource_type === 'worksheet'
+      ? 'Create an interactive WORKSHEET with exercises and activities the client can complete.'
+      : resource_type === 'reading'
+      ? 'Create READING MATERIAL with information, examples, and tips the client can review.'
+      : resource_type === 'exercise'
+      ? 'Create hands-on EXERCISES and activities the client can practice on their own.'
+      : 'Create the most appropriate resource type (worksheet, reading material, or exercise) based on the skill topic and context.';
+
     // Build the prompt for client-focused resources
     const prompt = `A social worker needs help with a client issue. They need a self-help resource to GIVE TO THEIR CLIENT to help the client work on: "${skill_topic}".
 
@@ -26,6 +35,9 @@ export async function POST(request: NextRequest) {
 The worker is dealing with a client who has this issue/need. The worker wants to provide the client with something practical they can use on their own between sessions.${bestPracticesContext}
 
 ${context ? `**What the worker told us about the client's situation:**\n${context}\n` : ''}
+
+**WHAT THEY NEED:**
+${resourceTypeInstruction}
 
 **YOUR TASK:**
 Create a client-facing handout/resource that the WORKER can give to the CLIENT. This is NOT for the worker - it's FOR THE CLIENT to use independently.
@@ -37,8 +49,36 @@ Create a client-facing handout/resource that the WORKER can give to the CLIENT. 
 - Be encouraging and empowering (not clinical or preachy)
 - This should help the worker address the client's needs by giving them tools to use
 
-**CREATE A CLIENT HANDOUT WITH THESE SECTIONS:**
+**CREATE A CLIENT RESOURCE WITH THESE SECTIONS:**
 
+${resource_type === 'worksheet' ? `
+**WORKSHEET FORMAT:**
+1. **Introduction**: Why this worksheet helps them (2-3 sentences)
+2. **Reflection Questions**: 5-7 thought-provoking questions they can write answers to
+3. **Practice Exercises**: 3-4 fill-in-the-blank or structured activities they complete
+4. **Action Planning**: Space for them to write specific goals or commitments
+5. **Progress Tracking**: Simple checkboxes or ratings they can mark
+6. **Encouragement**: Affirming statements and next steps
+` : ''}
+${resource_type === 'reading' ? `
+**READING MATERIAL FORMAT:**
+1. **Understanding the Issue**: Clear explanation of what they're experiencing (client-friendly language)
+2. **Why This Happens**: Simple explanation of common causes or patterns
+3. **What You Can Do**: Practical tips and strategies organized by topic
+4. **Real Examples**: Relatable scenarios showing how others have worked through this
+5. **Key Takeaways**: Bullet-point summary of main ideas
+6. **Additional Resources**: Suggested books, websites, or hotlines
+` : ''}
+${resource_type === 'exercise' ? `
+**EXERCISE/ACTIVITY FORMAT:**
+1. **What This Exercise Does**: Brief intro (2-3 sentences)
+2. **How to Do It**: Step-by-step instructions for 2-3 hands-on activities
+3. **Practice Examples**: Sample scenarios they can work through
+4. **Reflection After**: Questions to think about after completing each exercise
+5. **Make It Your Own**: Ways to adapt the exercises to their life
+6. **Keep Going**: How to practice this regularly
+` : ''}
+${resource_type === 'any' ? `
 1. **Why This Matters** (for the client):
    - Brief explanation of why working on this helps THEM
    - Written in warm, encouraging tone
@@ -79,6 +119,7 @@ Create a client-facing handout/resource that the WORKER can give to the CLIENT. 
    - Clear signs they should contact their worker/counselor
    - Permission to ask for help
    - Normalize needing support
+` : ''}
 
 **FORMATTING:**
 - Clear section headings
@@ -113,6 +154,7 @@ Create a client-facing handout/resource that the WORKER can give to the CLIENT. 
       metadata: {
         model: DEFAULT_MODEL,
         topic: skill_topic,
+        resource_type,
         timestamp: new Date().toISOString(),
       }
     });
