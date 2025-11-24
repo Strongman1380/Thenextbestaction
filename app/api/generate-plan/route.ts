@@ -1,6 +1,8 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { formatKnowledgeBaseContext } from '@/lib/knowledge-base';
+import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
+import { researchCaseNeed, formatResearchForPrompt } from '@/lib/research';
 
 const perplexity = createPerplexityClient();
 
@@ -131,7 +133,7 @@ async function searchLocalResourcesWithAI(zip_code: string, primary_need: string
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { primary_need, urgency, client_initials, caseworker_name, zip_code, additional_context } = body;
+    const { primary_need, urgency, client_initials, caseworker_name, zip_code, additional_context, enable_research } = body;
 
     // Search for local resources if ZIP code provided (uses 211 database)
     let localResources = '';
@@ -139,11 +141,25 @@ export async function POST(request: NextRequest) {
       localResources = await search211Resources(zip_code, primary_need);
     }
 
+    // Research the topic if enabled (default: true)
+    const shouldResearch = enable_research !== false; // Default to true
+    let researchContext = '';
+
+    if (shouldResearch) {
+      console.log(`Researching topic: ${primary_need}`);
+      const research = await researchCaseNeed(primary_need, urgency, additional_context);
+      researchContext = formatResearchForPrompt(research);
+      console.log('Research completed');
+    }
+
     // Load organizational knowledge base context
     const knowledgeBaseContext = formatKnowledgeBaseContext(primary_need, zip_code);
+    
+    // Load additional document knowledge
+    const documentContext = await loadDocumentKnowledge();
 
     // Build the prompt for case plan generation
-    const prompt = `You are creating a case plan to help a social worker address a client's needs. Your job is to carefully analyze ALL information provided and create a comprehensive, actionable plan.${knowledgeBaseContext}
+    const prompt = `You are creating a case plan to help a social worker address a client's needs. Your job is to carefully analyze ALL information provided and create a comprehensive, actionable plan.${knowledgeBaseContext}${documentContext}${researchContext}
 
 **CLIENT CASE INFORMATION:**
 - Primary Need: ${primary_need}
@@ -181,11 +197,7 @@ ${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localRes
    - Include trauma-informed approaches
 
 3. **Best-Matched Local Resources** ${zip_code ? `(ZIP ${zip_code})` : ''}:
-   ${localResources ? '**SELECT ONLY THE MOST RELEVANT resources from the list above.** For each selected resource:' : 'Recommend specific resources:'}
-   - Explain WHY this resource is the best match for this client's need
-   - Provide the contact information
-   - Note any eligibility requirements or barriers
-   - Prioritize by relevance to the primary need
+   ${localResources ? '**SELECT ONLY THE MOST RELEVANT resources from the list above.**\n\n   Format each resource clearly for easy reading and printing:\n\n   **[Resource Name]**\n   - **Why This Fits:** [Explain specifically why this resource matches the client\'s need]\n   - **Contact:** [Phone, website, and/or address - make it easy to find and reach them]\n   - **Services:** [List the specific services they offer that are relevant to this case]\n   - **Important Notes:** [Eligibility requirements, hours, any barriers, or special considerations]\n\n   List resources in priority order (most urgent/relevant first). Use clear spacing between resources for readability.' : 'Recommend specific resources with complete contact information and explanation of relevance.'}
 
 4. **Risk Assessment**:
    - Identify immediate safety concerns

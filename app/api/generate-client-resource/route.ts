@@ -1,16 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBestPractices } from '@/lib/knowledge-base';
+import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
+import { researchClientResource, formatResearchForPrompt } from '@/lib/research';
 
 const perplexity = createPerplexityClient();
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { skill_topic, context, resource_type } = body;
+    const { skill_topic, context, resource_type, enable_research } = body;
+
+    // Research the topic if enabled (default: true)
+    const shouldResearch = enable_research !== false;
+    let researchContext = '';
+
+    if (shouldResearch) {
+      console.log(`Researching client resource topic: ${skill_topic}`);
+      const research = await researchClientResource(skill_topic, context);
+      researchContext = formatResearchForPrompt(research);
+      console.log('Research completed');
+    }
 
     // Get relevant best practices from knowledge base
     const bestPractices = getBestPractices(skill_topic);
+    
+    // Load additional document knowledge
+    const documentContext = await loadDocumentKnowledge();
+
     let bestPracticesContext = '';
     if (bestPractices.length > 0) {
       bestPracticesContext = `\n**Organizational Best Practices for ${skill_topic}:**\n`;
@@ -32,7 +49,7 @@ export async function POST(request: NextRequest) {
     const prompt = `A social worker needs help with a client issue. They need a self-help resource to GIVE TO THEIR CLIENT to help the client work on: "${skill_topic}".
 
 **THE SITUATION:**
-The worker is dealing with a client who has this issue/need. The worker wants to provide the client with something practical they can use on their own between sessions.${bestPracticesContext}
+The worker is dealing with a client who has this issue/need. The worker wants to provide the client with something practical they can use on their own between sessions.${bestPracticesContext}${documentContext}${researchContext}
 
 ${context ? `**What the worker told us about the client's situation:**\n${context}\n` : ''}
 

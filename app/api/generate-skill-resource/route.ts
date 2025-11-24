@@ -1,17 +1,33 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBestPractices, loadKnowledgeBase } from '@/lib/knowledge-base';
+import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
+import { researchSkillTopic, formatResearchForPrompt } from '@/lib/research';
 
 const perplexity = createPerplexityClient();
 
 export async function POST(request: NextRequest) {
   try {
     const body = await request.json();
-    const { skill_topic, worker_name, context, resource_type } = body;
+    const { skill_topic, worker_name, context, resource_type, enable_research } = body;
+
+    // Research the topic if enabled (default: true)
+    const shouldResearch = enable_research !== false;
+    let researchContext = '';
+
+    if (shouldResearch) {
+      console.log(`Researching skill topic: ${skill_topic}`);
+      const research = await researchSkillTopic(skill_topic, context);
+      researchContext = formatResearchForPrompt(research);
+      console.log('Research completed');
+    }
 
     // Get organizational knowledge
     const kb = loadKnowledgeBase();
     const bestPractices = getBestPractices(skill_topic);
+    
+    // Load additional document knowledge
+    const documentContext = await loadDocumentKnowledge();
 
     // Build best practices context
     let bestPracticesContext = '';
@@ -34,7 +50,7 @@ export async function POST(request: NextRequest) {
     // Build the prompt for worker skill-building
     const prompt = `A social worker ${worker_name ? `(${worker_name}) ` : ''}is seeking to build their OWN professional knowledge and skills. They want to learn and grow in this area: "${skill_topic}".
 
-This is NOT about helping a client - this is about helping the WORKER themselves become better at their job.${bestPracticesContext}
+This is NOT about helping a client - this is about helping the WORKER themselves become better at their job.${bestPracticesContext}${documentContext}${researchContext}
 
 **WORKER'S LEARNING CONTEXT:**
 ${context}

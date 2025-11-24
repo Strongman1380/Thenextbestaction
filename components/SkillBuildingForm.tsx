@@ -12,6 +12,7 @@ export interface SkillBuildingData {
   worker_name: string;
   context: string;
   resource_type: 'worksheet' | 'reading' | 'exercise' | 'any';
+  enable_research?: boolean;
 }
 
 export default function SkillBuildingForm({ onSubmit, loading }: Props) {
@@ -20,6 +21,7 @@ export default function SkillBuildingForm({ onSubmit, loading }: Props) {
     worker_name: '',
     context: '',
     resource_type: 'any',
+    enable_research: true,
   });
 
   const [isRecording, setIsRecording] = useState(false);
@@ -204,6 +206,25 @@ export default function SkillBuildingForm({ onSubmit, loading }: Props) {
         <p className="text-xs text-gray-500 mt-1">
           Click microphone to dictate or type your context
         </p>
+      </div>
+
+      {/* Research Toggle */}
+      <div className="flex items-start space-x-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <input
+          type="checkbox"
+          id="enable_research"
+          checked={formData.enable_research}
+          onChange={(e) => setFormData(prev => ({ ...prev, enable_research: e.target.checked }))}
+          className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+        />
+        <div className="flex-1">
+          <label htmlFor="enable_research" className="text-sm font-medium text-gray-900 cursor-pointer">
+            Research topic with AI before generating resource
+          </label>
+          <p className="text-xs text-gray-600 mt-1">
+            AI will research current evidence-based practices and professional development strategies. Adds 10-15 seconds.
+          </p>
+        </div>
       </div>
 
       {/* Submit */}

@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useRef, useEffect } from 'react';
 import type { UrgencyLevel } from '@/types';
 
 interface Props {
@@ -11,20 +11,24 @@ interface Props {
 export interface FormData {
   primary_need: string;
   urgency: UrgencyLevel;
-  client_initials: string;
+  clientId: number | null; // Use clientId instead of initials
+  newClientInitials: string; // For creating a new client
   caseworker_name: string;
   zip_code: string;
   additional_context: string;
+  enable_research?: boolean;
 }
 
 export default function CaseInputForm({ onSubmit, loading }: Props) {
   const [formData, setFormData] = useState<FormData>({
     primary_need: '',
     urgency: 'medium',
-    client_initials: '',
+    clientId: null,
+    newClientInitials: '',
     caseworker_name: '',
     zip_code: '',
     additional_context: '',
+    enable_research: true,
   });
 
   const [isRecordingPrimary, setIsRecordingPrimary] = useState(false);
@@ -33,16 +37,21 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
   const silenceTimerRef = useRef<any>(null);
   const accumulatedTextRef = useRef<string>('');
 
+  // Client fetching removed since auth is disabled
+
+
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     onSubmit(formData);
   };
 
-  const updateField = (field: keyof FormData, value: string) => {
+  const updateField = (field: keyof Omit<FormData, 'clientId'>, value: string | boolean | undefined) => {
     setFormData(prev => ({ ...prev, [field]: value }));
   };
+  
 
-  // Speech-to-text functionality with accumulation and auto-stop
+
+  // Speech-to-text functionality (remains unchanged)
   const startDictation = (field: 'primary_need' | 'additional_context') => {
     if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
       alert('Speech recognition is not supported in this browser. Please use Chrome or Edge.');
@@ -56,14 +65,10 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
     recognition.interimResults = true;
     recognition.lang = 'en-US';
 
-    // Initialize accumulated text with current field value
-    accumulatedTextRef.current = formData[field];
+    accumulatedTextRef.current = field === 'primary_need' ? formData.primary_need : formData.additional_context;
 
     recognition.onresult = (event: any) => {
-      // Clear the silence timer since we're getting speech
-      if (silenceTimerRef.current) {
-        clearTimeout(silenceTimerRef.current);
-      }
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
 
       let interimTranscript = '';
       let finalTranscript = '';
@@ -77,34 +82,24 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
         }
       }
 
-      // Accumulate final transcripts
       if (finalTranscript) {
         accumulatedTextRef.current += finalTranscript;
       }
 
-      // Update the field with accumulated + interim text
-      const fullText = accumulatedTextRef.current + interimTranscript;
-      updateField(field, fullText);
+      updateField(field, accumulatedTextRef.current + interimTranscript);
 
-      // Set a new 10-second silence timer
-      silenceTimerRef.current = setTimeout(() => {
-        stopDictation();
-      }, 10000); // 10 seconds of silence
+      silenceTimerRef.current = setTimeout(() => stopDictation(), 10000);
     };
 
     recognition.onerror = (event: any) => {
       console.error('Speech recognition error:', event.error);
-      if (event.error !== 'no-speech') {
-        stopDictation();
-      }
+      if (event.error !== 'no-speech') stopDictation();
     };
 
     recognition.onend = () => {
       if (field === 'primary_need') setIsRecordingPrimary(false);
       if (field === 'additional_context') setIsRecordingContext(false);
-      if (silenceTimerRef.current) {
-        clearTimeout(silenceTimerRef.current);
-      }
+      if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
     };
 
     recognitionRef.current = recognition;
@@ -120,9 +115,7 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
       setIsRecordingPrimary(false);
       setIsRecordingContext(false);
     }
-    if (silenceTimerRef.current) {
-      clearTimeout(silenceTimerRef.current);
-    }
+    if (silenceTimerRef.current) clearTimeout(silenceTimerRef.current);
   };
 
   return (
@@ -188,23 +181,8 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
         </div>
       </div>
 
-      {/* Client Initials & Worker Name */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div>
-          <label className="label" htmlFor="client_initials">
-            Client Initials
-          </label>
-          <input
-            id="client_initials"
-            type="text"
-            className="input"
-            placeholder="e.g., J.D."
-            value={formData.client_initials}
-            onChange={(e) => updateField('client_initials', e.target.value)}
-            maxLength={10}
-          />
-        </div>
-
+      {/* Worker Name */}
+      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <div>
           <label className="label" htmlFor="caseworker_name">
             Your Name (Worker Name)
@@ -218,26 +196,22 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
             onChange={(e) => updateField('caseworker_name', e.target.value)}
           />
         </div>
-      </div>
 
-      {/* ZIP Code */}
-      <div>
-        <label className="label" htmlFor="zip_code">
-          ZIP Code (for local resource search)
-        </label>
-        <input
-          id="zip_code"
-          type="text"
-          className="input"
-          placeholder="e.g., 60601"
-          value={formData.zip_code}
-          onChange={(e) => updateField('zip_code', e.target.value)}
-          maxLength={5}
-          pattern="[0-9]{5}"
-        />
-        <p className="text-xs text-gray-500 mt-1">
-          We'll search for local resources based on your location
-        </p>
+        <div>
+          <label className="label" htmlFor="zip_code">
+            ZIP Code (for local resource search)
+          </label>
+          <input
+            id="zip_code"
+            type="text"
+            className="input"
+            placeholder="e.g., 60601"
+            value={formData.zip_code}
+            onChange={(e) => updateField('zip_code', e.target.value)}
+            maxLength={5}
+            pattern="[0-9]{5}"
+          />
+        </div>
       </div>
 
       {/* Additional Context */}
@@ -269,6 +243,25 @@ export default function CaseInputForm({ onSubmit, loading }: Props) {
         <p className="text-xs text-gray-500 mt-1">
           Click microphone to dictate or type additional context
         </p>
+      </div>
+
+      {/* Research Toggle */}
+      <div className="flex items-start space-x-3 p-4 bg-blue-50 border border-blue-200 rounded-lg">
+        <input
+          type="checkbox"
+          id="enable_research"
+          checked={formData.enable_research}
+          onChange={(e) => updateField('enable_research', e.target.checked)}
+          className="mt-1 h-4 w-4 text-blue-600 focus:ring-blue-500 border-gray-300 rounded"
+        />
+        <div className="flex-1">
+          <label htmlFor="enable_research" className="text-sm font-medium text-gray-900 cursor-pointer">
+            Research topic with AI before generating plan
+          </label>
+          <p className="text-xs text-gray-600 mt-1">
+            AI will research current evidence-based practices and incorporate findings into the case plan. This adds 10-15 seconds to generation time.
+          </p>
+        </div>
       </div>
 
       {/* Submit */}
