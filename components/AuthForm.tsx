@@ -22,18 +22,25 @@ export default function AuthForm() {
     try {
       if (isSignUp) {
         // Sign up
-        const { error } = await supabase.auth.signUp({
+        const { data, error } = await supabase.auth.signUp({
           email,
           password,
           options: {
             data: {
               full_name: fullName,
             },
-            emailRedirectTo: `${window.location.origin}/auth/callback`,
           },
         });
         if (error) throw error;
-        setMessage('Check your email for a confirmation link to sign in.');
+        
+        // If session exists, user is logged in (email confirmation disabled)
+        if (data.session) {
+          router.push('/');
+          router.refresh();
+        } else {
+          // Email confirmation is enabled
+          setMessage('Check your email for a confirmation link to sign in.');
+        }
       } else {
         // Sign in
         const { error } = await supabase.auth.signInWithPassword({
@@ -41,7 +48,7 @@ export default function AuthForm() {
           password,
         });
         if (error) throw error;
-        router.push('/dashboard');
+        router.push('/');
         router.refresh();
       }
     } catch (err: any) {
