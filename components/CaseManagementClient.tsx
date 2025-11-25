@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { supabase } from '@/lib/supabase';
 import CaseInputForm, { type FormData } from '@/components/CaseInputForm';
 import CasePlanCard from '@/components/CasePlanCard';
 import SkillBuildingForm, { type SkillBuildingData } from '@/components/SkillBuildingForm';
@@ -8,10 +9,11 @@ import SkillResourceCard from '@/components/SkillResourceCard';
 import Header from '@/components/Header';
 import CompassionFooter from '@/components/CompassionFooter';
 import HowToUse from '@/components/HowToUse';
+import type { Session } from '@supabase/auth-helpers-nextjs';
 
 type TabType = 'case-plan' | 'skill-building' | 'client-resources';
 
-export default function CaseManagementClient({ session }: { session: any }) {
+export default function CaseManagementClient({ session }: { session: Session | null }) {
 
   const [activeTab, setActiveTab] = useState<TabType>('case-plan');
 
@@ -47,6 +49,12 @@ export default function CaseManagementClient({ session }: { session: any }) {
     setLoading(true);
     setError(null);
 
+    if (!session?.user) {
+      setError('You must be logged in to create a case plan.');
+      setLoading(false);
+      return;
+    }
+
     try {
         // Generate the AI case plan via the API
         const response = await fetch('/api/generate-plan', {
@@ -59,6 +67,23 @@ export default function CaseManagementClient({ session }: { session: any }) {
 
         if (!data.success) {
             throw new Error(data.error || 'Failed to generate case plan');
+        }
+
+        // Save the case plan to the database
+        const { error: dbError } = await supabase
+          .from('case_plans')
+          .insert({
+            content: data.case_plan,
+            primary_need: formData.primary_need,
+            urgency: formData.urgency,
+            caseworker_id: session.user.id,
+            input_data: formData,
+            status: 'Not Started',
+          });
+
+        if (dbError) {
+          console.error('Failed to save case plan to database:', dbError);
+          // Continue anyway - show the plan even if save fails
         }
 
         setCasePlan(data.case_plan);
@@ -93,6 +118,23 @@ export default function CaseManagementClient({ session }: { session: any }) {
       const data = await response.json();
 
       if (data.success) {
+        // Save to database if user is logged in
+        if (session?.user) {
+          const { error: dbError } = await supabase
+            .from('saved_resources')
+            .insert({
+              content: data.skill_resource,
+              topic: formData.skill_topic,
+              resource_type: formData.resource_type,
+              caseworker_id: session.user.id,
+              category: 'skill-building',
+            });
+
+          if (dbError) {
+            console.error('Failed to save skill resource:', dbError);
+          }
+        }
+
         setSkillResource(data.skill_resource);
         setSkillTopic(formData.skill_topic);
         setLastActivity(`Skill resource generated • ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
@@ -133,6 +175,23 @@ export default function CaseManagementClient({ session }: { session: any }) {
       const data = await response.json();
 
       if (data.success) {
+        // Save to database if user is logged in
+        if (session?.user) {
+          const { error: dbError } = await supabase
+            .from('saved_resources')
+            .insert({
+              content: data.client_resource,
+              topic: formData.skill_topic,
+              resource_type: formData.resource_type,
+              caseworker_id: session.user.id,
+              category: 'client-resource',
+            });
+
+          if (dbError) {
+            console.error('Failed to save client resource:', dbError);
+          }
+        }
+
         setClientResource(data.client_resource);
         setClientTopic(formData.skill_topic);
         setLastActivity(`Client resource generated • ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
