@@ -200,24 +200,15 @@ export default function KnowledgeManagementPage() {
         )}
 
         {activeTab === 'treatment_protocols' && (
-          <TreatmentProtocolsManager
-            protocols={knowledgeBase.treatment_protocols || []}
-            onChange={(protocols) => setKnowledgeBase({ ...knowledgeBase, treatment_protocols: protocols })}
-          />
+          <TreatmentProtocolsManager />
         )}
 
         {activeTab === 'clinical_guidelines' && (
-          <ClinicalGuidelinesManager
-            guidelines={knowledgeBase.clinical_guidelines || []}
-            onChange={(guidelines) => setKnowledgeBase({ ...knowledgeBase, clinical_guidelines: guidelines })}
-          />
+          <ClinicalGuidelinesManager />
         )}
 
         {activeTab === 'internal_resources' && (
-          <InternalResourcesManager
-            resources={knowledgeBase.internal_resources}
-            onChange={(resources) => setKnowledgeBase({ ...knowledgeBase, internal_resources: resources })}
-          />
+          <InternalResourcesManager />
         )}
 
         {activeTab === 'local_partnerships' && (
