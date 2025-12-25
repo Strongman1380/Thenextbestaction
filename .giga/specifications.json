@@ -1,0 +1,22 @@
+[
+  {
+    "fileName": "main-overview.mdc",
+    "description": "Complete system overview including the trauma-informed care decision support architecture, key components, and high-level data flows"
+  },
+  {
+    "fileName": "decision-engine-algorithms.mdc",
+    "description": "Detailed documentation of the case plan generation algorithms, including trauma-informed care decision support system, urgency-based prioritization, and resource matching logic"
+  },
+  {
+    "fileName": "knowledge-management-model.mdc",
+    "description": "Comprehensive documentation of the knowledge management system, including domain-specific hierarchies, practice-to-category mapping, and organizational best practices integration"
+  },
+  {
+    "fileName": "resource-generation-flows.mdc",
+    "description": "Documentation of resource generation algorithms and workflows for both professional development and client resources, including content adaptation and formatting logic"
+  },
+  {
+    "fileName": "data-models-relationships.mdc",
+    "description": "Detailed documentation of core data models including case management, resource databases, knowledge hierarchies, and their relationships"
+  }
+]

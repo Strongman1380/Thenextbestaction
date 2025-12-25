@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { DocumentMetadata } from '@/lib/document-parser';
 import { Upload, File, Trash2, FileText, AlertCircle, RefreshCw, ClipboardPaste } from 'lucide-react';
+import GoogleDriveBrowser from './GoogleDriveBrowser';
 
 export default function DocumentsManager() {
   const [documents, setDocuments] = useState<DocumentMetadata[]>([]);
@@ -229,6 +230,14 @@ export default function DocumentsManager() {
             Save Pasted Text
           </button>
         </div>
+      </div>
+
+      {/* Google Drive Integration */}
+      <div className="mb-8">
+        <GoogleDriveBrowser
+          category={category || undefined}
+          onImport={fetchDocuments}
+        />
       </div>
 
       {uploadError && (
