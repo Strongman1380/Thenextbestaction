@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { formatKnowledgeBaseContext } from '@/lib/knowledge-base';
+import { formatEnhancedKnowledgeContext } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 import { researchCaseNeed, formatResearchForPrompt } from '@/lib/research';
@@ -179,8 +179,13 @@ export async function POST(request: NextRequest) {
       console.log('Research completed');
     }
 
-    // Load organizational knowledge base context
-    const knowledgeBaseContext = formatKnowledgeBaseContext(primary_need, zip_code);
+    // Load organizational knowledge base context (includes treatment providers if ZIP provided)
+    const knowledgeBaseContext = formatEnhancedKnowledgeContext({
+      needType: primary_need,
+      location: zip_code,
+      zipCode: zip_code,
+      includeProviders: true,
+    });
     
     // Load additional document knowledge
     const documentContext = await loadDocumentKnowledge();

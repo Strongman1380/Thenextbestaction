@@ -6,7 +6,2048 @@
     "philosophy": "Compassion in the chaos. Accountability without shame. Hope that's practical, not pie-in-the-sky."
   },
   "internal_resources": [],
-  "local_partnerships": [],
+  "local_partnerships": [
+    {
+      "organization": "Lexington Regional Health Center",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 308-324-5651 | http://www.lexingtonregional.org",
+      "address": "1201 North Erie Street, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Psychiatric Hope",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 308-221-4651 | http://www.psychiatrichope.com",
+      "address": "321 East 3rd Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Mid Plains Center for - Behavioral Healthcare Services Inc",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 308-385-5250 | Intake: 800-515-3326 | http://www.midplainscenter.org",
+      "address": "914 Baumann Drive, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Valley Hope of ONeill",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 785-877-5111 | Intake: 800-544-5101 | http://www.valleyhope.org",
+      "address": "1421 North 10th Street, O'Neill, NE, 68763",
+      "location": "O'Neill, NE",
+      "notes": "County: Holt"
+    },
+    {
+      "organization": "Revive Inc - Horizon Recovery and Counseling Center",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-462-2066 | http://www.reviveinc.org",
+      "address": "2205 Osborne Drive East Suite 115, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Seekers of Serenity Place",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-564-9994 | http://www.4bhs.org",
+      "address": "4432 Sunrise Place, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Sunrise Place",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-379-0040 | Intake: 402-379-0040 x3006 | http://www.4bhs.org",
+      "address": "1900 Vicki Lane, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Bridge Behavioral Health",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-477-3951 | http://www.thebridgenebraska.org",
+      "address": "721 K Street, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Bryan Medical Center West - Independence Center",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-481-5268 | http://www.bryanhealth.com/services/alcohol-drug-treatment",
+      "address": "1640 Lake Street, Lincoln, NE, 68502",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Pine Lake Behavioral Health/Medical",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-434-2730 x1 | Intake: 402-438-4357 | http://www.pinelakebh.com",
+      "address": "9100 Andermatt Drive Suite 1, Lincoln, NE, 68526",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Nebraska Medical Center",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 800-922-0000 | Intake: 402-552-6007 | http://www.nebraskamed.com",
+      "address": "4350 Dewey Avenue, Omaha, NE, 68105",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "BAART Community Healthcare Inc",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-341-6220 | http://www.baartprograms.com",
+      "address": "1941 South 42nd Street Suite 210, Omaha, NE, 68105",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Douglas County - Mental Health Center",
+      "services": "Detoxification, Substance Use Disorder Treatment",
+      "contact": "Phone: 402-444-1975 | Intake: 402-444-1973 | http://cmhc.douglascounty-ne.gov",
+      "address": "1490 North 16th Street, Omaha, NE, 68102",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "VA Nebraska/Western Iowa HCS - Grand Island CBOC",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-995-4473 x2134 | http://www.nebraska.va.gov/locations/Grand_Island.asp",
+      "address": "2201 North Broadwell Avenue, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Friendship House Inc",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 308-675-3345 x18 | Intake: 308-382-0422 x3 | http://www.thefriendshiphouse.net",
+      "address": "406 West Koenig Street, Grand Island, NE, 68801",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Revive Inc - Horizon Recovery and Counseling Center",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-462-2066 | http://www.reviveinc.org",
+      "address": "2205 Osborne Drive East Suite 115, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Intermediate Residential",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-860-8483 | Intake: 402-371-0220 | http://www.womenslifeline.net",
+      "address": "200 South 13th Street, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "The Link Inc",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-371-5310 | http://link-recovery.org",
+      "address": "1001 West Norfolk Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Human Services Inc",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 308-762-7177 | http://www.hsinc.org",
+      "address": "419 West 25th Street, Alliance, NE, 69301",
+      "location": "Alliance, NE",
+      "notes": "County: Box Butte"
+    },
+    {
+      "organization": "Houses of Hope of Nebraska Inc - Halfway House",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-435-3165 x112 | Intake: 402-435-3165 x113 | http://www.housesofhope.com",
+      "address": "1124 North Cotner Boulevard, Lincoln, NE, 68505",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Saint Monicas - Affirming Womens Empowerment",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-441-3768 | http://www.stmonicas.com",
+      "address": "105 Wedgewood Drive, Lincoln, NE, 68510",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "ARCH Inc - OHanlon House",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-556-6425 | Intake: 402-346-8898 | http://www.archhalfwayhouse.org",
+      "address": "1502 North 58th Street, Omaha, NE, 68104",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Heartland Family Service",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-342-9555 | http://www.heartlandfamilyservice.org",
+      "address": "4847 Sahler Street, Omaha, NE, 68104",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Santa Monica Inc",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-558-7088 | http://www.santamonicahouse.org",
+      "address": "401 South 39th Street, Omaha, NE, 68131",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "ARCH Inc",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-346-8898 | Intake: 402-556-6425 | http://www.archhalfwayhouse.org",
+      "address": "604 South 37th Street, Omaha, NE, 68105",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Stephen Center Inc",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-715-5449 | Intake: 402-715-5451 | http://www.stephencenter.org",
+      "address": "5217 South 28th Street, Omaha, NE, 68107",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Open Door Missions - Mens Ministries",
+      "services": "Transitional Housing, Recovery Support, Substance Use Recovery",
+      "contact": "Phone: 402-422-1111 | http://www.opendoormission.org",
+      "address": "2705 North 20th Street East, Omaha, NE, 68110",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Lexington Regional Health Center",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Telehealth",
+      "contact": "Phone: 308-324-5651 | http://www.lexingtonregional.org",
+      "address": "1201 North Erie Street, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Lexington Regional Health Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth",
+      "contact": "Phone: 308-324-5651 | http://www.lexingtonregional.org",
+      "address": "1201 North Erie Street, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Lutheran Family Services of Nebraska - Lexington",
+      "services": "Mental Health, Substance Abuse, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment",
+      "contact": "Phone: 308-532-0587 | Intake: 402-441-7940 | http://www.onelfs.org",
+      "address": "800 North Washington Street Suite 2, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Lutheran Family Services of Nebraska - Lexington",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth",
+      "contact": "Phone: 308-532-0587 | Intake: 402-441-7940 | http://www.onelfs.org",
+      "address": "800 North Washington Street Suite 2, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Case Management",
+      "contact": "Phone: 308-324-6754 | http://www.r2hs.com",
+      "address": "307 East 5th Street, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Case Management",
+      "contact": "Phone: 308-324-6754 | http://www.r2hs.com",
+      "address": "307 East 5th Street, Lexington, NE, 68850",
+      "location": "Lexington, NE",
+      "notes": "County: Dawson"
+    },
+    {
+      "organization": "Valley County Health System - Heritage Program for Seniors",
+      "services": "Mental Health, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Case Management",
+      "contact": "Phone: 308-728-4340 | http://www.valleycountyhealthsystem.org",
+      "address": "110 South 26th Street, Ord, NE, 68862",
+      "location": "Ord, NE",
+      "notes": "County: Valley"
+    },
+    {
+      "organization": "Lutheran Family Services",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 308-532-0587 | Intake: 402-441-7940 | http://www.onelfs.org",
+      "address": "120 East 12th Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Lutheran Family Services",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 308-532-0587 | Intake: 402-441-7940 | http://www.onelfs.org",
+      "address": "120 East 12th Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Psychiatric Hope",
+      "services": "Substance Abuse, Detox, Telehealth, Peer Support",
+      "contact": "Phone: 308-520-7794 | http://www.psychiatrichope.com",
+      "address": "321 East 3rd Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "VA Nebraska/Western Iowa HCS - North Platte CBOC",
+      "services": "Mental Health, Cognitive Behavioral Therapy, Telehealth, Veterans Services, Case Management",
+      "contact": "Phone: 800-698-2411 x4473 | http://www.nebraska.va.gov/locations/North_Platte.asp",
+      "address": "300 East 3rd Street Suite 302, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Family Matters Counseling Services LLC",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Telehealth",
+      "contact": "Phone: 308-534-3351 | http://",
+      "address": "410 East B Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Family Matters Counseling Services LLC",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services",
+      "contact": "Phone: 308-534-3351 | http://",
+      "address": "410 East B Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Beacon of Hope Counseling Center LLC",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 308-532-0777 | Intake: 308-532-1043 | http://www.beaconofhopenp.com",
+      "address": "308 West 4th Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Beacon of Hope Counseling Center LLC",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 308-532-0777 | Intake: 308-532-1043 | http://www.beaconofhopenp.com",
+      "address": "308 West 4th Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Case Management",
+      "contact": "Phone: 308-534-6029 | http://www.r2hs.com",
+      "address": "110 North Bailey Street, North Platte, NE, 69103",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Case Management",
+      "contact": "Phone: 308-534-6029 | http://www.r2hs.com",
+      "address": "110 North Bailey Street, North Platte, NE, 69103",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Kearney Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support",
+      "contact": "Phone: 308-237-5951 | http://www.scbsne.com",
+      "address": "3810 Central Avenue, Kearney, NE, 68848",
+      "location": "Kearney, NE",
+      "notes": "County: Buffalo"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Kearney Clinic",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 308-237-5951 | http://www.scbsne.com",
+      "address": "3810 Central Avenue, Kearney, NE, 68848",
+      "location": "Kearney, NE",
+      "notes": "County: Buffalo"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Unity House",
+      "services": "Mental Health, Peer Support, Case Management",
+      "contact": "Phone: 308-698-0535 | Intake: 308-698-0536 | http://www.scbsne.com",
+      "address": "3800 Central Avenue, Kearney, NE, 68847",
+      "location": "Kearney, NE",
+      "notes": "County: Buffalo"
+    },
+    {
+      "organization": "VA Nebraska Western Iowa HCS - Holdrege Comm Based Outpatient",
+      "services": "Mental Health, Cognitive Behavioral Therapy, Telehealth, Veterans Services, Case Management",
+      "contact": "Phone: 308-995-3760 | http://www.nebraska.va.gov/locations/Holdrege.asp",
+      "address": "1118 Burlington Street, Holdrege, NE, 68949",
+      "location": "Holdrege, NE",
+      "notes": "County: Phelps"
+    },
+    {
+      "organization": "VA Nebraska/Western Iowa HCS - Grand Island CBOC",
+      "services": "Substance Abuse, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-995-4473 x2134 | http://www.nebraska.va.gov/locations/Grand_Island.asp",
+      "address": "2201 North Broadwell Avenue, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "VA Nebraska/Western Iowa HCS - Grand Island CBOC",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-995-4473 x2134 | http://www.nebraska.va.gov/locations/Grand_Island.asp",
+      "address": "2201 North Broadwell Avenue, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Mid Plains Center for - Behavioral Healthcare Services Inc",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 308-385-5250 | Intake: 800-515-3326 | http://www.midplainscenter.org",
+      "address": "914 Baumann Drive, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Mid Plains Center for - Behavioral Healthcare Services Inc",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 308-385-5250 | Intake: 800-515-3326 | http://www.midplainscenter.org",
+      "address": "914 Baumann Drive, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "CHI Health Saint Francis - Saint Francis Alc and Drug Trt Center",
+      "services": "Substance Abuse, Telehealth, Case Management",
+      "contact": "Phone: 308-398-5427 | http://www.chihealth.com/st-francis.html",
+      "address": "2112 West Faidley Avenue, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Goodwill Industries of Greater NE - Grand Island Office",
+      "services": "Substance Abuse, Telehealth, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 308-384-7896 x160 | Intake: 308-384-7896 x261 | http://www.goodwillne.org",
+      "address": "1804 South Eddy Street, Grand Island, NE, 68802",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Goodwill Industries of Greater NE - Grand Island Office",
+      "services": "Mental Health, Substance Abuse, Peer Support, Case Management",
+      "contact": "Phone: 308-384-7896 x160 | Intake: 308-384-7896 x261 | http://www.goodwillne.org",
+      "address": "1804 South Eddy Street, Grand Island, NE, 68802",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Live Well Csl Ctr of Greater Nebraska",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 308-381-7487 | http://www.livewell-gi.com",
+      "address": "3532 West Capital Avenue, Grand Island, NE, 68802",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "Heartland Counseling Services Inc - ONeill Satellite",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-336-2800 | Intake: 402-494-3800 | http://www.heartlandcounselingservices.org",
+      "address": "221 West Douglas Street, O'Neill, NE, 68763",
+      "location": "O'Neill, NE",
+      "notes": "County: Holt"
+    },
+    {
+      "organization": "Heartland Counseling Services Inc - ONeill Satellite",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support, Case Management",
+      "contact": "Phone: 402-336-2800 | Intake: 402-494-3800 | http://www.heartlandcounselingservices.org",
+      "address": "221 West Douglas Street, O'Neill, NE, 68763",
+      "location": "O'Neill, NE",
+      "notes": "County: Holt"
+    },
+    {
+      "organization": "Ally Counseling Services",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth",
+      "contact": "Phone: 402-336-1306 | https://www.allycounselingservicesllc.com",
+      "address": "614 North 4th Street Suite 108, O'Neill, NE, 68763",
+      "location": "O'Neill, NE",
+      "notes": "County: Holt"
+    },
+    {
+      "organization": "Ally Counseling Services",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth",
+      "contact": "Phone: 402-336-1306 | https://www.allycounselingservicesllc.com",
+      "address": "614 North 4th Street Suite 108, O'Neill, NE, 68763",
+      "location": "O'Neill, NE",
+      "notes": "County: Holt"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Case Management",
+      "contact": "Phone: 308-345-2770 | http://www.r2hs.com",
+      "address": "1012 West 3rd Street, McCook, NE, 69001",
+      "location": "McCook, NE",
+      "notes": "County: Red Willow"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Case Management",
+      "contact": "Phone: 308-345-2770 | http://www.r2hs.com",
+      "address": "1012 West 3rd Street, Mc Cook, NE, 69001",
+      "location": "Mc Cook, NE",
+      "notes": "County: Red Willow"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Case Management",
+      "contact": "Phone: 308-284-6767 | http://www.r2hs.com",
+      "address": "401 West 1st Street, Ogallala, NE, 69153",
+      "location": "Ogallala, NE",
+      "notes": "County: Keith"
+    },
+    {
+      "organization": "Heartland Counseling Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Case Management",
+      "contact": "Phone: 308-284-6767 | http://www.r2hs.com",
+      "address": "401 West 1st Street, Ogallala, NE, 69153",
+      "location": "Ogallala, NE",
+      "notes": "County: Keith"
+    },
+    {
+      "organization": "Revive Inc - Horizon Recovery and Counseling Center",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-462-2066 | http://www.reviveinc.org",
+      "address": "2205 Osborne Drive East Suite 115, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Hastings Clinic",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 402-463-5684 | http://www.scbsne.com",
+      "address": "616 West 5th Street, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Hastings Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-463-5684 | http://www.scbsne.com",
+      "address": "616 West 5th Street, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Opportunity House",
+      "services": "Mental Health, Peer Support, Case Management",
+      "contact": "Phone: 402-463-7435 | http://www.scbsne.com",
+      "address": "724 South Burlington Avenue, Hastings, NE, 68902",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "South Central Behavioral Services Inc - Assertive Community Treatment",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-462-4200 | http://www.scbsne.com",
+      "address": "835 South Burlington Avenue Suite 107, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "Mary Lanning Healthcare - Lanning Center",
+      "services": "Mental Health, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth",
+      "contact": "Phone: 402-463-7711 | http://marylanning.org",
+      "address": "835 South Burlington Avenue Suite 108, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - York Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-362-6128 | http://www.bvbh.net",
+      "address": "722 South Lincoln Avenue Suite 1, York, NE, 68467",
+      "location": "York, NE",
+      "notes": "County: York"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - York Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-362-6128 | http://www.bvbh.net",
+      "address": "722 South Lincoln Avenue Suite 1, York, NE, 68467",
+      "location": "York, NE",
+      "notes": "County: York"
+    },
+    {
+      "organization": "Midtown Health Center - Madison",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-371-8000 | http://midtownhealthne.org",
+      "address": "222 Main Street, Madison, NE, 68748",
+      "location": "Madison, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Midtown Health Center - Madison",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-371-8000 | http://midtownhealthne.org",
+      "address": "222 Main Street, Madison, NE, 68748",
+      "location": "Madison, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Ponca Tribe of Nebraska - Tribal Headquarters",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 402-857-3391 | http://www.poncatribe-ne.gov",
+      "address": "2523 Woodbine Street, Niobrara, NE, 68760",
+      "location": "Niobrara, NE",
+      "notes": "County: Knox"
+    },
+    {
+      "organization": "Ponca Tribe of Nebraska - Tribal Headquarters",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Case Management",
+      "contact": "Phone: 402-857-3391 | http://www.poncatribe-ne.gov",
+      "address": "2523 Woodbine Street, Niobrara, NE, 68760",
+      "location": "Niobrara, NE",
+      "notes": "County: Knox"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Seekers of Serenity Place",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-564-9994 | http://www.4bhs.org",
+      "address": "4432 Sunrise Place, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Seekers for Serenity",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 402-564-9994 | Intake: 402-562-6458 | http://",
+      "address": "4432 Sunrise Place, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Good Neighbor Community Health Center",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 402-562-7500 | http://goodneighborcommunityhealthcenter.com",
+      "address": "4321 41st Avenue, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Good Neighbor Community Health Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-562-7500 | http://goodneighborcommunityhealthcenter.com",
+      "address": "4321 41st Avenue, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Good Life Counseling and Support LLC",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services",
+      "contact": "Phone: 402-371-3044 | http://www.goodlifecounseling.com",
+      "address": "200 North 34th Street, Norfolk, NE, 68702",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Goodwill Industries of Greater NE - Columbus Office",
+      "services": "Mental Health, Substance Abuse, Peer Support, Case Management",
+      "contact": "Phone: 402-942-9007 | http://goodwillne.org",
+      "address": "3100 23rd Street Suite 23, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Goodwill Industries of Greater NE - Columbus Office",
+      "services": "Substance Abuse, Telehealth, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-942-9007 | http://goodwillne.org",
+      "address": "3100 23rd Street Suite 23, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Oasis Counseling International",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 402-379-2030 x100 | Intake: 402-379-2030 x121 | http://www.ocinternational.org",
+      "address": "333 West Norfolk Avenue Suite 201, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "The Well - Columbus",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 402-371-0220 | https://thewellne.org/",
+      "address": "2718 13th Street, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "The Well - Columbus",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support, Case Management",
+      "contact": "Phone: 402-371-0220 | https://thewellne.org/",
+      "address": "2718 13th Street, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "GLC",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 402-562-0400 | http://www.goodlifecounseling.com",
+      "address": "2277 22nd Avenue, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "GLC",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services",
+      "contact": "Phone: 402-562-0400 | http://www.goodlifecounseling.com",
+      "address": "2277 22nd Avenue, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Sunrise Place",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 402-379-0040 | Intake: 402-379-0040 x3006 | http://www.4bhs.org",
+      "address": "1900 Vicki Lane, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Sunrise Place",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-379-0040 | Intake: 402-379-0040 x3006 | http://www.4bhs.org",
+      "address": "1900 Vicki Lane, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Ponca Tribe of Nebraska - Ponca Hills Health and Wellness Center",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 402-371-8834 | http://www.poncatribe-ne.gov",
+      "address": "1800 Syracuse Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Ponca Tribe of Nebraska - Ponca Hills Health and Wellness Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support, Case Management",
+      "contact": "Phone: 402-371-8834 | http://www.poncatribe-ne.gov",
+      "address": "1800 Syracuse Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "The Well - Outpatient",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support, Case Management",
+      "contact": "Phone: 402-371-0220 | http://www.thewellne.org",
+      "address": "1203 South 8th Street, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "The Well - Outpatient",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 402-371-0220 | http://www.thewellne.org",
+      "address": "1203 South 8th Street, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "The Link Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support, Case Management",
+      "contact": "Phone: 402-371-5310 | http://link-recovery.org",
+      "address": "1001 West Norfolk Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Good Life Counseling and Support LLC",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 402-371-3044 | http://www.goodlifecounseling.com",
+      "address": "200 North 34th Street, Norfolk, NE, 68702",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Oasis Counseling International",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, PTSD Treatment, Peer Support",
+      "contact": "Phone: 402-379-2030 x100 | Intake: 402-379-2030 x121 | http://www.ocinternational.org",
+      "address": "333 West Norfolk Avenue Suite 201, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Midtown Health Center - Phillip Avenue",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-371-8000 | http://midtownhealthne.org",
+      "address": "302 West Phillip Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Midtown Health Center - Phillip Avenue",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-371-8000 | http://midtownhealthne.org",
+      "address": "302 West Phillip Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Liberty Centre Services",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 402-370-4204 | http://www.libertycentreservices.com/",
+      "address": "105 East Norfolk Avenue Suite 118, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Liberty Centre Services",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support, Case Management",
+      "contact": "Phone: 402-370-4204 | Intake: 402-370-4204 x110 | http://www.libertycentreservices.com/",
+      "address": "105 East Norfolk Avenue Suite 118, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Fillmore County Hospital - Integrated Health Services",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Case Management",
+      "contact": "Phone: 402-759-3192 x700 | Intake: 402-759-3192 x750 | http://www.myfch.org",
+      "address": "1900 F Street, Geneva, NE, 68361",
+      "location": "Geneva, NE",
+      "notes": "County: Fillmore"
+    },
+    {
+      "organization": "Fillmore County Hospital - Integrated Health Services",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Case Management",
+      "contact": "Phone: 402-759-3192 x700 | Intake: 402-759-3192 x750 | http://www.myfch.org",
+      "address": "1900 F Street, Geneva, NE, 68361",
+      "location": "Geneva, NE",
+      "notes": "County: Fillmore"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - David City Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-367-4216 | http://www.bvbh.net",
+      "address": "367 East Street, David City, NE, 68632",
+      "location": "David City, NE",
+      "notes": "County: Butler"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - David City Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-367-4216 | http://www.bvbh.net",
+      "address": "367 East Street, David City, NE, 68632",
+      "location": "David City, NE",
+      "notes": "County: Butler"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Seward Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-643-3343 | http://www.bvbh.net",
+      "address": "459 South 6th Street Suite 1, Seward, NE, 68434",
+      "location": "Seward, NE",
+      "notes": "County: Seward"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Seward Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-643-3343 | http://www.bvbh.net",
+      "address": "459 South 6th Street Suite 1, Seward, NE, 68434",
+      "location": "Seward, NE",
+      "notes": "County: Seward"
+    },
+    {
+      "organization": "Sandhills Center for Hope",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth",
+      "contact": "Phone: 308-761-4226 | http://",
+      "address": "212 Box Butte Avenue, Alliance, NE, 69301",
+      "location": "Alliance, NE",
+      "notes": "County: Box Butte"
+    },
+    {
+      "organization": "Sandhills Center for Hope",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth",
+      "contact": "Phone: 308-761-4226 | http://",
+      "address": "212 Box Butte Avenue, Alliance, NE, 69301",
+      "location": "Alliance, NE",
+      "notes": "County: Box Butte"
+    },
+    {
+      "organization": "Human Services Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Veterans Services, Case Management",
+      "contact": "Phone: 308-762-7177 | http://www.hsinc.org",
+      "address": "419 West 25th Street, Alliance, NE, 69301",
+      "location": "Alliance, NE",
+      "notes": "County: Box Butte"
+    },
+    {
+      "organization": "Karuna Counseling",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Case Management",
+      "contact": "Phone: 308-249-7853 | http://nekarunacounseling.com",
+      "address": "731 Illinois Street, Sidney, NE, 69162",
+      "location": "Sidney, NE",
+      "notes": "County: Cheyenne"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Crete Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-826-2000 | http://www.bvbh.net",
+      "address": "1212 Ivy Avenue, Crete, NE, 68333",
+      "location": "Crete, NE",
+      "notes": "County: Saline"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Crete Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-826-2000 | http://www.bvbh.net",
+      "address": "1212 Ivy Avenue, Crete, NE, 68333",
+      "location": "Crete, NE",
+      "notes": "County: Saline"
+    },
+    {
+      "organization": "The Well - West Point",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support, Case Management",
+      "contact": "Phone: 402-371-0220 | https://thewellne.org/",
+      "address": "130 Anna Stalp Avenue, West Point, NE, 68788",
+      "location": "West Point, NE",
+      "notes": "County: Cuming"
+    },
+    {
+      "organization": "The Well - West Point",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, Peer Support, Case Management",
+      "contact": "Phone: 402-371-0220 | https://thewellne.org/",
+      "address": "130 Anna Stalp Avenue, West Point, NE, 68788",
+      "location": "West Point, NE",
+      "notes": "County: Cuming"
+    },
+    {
+      "organization": "Midtown Health Center - West Point",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-371-8000 | http://midtownhealthne.org",
+      "address": "303 Plaza Drive, West Point, NE, 68788",
+      "location": "West Point, NE",
+      "notes": "County: Cuming"
+    },
+    {
+      "organization": "Midtown Health Center - West Point",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-371-8000 | http://midtownhealthne.org",
+      "address": "303 Plaza Drive, West Point, NE, 68788",
+      "location": "West Point, NE",
+      "notes": "County: Cuming"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Fairbury Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-729-2272 | http://www.bvbh.net",
+      "address": "521 East Street, Fairbury, NE, 68352",
+      "location": "Fairbury, NE",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Fairbury Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-729-2272 | http://www.bvbh.net",
+      "address": "521 East Street, Fairbury, NE, 68352",
+      "location": "Fairbury, NE",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Wahoo Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth, Case Management",
+      "contact": "Phone: 402-443-4414 | http://www.bvbh.net",
+      "address": "355 East 4th Street Lower Level, Wahoo, NE, 68066",
+      "location": "Wahoo, NE",
+      "notes": "County: Saunders"
+    },
+    {
+      "organization": "Blue Valley Behavioral Health - Wahoo Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-443-4414 | http://www.bvbh.net",
+      "address": "355 East 4th Street Lower Level, Wahoo, NE, 68066",
+      "location": "Wahoo, NE",
+      "notes": "County: Saunders"
+    },
+    {
+      "organization": "Lutheran Family Services of Nebraska - Mourning Hope Clinic",
+      "services": "Mental Health, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment",
+      "contact": "Phone: 402-441-7940 | http://www.onelfs.org",
+      "address": "1311 South Folsom Street, Lincoln, NE, 68522",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Nebraska Mental Health Centers - Wahoo Office",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth",
+      "contact": "Phone: 402-483-6990 | http://www.nmhc-clinics.com",
+      "address": "1320 East 31st Street, Wahoo, NE, 68066",
+      "location": "Wahoo, NE",
+      "notes": "County: Saunders"
+    },
+    {
+      "organization": "Nebraska Mental Health Centers - Wahoo Office",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Telehealth",
+      "contact": "Phone: 402-483-6990 | http://www.nmhc-clinics.com",
+      "address": "1320 East 31st Street, Wahoo, NE, 68066",
+      "location": "Wahoo, NE",
+      "notes": "County: Saunders"
+    },
+    {
+      "organization": "Family Service - Lincoln",
+      "services": "Mental Health, Cognitive Behavioral Therapy, Telehealth, Trauma Treatment, PTSD Treatment, Pediatric/Youth Services, Case Management",
+      "contact": "Phone: 402-441-7949 | http://www.familyservicelincoln.org",
+      "address": "501 South 7th Street, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Bridge Behavioral Health",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Peer Support, Case Management",
+      "contact": "Phone: 402-477-3951 | http://www.thebridgenebraska.org",
+      "address": "721 K Street, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "CenterPointe - Campus for Health and WellBeing",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Telehealth, Peer Support, Case Management",
+      "contact": "Phone: 402-475-5161 | http://www.centerpointe.org/",
+      "address": "2202 South 11th Street, Lincoln, NE, 68502",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Revive Inc - Horizon Recovery and Counseling Center",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support, Halfway House",
+      "contact": "Phone: 402-462-2066 | http://www.reviveinc.org",
+      "address": "2205 Osborne Drive East Suite 115, Hastings, NE, 68901",
+      "location": "Hastings, NE",
+      "notes": "County: Adams"
+    },
+    {
+      "organization": "Mid Plains Center for - Behavioral Healthcare Services Inc",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy",
+      "contact": "Phone: 308-385-5250 | Intake: 800-515-3326 | http://www.midplainscenter.org",
+      "address": "914 Baumann Drive, Grand Island, NE, 68803",
+      "location": "Grand Island, NE",
+      "notes": "County: Hall"
+    },
+    {
+      "organization": "CenterPointe - Adult Long Term Residential Program",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-475-8748 | Intake: 402-475-8748 x219 | http://www.centerpointe.org",
+      "address": "2220 South 10th Street, Lincoln, NE, 68502",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "CenterPointe - Adult Long Term Residential Program",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Peer Support",
+      "contact": "Phone: 402-475-8748 | Intake: 402-475-8748 x219 | http://www.centerpointe.org",
+      "address": "2220 South 10th Street, Lincoln, NE, 68502",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "CenterPointe - Campus for Health and WellBeing",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-475-5161 | http://www.centerpointe.org/",
+      "address": "2202 South 11th Street, Lincoln, NE, 68502",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Bridge Behavioral Health",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy",
+      "contact": "Phone: 402-477-3951 | http://",
+      "address": "721 K Street, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Bridge Behavioral Health",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-477-3951 | http://www.thebridgenebraska.org",
+      "address": "721 K Street, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Saint Monicas Behavioral Health Servs - Women Are Sacred",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-441-3768 | Intake: 402-441-3756 | http://www.stmonicas.com",
+      "address": "1100 Military Road, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Saint Monicas Behavioral Health Servs - Project Mother and Child",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-441-3768 | Intake: 402-441-3756 | http://www.stmonicas.com",
+      "address": "1100 Military Road, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Houses of Hope of Nebraska Inc - Halfway House",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy",
+      "contact": "Phone: 402-435-3165 x112 | Intake: 402-435-3165 x113 | http://www.housesofhope.com",
+      "address": "1124 North Cotner Boulevard, Lincoln, NE, 68505",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Whitehall Program",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy",
+      "contact": "Phone: 402-471-6969 | http://",
+      "address": "5900 Walker Avenue, Lincoln, NE, 68507",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Saint Monicas - Affirming Womens Empowerment",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 402-441-3768 | http://www.stmonicas.com",
+      "address": "105 Wedgewood Drive, Lincoln, NE, 68510",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Saint Monicas Behavioral Health Servs - Short Term Residential",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-441-3768 | Intake: 402-441-3756 | http://www.stmonicas.com",
+      "address": "120 Wedgewood Drive, Lincoln, NE, 68510",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Saint Monicas Behavioral Health Servs - Therapeutic Community",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-441-3768 | Intake: 402-441-3756 | http://www.stmonicas.com",
+      "address": "120 Skyway Drive, Lincoln, NE, 68510",
+      "location": "Lincoln, NE",
+      "notes": "County: Lancaster"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Seekers for Serenity",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 402-564-9994 | Intake: 402-562-6458 | http://",
+      "address": "4432 Sunrise Place, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Seekers of Serenity Place",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 402-564-9994 | http://www.4bhs.org",
+      "address": "4432 Sunrise Place, Columbus, NE, 68601",
+      "location": "Columbus, NE",
+      "notes": "County: Platte"
+    },
+    {
+      "organization": "Community Alliance",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-341-5128 | https://community-alliance.org/",
+      "address": "7150 Arbor Street, Omaha, NE, 68106",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Community Alliance - Orchard House",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-341-5128 | http://community-alliance.org",
+      "address": "- - -, Omaha, NE, 68117",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Community Alliance - Cole Creek",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-341-5128 | http://community-alliance.org",
+      "address": "- - -, Omaha, NE, 68134",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Community Alliance - Arbor House",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-341-5128 | http://community-alliance.org",
+      "address": "- - -, Omaha, NE, 68106",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Community Alliance - Alliance House",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-341-5128 | http://community-alliance.org",
+      "address": "- - -, Omaha, NE, 68106",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Inroads to Recovery Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 402-932-2248 | http://inroadstorecovery.com",
+      "address": "2808 North 75th Street, Omaha, NE, 68134",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Stephen Center Inc",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 402-715-5449 | Intake: 402-715-5451 | http://www.stephencenter.org",
+      "address": "5217 South 28th Street, Omaha, NE, 68107",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Stephen Center Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support, Halfway House",
+      "contact": "Phone: 402-715-5449 | Intake: 402-715-5451 | http://www.stephencenter.org",
+      "address": "5217 South 28th Street, Omaha, NE, 68107",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Nebraska Urban Indian Health Coalition - Intertribal Treatment Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, PTSD Treatment",
+      "contact": "Phone: 402-346-0902 x202 | Intake: 402-706-0699 | http://www.nuihc.org",
+      "address": "2226 North Street, Omaha, NE, 68107",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Nebraska Urban Indian Health Coalition - Intertribal Treatment Center",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-346-0902 x202 | Intake: 402-706-0699 | http://www.nuihc.org",
+      "address": "2226 North Street, Omaha, NE, 68107",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Community Alliance - Morning Star",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 402-341-5128 | http://community-alliance.org",
+      "address": "- - -, Omaha, NE, 68104",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Heartland Family Service",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Peer Support",
+      "contact": "Phone: 402-342-9555 | http://www.heartlandfamilyservice.org",
+      "address": "4847 Sahler Street OFC, Omaha, NE, 68104",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Heartland Family Service",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 402-342-9555 | http://www.heartlandfamilyservice.org",
+      "address": "4847 Sahler Street, Omaha, NE, 68104",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "CenterPointe - Campus for Hope",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-827-0570 | http://www.centerpointe.org",
+      "address": "1490 North 16th Street, Omaha, NE, 68102",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "CenterPointe - Campus for Hope",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Peer Support",
+      "contact": "Phone: 402-827-0570 | http://www.centerpointe.org",
+      "address": "1490 North 16th Street, Omaha, NE, 68102",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Open Door Missions - Mens Ministries",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Veterans Services, Peer Support, Halfway House",
+      "contact": "Phone: 402-422-1111 | http://www.opendoormission.org",
+      "address": "2705 North 20th Street East, Omaha, NE, 68110",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Open Door Missions - Mens Ministries",
+      "services": "Mental Health, Substance Abuse, Peer Support",
+      "contact": "Phone: 402-422-1111 | http://www.opendoormission.org",
+      "address": "2705 North 20th Street East, Omaha, NE, 68110",
+      "location": "Omaha, NE",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Mens Dual Disorder",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Peer Support",
+      "contact": "Phone: 402-370-2508 | Intake: 402-371-0220 | http://www.thewellne.org",
+      "address": "306 West Indiana Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Mens Dual Disorder",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-370-2508 | Intake: 402-371-0220 | http://www.thewellne.org",
+      "address": "306 West Indiana Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Sunrise Place",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 402-379-0040 | Intake: 402-379-0040 x3006 | http://www.4bhs.org",
+      "address": "1900 Vicki Lane, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Behavioral Health Specialists Inc - Sunrise Place",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 402-379-0040 | Intake: 402-379-0040 x3006 | http://www.4bhs.org",
+      "address": "1900 Vicki Lane, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Dual Disorder Program",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 402-371-0220 | Intake: 402-379-3622 | http://womenslifeline.net",
+      "address": "910 West Park Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Dual Disorder Program",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 402-371-0220 | Intake: 402-379-3622 | http://womenslifeline.net",
+      "address": "910 West Park Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Intermediate Residential",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 402-860-8483 | Intake: 402-371-0220 | http://www.womenslifeline.net",
+      "address": "200 South 13th Street, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Intermediate Residential",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 402-860-8483 | Intake: 402-371-0220 | http://www.womenslifeline.net",
+      "address": "200 South 13th Street, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Womens Empowering Life Line Inc - Mommy and Me",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 402-860-6080 | Intake: 402-371-0220 | http://www.thewellne.org",
+      "address": "512 Verges Avenue, Norfolk, NE, 68701",
+      "location": "Norfolk, NE",
+      "notes": "County: Madison"
+    },
+    {
+      "organization": "Saint Francis Ministries - West Campus",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 785-825-0563 x4315 | Intake: 785-825-0563 x4309 | http://www.st-francis.org",
+      "address": "5097 West Cloud Street, Salina, KS, 67401",
+      "location": "Salina, KS",
+      "notes": "County: Saline"
+    },
+    {
+      "organization": "ZION Integrated Behav Health Services - Harbor Point",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 712-850-1389 | http://www.zioniowa.org",
+      "address": "216 West Division Street, Clarinda, IA, 51632",
+      "location": "Clarinda, IA",
+      "notes": "County: Page"
+    },
+    {
+      "organization": "ZION Integrated Behav Health Services - Clarinda",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 712-542-3720 | http://www.zioniowa.org",
+      "address": "1800 North 16th Street, Clarinda, IA, 51632",
+      "location": "Clarinda, IA",
+      "notes": "County: Page"
+    },
+    {
+      "organization": "Mirror Inc - Topeka Residential",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 785-267-0561 | http://www.mirrorinc.org",
+      "address": "2201 SE 25th Street, Topeka, KS, 66605",
+      "location": "Topeka, KS",
+      "notes": "County: Shawnee"
+    },
+    {
+      "organization": "Guidance Center - Atchison County",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 913-367-1593 | http://www.mytgc.org",
+      "address": "201 Main Street, Atchison, KS, 66002",
+      "location": "Atchison, KS",
+      "notes": "County: Atchison"
+    },
+    {
+      "organization": "Rosecrance Jackson Centers - Cynthia House",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Halfway House",
+      "contact": "Phone: 712-938-1551 | http://www.rosecrance.org",
+      "address": "1419 Casselman Street, Sioux City, IA, 51103",
+      "location": "Sioux City, IA",
+      "notes": "County: Woodbury"
+    },
+    {
+      "organization": "Rosecrance Jackson Centers - Chads House on Grandview",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Halfway House",
+      "contact": "Phone: 800-472-9018 | http://www.rosecrance.org",
+      "address": "1800 Grandview Boulevard, Sioux City, IA, 51105",
+      "location": "Sioux City, IA",
+      "notes": "County: Woodbury"
+    },
+    {
+      "organization": "Guidance Center - Jefferson County",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 785-214-4084 | http://www.mytgc.org",
+      "address": "1102 Walnut Street, Oskaloosa, KS, 66066",
+      "location": "Oskaloosa, KS",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Bert Nash Comm Mental Health Ctr",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 785-843-9192 | http://www.bertnash.org",
+      "address": "200 Maine Street Suite A, Lawrence, KS, 66044",
+      "location": "Lawrence, KS",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "DCCCA Inc - First Step at Lake View",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 785-843-9262 | http://www.dccca.org",
+      "address": "3015 West 31st Street, Lawrence, KS, 66047",
+      "location": "Lawrence, KS",
+      "notes": "County: Douglas"
+    },
+    {
+      "organization": "Guidance Center - Leavenworth County",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 913-682-5118 | http://www.mytgc.org",
+      "address": "500 Limit Street, Leavenworth, KS, 66048",
+      "location": "Leavenworth, KS",
+      "notes": "County: Leavenworth"
+    },
+    {
+      "organization": "VA Eastern Kansas Healthcare System - Substance Use Disorder Clinic",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 913-682-2000 x63050 | Intake: 913-682-2000 x63095 | http://www.topeka.va.gov/services/Substance_Use_Disorder",
+      "address": "4101 South 4th Street Unit A-6, Leavenworth, KS, 66048",
+      "location": "Leavenworth, KS",
+      "notes": "County: Leavenworth"
+    },
+    {
+      "organization": "VA Eastern Kansas Healthcare System - Substance Use Disorder Clinic",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, PTSD Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 913-682-2000 x63050 | Intake: 913-682-2000 x63095 | http://www.topeka.va.gov/services/Substance_Use_Disorder",
+      "address": "4101 South 4th Street Unit A-6, Leavenworth, KS, 66048",
+      "location": "Leavenworth, KS",
+      "notes": "County: Leavenworth"
+    },
+    {
+      "organization": "Mirror Inc/Newton - Residential and Outpatient Recovery",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 316-283-7829 | Intake: 316-361-0286 | http://www.mirrorinc.org",
+      "address": "1301 North Duncan Street, Newton, KS, 67114",
+      "location": "Newton, KS",
+      "notes": "County: Harvey"
+    },
+    {
+      "organization": "Psychiatric Hope",
+      "services": "Substance Abuse, Detox, Peer Support",
+      "contact": "Phone: 308-221-4651 | http://www.psychiatrichope.com",
+      "address": "321 East 3rd Street, North Platte, NE, 69101",
+      "location": "North Platte, NE",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "EmberHope Youthville",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment",
+      "contact": "Phone: 800-593-1950 | http://www.emberhope.org",
+      "address": "900 West Broadway Street, Newton, KS, 67114",
+      "location": "Newton, KS",
+      "notes": "County: Harvey"
+    },
+    {
+      "organization": "Prairie View Inc - Newton",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Peer Support",
+      "contact": "Phone: 316-284-6400 | Intake: 800-992-6292 | http://www.prairieview.org/",
+      "address": "1901 East 1st Street, Newton, KS, 67114",
+      "location": "Newton, KS",
+      "notes": "County: Harvey"
+    },
+    {
+      "organization": "Wyandot Center for Community - Behavioral Healthcare Inc",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 913-328-4600 | http://www.wyandotbhn.org",
+      "address": "1301 North 47th Street, Kansas City, KS, 66102",
+      "location": "Kansas City, KS",
+      "notes": "County: Wyandotte"
+    },
+    {
+      "organization": "Mirror Inc - Shawnee Residential",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support, Halfway House",
+      "contact": "Phone: 913-248-1943 | http://www.mirrorinc.org",
+      "address": "6221 Richards Drive, Shawnee, KS, 66216",
+      "location": "Shawnee, KS",
+      "notes": "County: Johnson"
+    },
+    {
+      "organization": "Johnson County Mental Health Center - ACT",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 913-782-0283 | Intake: 913-715-7632 | http://www.jocogov.org",
+      "address": "920 West Spruce Street, Olathe, KS, 66061",
+      "location": "Olathe, KS",
+      "notes": "County: Johnson"
+    },
+    {
+      "organization": "Johnson County Mental Health Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 913-826-4200 | Intake: 913-268-0156 | http://www.jocogov.org/dept/mental-health/home",
+      "address": "6000 Lamar Avenue Suite 130, Mission, KS, 66202",
+      "location": "Mission, KS",
+      "notes": "County: Johnson"
+    },
+    {
+      "organization": "KidsTLC",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Pediatric/Youth Services",
+      "contact": "Phone: 913-764-2887 | Intake: 913-324-3658 | http://www.kidstlc.org/",
+      "address": "480 South Rogers Road, Olathe, KS, 66062",
+      "location": "Olathe, KS",
+      "notes": "County: Johnson"
+    },
+    {
+      "organization": "KidsTLC",
+      "services": "Substance Abuse, Trauma Treatment, Peer Support",
+      "contact": "Phone: 913-764-2887 | Intake: 913-324-3658 | http://www.kidstlc.org/",
+      "address": "480 South Rogers Road, Olathe, KS, 66062",
+      "location": "Olathe, KS",
+      "notes": "County: Johnson"
+    },
+    {
+      "organization": "Truman Medical Center - DBA University Health",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Peer Support",
+      "contact": "Phone: 816-404-5709 | Intake: 816-404-5709 x1 | http://www.universityhealthkc.org",
+      "address": "300 West 19th Terrace, Kansas City, MO, 64108",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "KVC/Niles",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy",
+      "contact": "Phone: 844-424-3577 | Intake: 913-890-7468 | http://www.nileskc.org",
+      "address": "1911 East 23rd Street, Kansas City, MO, 64127",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Healing House Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support, Halfway House",
+      "contact": "Phone: 816-920-7181 | http://www.healthinghouse.org",
+      "address": "4505 Saint John Avenue, Kansas City, MO, 64123",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Benilde Hall Program",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support, Halfway House",
+      "contact": "Phone: 816-842-5836 | http://benildehall.org",
+      "address": "3220 East 23rd street, Kansas City, MO, 64127",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Benilde Hall Program",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Pediatric/Youth Services, Peer Support",
+      "contact": "Phone: 816-842-5836 | http://benildehall.org",
+      "address": "3220 East 23rd street, Kansas City, MO, 64127",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Brightli - Burrell Behavioral Health-Recovery KC",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 417-761-5000 | http://www.burrellcenter.com",
+      "address": "7447 Holmes Road, Kansas City, MO, 64131",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Brightli - Burrell Behavioral Health",
+      "services": "Substance Abuse, Peer Support",
+      "contact": "Phone: 816-836-2672 | Intake: 417-761-5000 | http://www.burrellcenter.com",
+      "address": "4311 East 58th Street, Kansas City, MO, 64130",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Miracles Inc - Residential Family Behavioral Health",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 316-264-5900 | http://www.wichitamiracles.org",
+      "address": "1250 North Market Street, Wichita, KS, 67214",
+      "location": "Wichita, KS",
+      "notes": "County: Sedgwick"
+    },
+    {
+      "organization": "Brightli - Preferred Family Healthcare Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 816-474-7677 | Intake: 660-626-0477 | http://www.pfh.org",
+      "address": "8333 East Blue Parkway, Kansas City, MO, 64133",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "DCCCA Inc - Womens Recov Ctr of Central Kansas",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 316-262-0505 | Intake: 316-925-6705 | http://www.dccca.org",
+      "address": "8901 East Orme Street, Wichita, KS, 67207",
+      "location": "Wichita, KS",
+      "notes": "County: Sedgwick"
+    },
+    {
+      "organization": "DCCCA Inc - Options Adult Servs/Womens Recovery",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 316-265-6011 | Intake: 316-925-6705 | http://www.dccca.org",
+      "address": "8901 East Orme Street, Wichita, KS, 67207",
+      "location": "Wichita, KS",
+      "notes": "County: Sedgwick"
+    },
+    {
+      "organization": "Brightli - Comprehensive Mental Health-Resid",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 816-254-3652 | Intake: 417-761-5000 | http://www.burrellcenter.com",
+      "address": "4231 South Hocker Drive, Independence, MO, 64055",
+      "location": "Independence, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Arista Recovery at Paola",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Veterans Services, Peer Support",
+      "contact": "Phone: 913-914-9008 | Intake: 877-279-0050 | http://www.aristarecovery.com",
+      "address": "901 East Miami Street, Paola, KS, 66071",
+      "location": "Paola, KS",
+      "notes": "County: Miami"
+    },
+    {
+      "organization": "Sunflower Recovery Center",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 913-755-4357 | http://www.sunflowerwellnessretreat.com",
+      "address": "29875 West 339th Street, Osawatomie, KS, 66064",
+      "location": "Osawatomie, KS",
+      "notes": "County: Miami"
+    },
+    {
+      "organization": "Sunflower Recovery Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 913-755-4357 | http://www.sunflowerwellnessretreat.com",
+      "address": "29875 West 339th Street, Osawatomie, KS, 66064",
+      "location": "Osawatomie, KS",
+      "notes": "County: Miami"
+    },
+    {
+      "organization": "Embark Behavioral Health - Independence STR",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment",
+      "contact": "Phone: 816-643-3058 | http://www.embarkbh.com/location/embark-behavioral-health",
+      "address": "3205 North Twyman Road, Independence, MO, 64058",
+      "location": "Independence, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Crittenton Childrens Center",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment",
+      "contact": "Phone: 816-765-6600 | http://www.saintlukeskc.org/locations/crittenton-childrens-center#",
+      "address": "10918 Elm Avenue, Kansas City, MO, 64134",
+      "location": "Kansas City, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Brightli - Burrell Behavioral Health",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Peer Support",
+      "contact": "Phone: 417-761-5800 | Intake: 417-761-5000 | http://www.burrellcenter.com",
+      "address": "17611 East Highway 24, Independence, MO, 64056",
+      "location": "Independence, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "ReDiscover",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Veterans Services, Peer Support",
+      "contact": "Phone: 816-347-3262 | Intake: 816-347-3015 | http://www.rediscovermh.org",
+      "address": "1579 NE Rice Road, Lees Summit, MO, 64081",
+      "location": "Lees Summit, MO",
+      "notes": "County: Jackson"
+    },
+    {
+      "organization": "Avera McKennan Behavioral Health Ctr - Inpatient Services",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy",
+      "contact": "Phone: 605-322-4005 | Intake: 800-691-4336 | http://averabehavioralhealth.org",
+      "address": "4400 West 69th Street Suite 100, Sioux Falls, SD, 57108",
+      "location": "Sioux Falls, SD",
+      "notes": "County: Lincoln"
+    },
+    {
+      "organization": "Glory House of Sioux Falls",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 605-332-3273 | Intake: 605-988-9110 | http://www.glory-house.org",
+      "address": "4000 South West Avenue, Sioux Falls, SD, 57105",
+      "location": "Sioux Falls, SD",
+      "notes": "County: Minnehaha"
+    },
+    {
+      "organization": "Sands Freedom Center",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 605-988-9133 | Intake: 605-988-9110 | http://www.glory-house.org",
+      "address": "3930 South West Avenue, Sioux Falls, SD, 57105",
+      "location": "Sioux Falls, SD",
+      "notes": "County: Minnehaha"
+    },
+    {
+      "organization": "Volunteers of America Dakotas",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy",
+      "contact": "Phone: 605-334-1414 | http://www.voa-dakotas.org",
+      "address": "1310 West 51st Street, Sioux Falls, SD, 57105",
+      "location": "Sioux Falls, SD",
+      "notes": "County: Minnehaha"
+    },
+    {
+      "organization": "Brightli - Preferred Family Healthcare Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 660-359-4600 | http://www.pfh.org",
+      "address": "1628 Oklahoma Avenue, Trenton, MO, 64683",
+      "location": "Trenton, MO",
+      "notes": "County: Grundy"
+    },
+    {
+      "organization": "Ellipsis",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, PTSD Treatment, Peer Support",
+      "contact": "Phone: 515-243-3459 | http://www.ellipsisiowa.org",
+      "address": "7225 NW 58th Street, Johnston, IA, 50131",
+      "location": "Johnston, IA",
+      "notes": "County: Polk"
+    },
+    {
+      "organization": "MercyOne House Mercy - Des Moines",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support, Halfway House",
+      "contact": "Phone: 515-643-6500 | https://www.mercyone.org/desmoines/house-of-mercy/",
+      "address": "1409 Clark Street, Des Moines, IA, 50314",
+      "location": "Des Moines, IA",
+      "notes": "County: Polk"
+    },
+    {
+      "organization": "Community and Family Resources - FD Main Campus",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Peer Support",
+      "contact": "Phone: 515-576-7261 | http://www.cfrhelps.org",
+      "address": "211 Avenue M West, Fort Dodge, IA, 50501",
+      "location": "Fort Dodge, IA",
+      "notes": "County: Webster"
+    },
+    {
+      "organization": "Community and Family Resources - Womens Recovery House",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Peer Support, Halfway House",
+      "contact": "Phone: 515-576-7261 x1092 | http://www.cfrhelps.org",
+      "address": "728 South 17th Street, Fort Dodge, IA, 50501",
+      "location": "Fort Dodge, IA",
+      "notes": "County: Webster"
+    },
+    {
+      "organization": "Community and Family Resources - Mens Recovery Housing",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Peer Support, Halfway House",
+      "contact": "Phone: 515-955-7628 x1090 | http://www.cfrhelps.org",
+      "address": "1321 2nd Avenue South, Fort Dodge, IA, 50501",
+      "location": "Fort Dodge, IA",
+      "notes": "County: Webster"
+    },
+    {
+      "organization": "Community and Family Resources - Des Moines/3806 Easton",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Peer Support",
+      "contact": "Phone: 515-262-0349 | http://www.cfrhelps.org",
+      "address": "3806 Easton Boulevard, Des Moines, IA, 50317",
+      "location": "Des Moines, IA",
+      "notes": "County: Polk"
+    },
+    {
+      "organization": "ThriveNow Recovery Centers",
+      "services": "Substance Abuse, Detox, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 515-824-5154 | http://thrivenowrc.com",
+      "address": "6132 NE 12th Avenue, Pleasant Hill, IA, 50327",
+      "location": "Pleasant Hill, IA",
+      "notes": "County: Polk"
+    },
+    {
+      "organization": "Brightli - Preferred Family Healthcare Inc",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 620-221-6252 | http://www.pfh.org",
+      "address": "2720 East 12th Street, Winfield, KS, 67156",
+      "location": "Winfield, KS",
+      "notes": "County: Cowley"
+    },
+    {
+      "organization": "YSS Ember Recovery - Beran",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 515-233-3141 | Intake: 515-233-4930 | http://www.yss.org",
+      "address": "32385 580th Avenue, Cambridge, IA, 50046",
+      "location": "Cambridge, IA",
+      "notes": "County: Story"
+    },
+    {
+      "organization": "YSS Ember Recovery - Klindt",
+      "services": "Substance Abuse, Cognitive Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 515-233-3141 | Intake: 515-233-4930 | http://www.yss.org",
+      "address": "32385 580th Avenue, Cambridge, IA, 50046",
+      "location": "Cambridge, IA",
+      "notes": "County: Story"
+    },
+    {
+      "organization": "Southwestern Mental Health Ctr Inc - Unity House",
+      "services": "Mental Health, Substance Abuse, Cognitive Behavioral Therapy, Dialectical Behavioral Therapy, Trauma Treatment, Peer Support",
+      "contact": "Phone: 507-372-7671 | http://www.swmhc.org",
+      "address": "1215 4th Avenue, Worthington, MN, 56187",
+      "location": "Worthington, MN",
+      "notes": "County: Nobles"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Administrative Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 729-2278 | https://www.bvca.net",
+      "address": "620 5th Street, Fairbury, NE, 68352",
+      "location": "Fairbury, NE",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Jefferson County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 729-5568 | https://www.bvca.net",
+      "address": "624 5th Street, Fairbury, NE, 68352",
+      "location": "Fairbury, NE",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Fillmore County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 759-3564 | https://www.bvca.net",
+      "address": "130 South 8th Street, Geneva, NE, 68361",
+      "location": "Geneva, NE",
+      "notes": "County: Fillmore"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Beatrice Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 223-6036 | https://www.bvca.net",
+      "address": "2015 North 6th Street, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Saline County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 826-2376 | https://www.bvca.net",
+      "address": "325 East 9th Street Door #4, Crete, NE, 68333",
+      "location": "Crete, NE",
+      "notes": "County: Saline"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Seward County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 646-9177 | https://www.bvca.net",
+      "address": "237 S 3rd St, Seward, NE, 68434",
+      "location": "Seward, NE",
+      "notes": "County: Seward"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Thayer County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 768-6727 | https://www.bvca.net",
+      "address": "320 Lincoln Ave, Hebron, NE, 68370",
+      "location": "Hebron, NE",
+      "notes": "County: Thayer"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - York County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 362-3516 | https://www.bvca.net",
+      "address": "3401 Lincoln Ave, York, NE, 68467",
+      "location": "York, NE",
+      "notes": "County: York"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Butler County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 367-4347 | https://www.bvca.net",
+      "address": "416 E St, David City, NE, 68632",
+      "location": "David City, NE",
+      "notes": "County: Butler"
+    },
+    {
+      "organization": "Blue Valley Community Action Partnership - Polk County Office",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 747-2102 | https://www.bvca.net",
+      "address": "440 Nebraska Ave, Osceola, NE, 68651",
+      "location": "Osceola, NE",
+      "notes": "County: Polk"
+    },
+    {
+      "organization": "Hope Crisis Center - Beatrice Office",
+      "services": "Crisis Support",
+      "contact": "Phone: (402) 223-6635 | https://hopecrisiscenter.org",
+      "address": "2015 N 6th St, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Hope Crisis Center - Crete Office",
+      "services": "Crisis Support",
+      "contact": "Phone: (402) 826-5727 | https://hopecrisiscenter.org",
+      "address": "108 E 11th St, Crete, NE, 68333",
+      "location": "Crete, NE",
+      "notes": "County: Saline"
+    },
+    {
+      "organization": "Hope Crisis Center - Fairbury Office",
+      "services": "Crisis Support",
+      "contact": "Phone: (402) 729-2570 | https://hopecrisiscenter.org",
+      "address": "515 4th Street, Fairbury, NE, 68352",
+      "location": "Fairbury, NE",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Hope Crisis Center - Seward Office",
+      "services": "Crisis Support",
+      "contact": "Phone: (402) 643-3056 | https://hopecrisiscenter.org",
+      "address": "529 Seward St #101, Seward, NE, 68434",
+      "location": "Seward, NE",
+      "notes": "County: Seward"
+    },
+    {
+      "organization": "Hope Crisis Center - York Office",
+      "services": "Crisis Support",
+      "contact": "Phone: (402) 362-7527 | https://hopecrisiscenter.org",
+      "address": "117 W 1st St, York, NE, 68467",
+      "location": "York, NE",
+      "notes": "County: York"
+    },
+    {
+      "organization": "Hope Crisis Center - Geneva Office",
+      "services": "Crisis Support",
+      "contact": "Phone: (402) 759-4001 | https://hopecrisiscenter.org",
+      "address": "1110 G St, Geneva, NE, 68361",
+      "location": "Geneva, NE",
+      "notes": "County: Fillmore"
+    },
+    {
+      "organization": "Salvation Army - Beatrice Corps",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 223-3341 | https://centralusa.salvationarmy.org/beatrice/",
+      "address": "120 S 7th St, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Blue Rivers Area Agency on Aging - Main Office",
+      "services": "Senior Services",
+      "contact": "Phone: (402) 223-1376 | https://www.braaa.org",
+      "address": "103 Eastside Blvd, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Fillmore County Hospital - Main Office",
+      "services": "Health Services",
+      "contact": "Phone: (402) 759-3167 | http://www.myfch.org",
+      "address": "1900 F Street, Geneva, NE, 68361",
+      "location": "Geneva, NE",
+      "notes": "County: Fillmore"
+    },
+    {
+      "organization": "Educational Service Unit (ESU) 5 - Early Development",
+      "services": "Youth Support",
+      "contact": "Phone: (402) 223-5277 | https://www.esu5.org",
+      "address": "900 W Court St, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Legal Aid of Nebraska - Lincoln Office",
+      "services": "Legal Support",
+      "contact": "Phone: (402) 435-2161 | https://www.legalaidofnebraska.org",
+      "address": "941 O Street Ste 825, Lincoln, NE, 68508",
+      "location": "Lincoln, NE",
+      "notes": "County: Regional"
+    },
+    {
+      "organization": "Public Health Solutions - Crete Office",
+      "services": "Public Health",
+      "contact": "Phone: (402) 826-3880 | https://www.phsneb.org",
+      "address": "830 E 1st ST Ste 300, Crete, NE, 68333",
+      "location": "Crete, NE",
+      "notes": "County: Saline"
+    },
+    {
+      "organization": "Beatrice Mary Family YMCA - Youth Programs",
+      "services": "Youth Support",
+      "contact": "Phone: (402) 223-5266 | https://www.beatriceymca.org",
+      "address": "1801 Scott St, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Turning Point Behavioral Health - Counseling Office",
+      "services": "Health Services",
+      "contact": "Phone: (402) 641-2095 | http://turningpointbhac.com",
+      "address": "122 S 4th Street, Seward, NE, 68434",
+      "location": "Seward, NE",
+      "notes": "County: Seward"
+    },
+    {
+      "organization": "St. John Lutheran Church - Food Pantry",
+      "services": "Basic Needs",
+      "contact": "Phone: (402) 223-5268 | https://stjohnbeatrice.org",
+      "address": "701 N 6th St, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Gage County Sheriff Office - Law Enforcement",
+      "services": "Safety",
+      "contact": "Phone: (402) 223-5221 | https://gagecountyne.gov",
+      "address": "612 Grant St, Beatrice, NE, 68310",
+      "location": "Beatrice, NE",
+      "notes": "County: Gage"
+    },
+    {
+      "organization": "Jefferson County Sheriff Office - Law Enforcement",
+      "services": "Safety",
+      "contact": "Phone: (402) 729-2284 | https://jeffersoncounty.ne.gov",
+      "address": "606 3rd St, Fairbury, NE, 68352",
+      "location": "Fairbury, NE",
+      "notes": "County: Jefferson"
+    },
+    {
+      "organization": "Saline County Sheriff Office - Law Enforcement",
+      "services": "Safety",
+      "contact": "Phone: (402) 821-2111 | https://salinecountyne.gov",
+      "address": "215 S Court St, Wilber, NE, 68465",
+      "location": "Wilber, NE",
+      "notes": "County: Saline"
+    }
+  ],
   "best_practices": {
     "housing_crisis": [
       "Always assess immediate safety first",
@@ -25,6 +2066,30 @@
       "Trauma-informed approach always",
       "Connect with peer support if available",
       "Coordinate with existing providers"
+    ],
+    "detox": [
+      "Always assess withdrawal risk before referral",
+      "Verify bed availability before sending client",
+      "Provide warm handoff when possible",
+      "Follow up within 24 hours of admission"
+    ],
+    "residential_treatment": [
+      "Complete full assessment before referral",
+      "Gather insurance and identification documents",
+      "Prepare client for treatment expectations",
+      "Coordinate with aftercare planning from day one"
+    ],
+    "outpatient_treatment": [
+      "Match intensity to client needs (IOP vs OP)",
+      "Consider transportation barriers",
+      "Coordinate with other providers",
+      "Monitor attendance and engagement"
+    ],
+    "halfway_house": [
+      "Ensure client is stable before placement",
+      "Review house rules with client beforehand",
+      "Coordinate with treatment providers",
+      "Plan for employment and housing goals"
     ]
   },
   "common_referral_paths": {

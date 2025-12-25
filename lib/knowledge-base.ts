@@ -9,6 +9,38 @@ interface OrganizationInfo {
   philosophy: string;
 }
 
+// Treatment Provider Types
+export interface TreatmentProvider {
+  name: string;
+  type: 'detox' | 'halfway_house' | 'outpatient' | 'residential' | 'community_resource';
+  facilityType?: string;
+  category?: string;
+  address: string;
+  city: string;
+  state: string;
+  zip: string;
+  county: string;
+  phone: string;
+  intakePhone?: string | null;
+  website: string;
+  latitude?: number | null;
+  longitude?: number | null;
+  services: string[];
+}
+
+interface TreatmentProvidersData {
+  detox: TreatmentProvider[];
+  halfway_houses: TreatmentProvider[];
+  outpatient: TreatmentProvider[];
+  residential: TreatmentProvider[];
+  community_resources: TreatmentProvider[];
+  metadata: {
+    lastUpdated: string;
+    sources: string[];
+    totalProviders: number;
+  };
+}
+
 interface Resource {
   name: string;
   type: string;
@@ -45,6 +77,199 @@ interface ClientForm {
 }
 
 let cachedKnowledgeBase: KnowledgeBase | null = null;
+let cachedTreatmentProviders: TreatmentProvidersData | null = null;
+
+/**
+ * Load treatment providers from JSON file
+ */
+export function loadTreatmentProviders(): TreatmentProvidersData | null {
+  if (cachedTreatmentProviders) {
+    return cachedTreatmentProviders;
+  }
+
+  try {
+    const filePath = path.join(process.cwd(), 'data', 'treatment-providers.json');
+    const fileContent = fs.readFileSync(filePath, 'utf-8');
+    cachedTreatmentProviders = JSON.parse(fileContent);
+    return cachedTreatmentProviders;
+  } catch (error) {
+    console.warn('Could not load treatment providers:', error);
+    return null;
+  }
+}
+
+/**
+ * Search treatment providers by various criteria
+ */
+export function searchTreatmentProviders(options: {
+  type?: TreatmentProvider['type'] | TreatmentProvider['type'][];
+  county?: string;
+  city?: string;
+  state?: string;
+  services?: string[];
+  limit?: number;
+}): TreatmentProvider[] {
+  const data = loadTreatmentProviders();
+  if (!data) return [];
+
+  let providers: TreatmentProvider[] = [];
+
+  // Collect providers by type
+  const types = options.type
+    ? (Array.isArray(options.type) ? options.type : [options.type])
+    : ['detox', 'halfway_house', 'outpatient', 'residential', 'community_resource'];
+
+  types.forEach(type => {
+    switch (type) {
+      case 'detox':
+        providers = providers.concat(data.detox || []);
+        break;
+      case 'halfway_house':
+        providers = providers.concat(data.halfway_houses || []);
+        break;
+      case 'outpatient':
+        providers = providers.concat(data.outpatient || []);
+        break;
+      case 'residential':
+        providers = providers.concat(data.residential || []);
+        break;
+      case 'community_resource':
+        providers = providers.concat(data.community_resources || []);
+        break;
+    }
+  });
+
+  // Filter by county
+  if (options.county) {
+    const countyLower = options.county.toLowerCase();
+    providers = providers.filter(p =>
+      p.county?.toLowerCase().includes(countyLower)
+    );
+  }
+
+  // Filter by city
+  if (options.city) {
+    const cityLower = options.city.toLowerCase();
+    providers = providers.filter(p =>
+      p.city?.toLowerCase().includes(cityLower)
+    );
+  }
+
+  // Filter by state
+  if (options.state) {
+    const stateLower = options.state.toLowerCase();
+    providers = providers.filter(p =>
+      p.state?.toLowerCase() === stateLower ||
+      p.state?.toLowerCase() === stateLower.substring(0, 2)
+    );
+  }
+
+  // Filter by services
+  if (options.services && options.services.length > 0) {
+    const servicesLower = options.services.map(s => s.toLowerCase());
+    providers = providers.filter(p =>
+      p.services?.some(service =>
+        servicesLower.some(s => service.toLowerCase().includes(s))
+      )
+    );
+  }
+
+  // Limit results
+  if (options.limit && options.limit > 0) {
+    providers = providers.slice(0, options.limit);
+  }
+
+  return providers;
+}
+
+/**
+ * Format treatment providers for AI prompt context
+ */
+export function formatTreatmentProvidersContext(options: {
+  type?: TreatmentProvider['type'] | TreatmentProvider['type'][];
+  county?: string;
+  city?: string;
+  limit?: number;
+}): string {
+  const providers = searchTreatmentProviders({
+    ...options,
+    limit: options.limit || 20
+  });
+
+  if (providers.length === 0) {
+    return '';
+  }
+
+  let context = `\n\n## TREATMENT PROVIDERS DATABASE\n`;
+  context += `Found ${providers.length} matching providers:\n\n`;
+
+  providers.forEach(provider => {
+    context += `### ${provider.name}\n`;
+    context += `- **Type:** ${provider.type.replace('_', ' ')}\n`;
+    context += `- **Location:** ${provider.address}, ${provider.city}, ${provider.state} ${provider.zip}\n`;
+    if (provider.county) {
+      context += `- **County:** ${provider.county}\n`;
+    }
+    context += `- **Phone:** ${provider.phone}`;
+    if (provider.intakePhone) {
+      context += ` | Intake: ${provider.intakePhone}`;
+    }
+    context += '\n';
+    if (provider.website) {
+      context += `- **Website:** ${provider.website}\n`;
+    }
+    if (provider.services && provider.services.length > 0) {
+      context += `- **Services:** ${provider.services.join(', ')}\n`;
+    }
+    context += '\n';
+  });
+
+  return context;
+}
+
+/**
+ * Get nearby treatment providers based on ZIP code
+ */
+export function getNearbyProviders(zipCode: string, type?: TreatmentProvider['type'], limit: number = 10): TreatmentProvider[] {
+  const data = loadTreatmentProviders();
+  if (!data) return [];
+
+  // Extract first 3 digits for regional matching
+  const zipPrefix = zipCode.substring(0, 3);
+
+  let providers: TreatmentProvider[] = [];
+
+  if (!type || type === 'detox') {
+    providers = providers.concat(data.detox || []);
+  }
+  if (!type || type === 'halfway_house') {
+    providers = providers.concat(data.halfway_houses || []);
+  }
+  if (!type || type === 'outpatient') {
+    providers = providers.concat((data.outpatient || []).slice(0, 50));
+  }
+  if (!type || type === 'residential') {
+    providers = providers.concat((data.residential || []).slice(0, 50));
+  }
+  if (!type || type === 'community_resource') {
+    providers = providers.concat(data.community_resources || []);
+  }
+
+  // Score providers by ZIP proximity
+  const scored = providers
+    .filter(p => p.zip)
+    .map(p => ({
+      provider: p,
+      score: p.zip.startsWith(zipPrefix) ? 2 :
+             p.zip.substring(0, 2) === zipCode.substring(0, 2) ? 1 : 0
+    }))
+    .filter(item => item.score > 0)
+    .sort((a, b) => b.score - a.score)
+    .slice(0, limit)
+    .map(item => item.provider);
+
+  return scored;
+}
 
 /**
  * Load the organizational knowledge base from JSON file
@@ -226,6 +451,80 @@ export function formatKnowledgeBaseContext(needType?: string, location?: string)
       if (communityInfo.notes) {
         context += `\nImportant: ${communityInfo.notes}\n`;
       }
+    }
+  }
+
+  return context;
+}
+
+/**
+ * Format knowledge base context with treatment providers for AI prompt
+ * Enhanced version that includes nearby treatment providers based on ZIP code
+ */
+export function formatEnhancedKnowledgeContext(options: {
+  needType?: string;
+  location?: string;
+  zipCode?: string;
+  includeProviders?: boolean;
+}): string {
+  let context = formatKnowledgeBaseContext(options.needType, options.location);
+
+  // Add treatment providers if requested and ZIP code provided
+  if (options.includeProviders !== false && options.zipCode) {
+    // Determine provider types based on need type
+    let providerTypes: TreatmentProvider['type'][] = [];
+
+    if (options.needType) {
+      const needLower = options.needType.toLowerCase();
+      if (needLower.includes('detox') || needLower.includes('withdrawal')) {
+        providerTypes.push('detox');
+      }
+      if (needLower.includes('housing') || needLower.includes('halfway') || needLower.includes('transitional')) {
+        providerTypes.push('halfway_house');
+      }
+      if (needLower.includes('substance') || needLower.includes('addiction') || needLower.includes('recovery')) {
+        providerTypes.push('detox', 'outpatient', 'residential');
+      }
+      if (needLower.includes('mental') || needLower.includes('counseling') || needLower.includes('therapy')) {
+        providerTypes.push('outpatient');
+      }
+      if (needLower.includes('residential') || needLower.includes('inpatient')) {
+        providerTypes.push('residential');
+      }
+      if (needLower.includes('community') || needLower.includes('resource') || needLower.includes('support')) {
+        providerTypes.push('community_resource');
+      }
+    }
+
+    // Default to all types if no specific need type matched
+    if (providerTypes.length === 0) {
+      providerTypes = ['detox', 'halfway_house', 'outpatient', 'residential', 'community_resource'];
+    }
+
+    // Get unique types
+    providerTypes = [...new Set(providerTypes)];
+
+    // Get nearby providers
+    const nearbyProviders = getNearbyProviders(options.zipCode, undefined, 15);
+
+    if (nearbyProviders.length > 0) {
+      context += `\n\n## NEARBY TREATMENT PROVIDERS (based on ZIP ${options.zipCode})\n`;
+      context += `Found ${nearbyProviders.length} providers in your area:\n\n`;
+
+      nearbyProviders.forEach(provider => {
+        context += `### ${provider.name}\n`;
+        context += `- **Type:** ${provider.type.replace(/_/g, ' ')}\n`;
+        context += `- **Location:** ${provider.city}, ${provider.state} ${provider.zip}\n`;
+        context += `- **Phone:** ${provider.phone}`;
+        if (provider.intakePhone) {
+          context += ` | Intake: ${provider.intakePhone}`;
+        }
+        context += '\n';
+        if (provider.services && provider.services.length > 0) {
+          context += `- **Services:** ${provider.services.slice(0, 5).join(', ')}\n`;
+        }
+        context += '\n';
+      });
     }
   }
 
