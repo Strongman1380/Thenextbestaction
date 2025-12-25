@@ -84,7 +84,7 @@ export async function DELETE(request: NextRequest) {
       );
     }
 
-    deleteDocument(id);
+    await deleteDocument(id);
 
     return NextResponse.json({
       success: true,
