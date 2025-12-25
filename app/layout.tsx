@@ -1,4 +1,6 @@
 import { AuthProvider } from '@/components/auth/AuthProvider';
+import { ToastProvider } from '@/lib/context/ToastContext';
+import { ToastContainer } from '@/components/ui/ToastContainer';
 import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import './globals.css';
@@ -19,9 +21,12 @@ export default function RootLayout({
     <html lang="en">
       <body className={inter.className}>
         <AuthProvider>
-          <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
-            {children}
-          </div>
+          <ToastProvider>
+            <div className="min-h-screen bg-gradient-to-br from-blue-50 via-white to-purple-50">
+              {children}
+            </div>
+            <ToastContainer />
+          </ToastProvider>
         </AuthProvider>
       </body>
     </html>

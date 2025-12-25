@@ -3,6 +3,9 @@ import { formatKnowledgeBaseContext } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 import { researchCaseNeed, formatResearchForPrompt } from '@/lib/research';
+import { validateRequest } from '@/lib/validation/validate';
+import { casePlanSchema } from '@/lib/validation/schemas';
+import { checkRateLimit, getClientIdentifier, getRateLimitHeaders, RATE_LIMITS } from '@/lib/middleware/rate-limit';
 
 const perplexity = createPerplexityClient();
 
@@ -132,8 +135,32 @@ async function searchLocalResourcesWithAI(zip_code: string, primary_need: string
 
 export async function POST(request: NextRequest) {
   try {
+    // Rate limiting
+    const clientId = getClientIdentifier(request);
+    const rateCheck = checkRateLimit(clientId, RATE_LIMITS.generation);
+
+    if (!rateCheck.allowed) {
+      return NextResponse.json(
+        {
+          success: false,
+          error: 'Too many requests. Please wait a moment before trying again.',
+        },
+        {
+          status: 429,
+          headers: getRateLimitHeaders(rateCheck, RATE_LIMITS.generation),
+        }
+      );
+    }
+
     const body = await request.json();
-    const { primary_need, urgency, client_initials, caseworker_name, zip_code, additional_context, enable_research } = body;
+
+    // Validate request body
+    const validation = validateRequest(body, casePlanSchema);
+    if (!validation.success) {
+      return validation.response;
+    }
+
+    const { primary_need, urgency, client_initials, caseworker_name, zip_code, additional_context, enable_research } = validation.data;
 
     // Search for local resources if ZIP code provided (uses 211 database)
     let localResources = '';

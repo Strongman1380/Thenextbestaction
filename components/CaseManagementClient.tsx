@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { supabase } from '@/lib/supabase';
 import CaseInputForm, { type FormData } from '@/components/CaseInputForm';
 import CasePlanCard from '@/components/CasePlanCard';
@@ -9,6 +9,8 @@ import SkillResourceCard from '@/components/SkillResourceCard';
 import Header from '@/components/Header';
 import CompassionFooter from '@/components/CompassionFooter';
 import HowToUse from '@/components/HowToUse';
+import StreamingContent from '@/components/StreamingContent';
+import { useStreamingAI } from '@/lib/hooks/useStreamingAI';
 import type { Session } from '@supabase/auth-helpers-nextjs';
 
 type TabType = 'case-plan' | 'skill-building' | 'client-resources';
@@ -20,8 +22,20 @@ export default function CaseManagementClient({ session }: { session: Session | n
   // Case Plan State
   const [casePlan, setCasePlan] = useState<string | null>(null);
   const [urgency, setUrgency] = useState<string>('medium');
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
+  const [isStreaming, setIsStreaming] = useState(false);
+
+  // Streaming hook for case plan generation
+  const {
+    content: streamingContent,
+    status: streamStatus,
+    statusMessage,
+    warnings: streamWarnings,
+    error: streamError,
+    stream: streamCasePlan,
+    reset: resetStream,
+    abort: abortStream,
+  } = useStreamingAI('/api/generate-plan/stream');
 
   const [lastActivity, setLastActivity] = useState('No activity yet');
 
@@ -46,34 +60,26 @@ export default function CaseManagementClient({ session }: { session: Session | n
 
 
   const handleSubmit = async (formData: FormData) => {
-    setLoading(true);
     setError(null);
+    setIsStreaming(true);
+    resetStream();
 
     if (!session?.user) {
       setError('You must be logged in to create a case plan.');
-      setLoading(false);
+      setIsStreaming(false);
       return;
     }
 
     try {
-        // Generate the AI case plan via the API
-        const response = await fetch('/api/generate-plan', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(formData),
-        });
+      // Use streaming API for real-time feedback
+      const finalContent = await streamCasePlan(formData);
 
-        const data = await response.json();
-
-        if (!data.success) {
-            throw new Error(data.error || 'Failed to generate case plan');
-        }
-
+      if (finalContent) {
         // Save the case plan to the database
         const { error: dbError } = await supabase
           .from('case_plans')
           .insert({
-            content: data.case_plan,
+            content: finalContent,
             primary_need: formData.primary_need,
             urgency: formData.urgency,
             caseworker_id: session.user.id,
@@ -83,23 +89,24 @@ export default function CaseManagementClient({ session }: { session: Session | n
 
         if (dbError) {
           console.error('Failed to save case plan to database:', dbError);
-          // Continue anyway - show the plan even if save fails
         }
 
-        setCasePlan(data.case_plan);
+        setCasePlan(finalContent);
         setUrgency(formData.urgency);
         setLastActivity(`Case plan generated • ${new Date().toLocaleTimeString([], { hour: 'numeric', minute: '2-digit' })}`);
-
+      }
     } catch (err: any) {
-        setError(err.message || 'An unexpected error occurred');
+      setError(err.message || 'An unexpected error occurred');
     } finally {
-        setLoading(false);
+      setIsStreaming(false);
     }
   };
 
   const handleNewCase = () => {
     setCasePlan(null);
     setError(null);
+    resetStream();
+    setIsStreaming(false);
     setLastActivity('Preparing a new case plan');
   };
 
@@ -346,7 +353,17 @@ export default function CaseManagementClient({ session }: { session: Session | n
         <div className="rounded-3xl border border-slate-200 bg-slate-50/90 p-4 sm:p-6">
           {activeTab === 'case-plan' && (
             <>
-              {!casePlan ? (
+              {/* Show streaming content while generating */}
+              {isStreaming && (streamStatus === 'connecting' || streamStatus === 'streaming') ? (
+                <StreamingContent
+                  content={streamingContent}
+                  status={streamStatus}
+                  statusMessage={statusMessage}
+                  warnings={streamWarnings}
+                  error={streamError}
+                  onCancel={abortStream}
+                />
+              ) : !casePlan ? (
                 <div className="card animate-fade-in space-y-6">
                   <div className="space-y-2">
                     <h2 className="text-2xl font-semibold text-slate-900">
@@ -357,14 +374,14 @@ export default function CaseManagementClient({ session }: { session: Session | n
                     </p>
                   </div>
 
-                  {error && (
+                  {(error || streamError) && (
                     <div className="rounded-2xl border border-red-200 bg-red-50/80 p-4">
                       <p className="text-red-700 font-semibold">Error</p>
-                      <p className="text-sm text-red-600">{error}</p>
+                      <p className="text-sm text-red-600">{error || streamError}</p>
                     </div>
                   )}
 
-                  <CaseInputForm onSubmit={handleSubmit} loading={loading} />
+                  <CaseInputForm onSubmit={handleSubmit} loading={isStreaming} />
                   <HowToUse
                     title="How to Use the Case Plan Generator"
                     content={
