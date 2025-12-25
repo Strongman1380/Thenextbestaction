@@ -23,12 +23,13 @@ export default function CategorizedDocumentsManager({ category, title, descripti
     setLoading(true);
     try {
       const response = await fetch(`/api/documents?category=${category}`);
-      if (response.ok) {
-        const data = await response.json();
-        setDocuments(data.documents || []);
-      }
+      const data = await response.json();
+      // Ensure we always set an array
+      const docs = Array.isArray(data.documents) ? data.documents : [];
+      setDocuments(docs);
     } catch (error) {
       console.error(`Error fetching documents for category ${category}:`, error);
+      setDocuments([]);
     } finally {
       setLoading(false);
     }

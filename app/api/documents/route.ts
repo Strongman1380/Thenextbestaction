@@ -1,15 +1,29 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loadDocumentsMetadata, saveDocument, deleteDocument } from '@/lib/document-parser';
 
-// GET - List all documents
-export async function GET() {
+// GET - List all documents (optionally filtered by category)
+export async function GET(request: NextRequest) {
   try {
-    const documents = loadDocumentsMetadata();
+    const { searchParams } = new URL(request.url);
+    const category = searchParams.get('category');
+
+    let documents = await loadDocumentsMetadata();
+
+    // Ensure documents is an array
+    if (!Array.isArray(documents)) {
+      documents = [];
+    }
+
+    // Filter by category if provided
+    if (category) {
+      documents = documents.filter(doc => doc.category === category);
+    }
+
     return NextResponse.json({ success: true, documents });
   } catch (error: any) {
     console.error('Error loading documents:', error);
     return NextResponse.json(
-      { success: false, error: error.message },
+      { success: false, error: error.message, documents: [] },
       { status: 500 }
     );
   }
