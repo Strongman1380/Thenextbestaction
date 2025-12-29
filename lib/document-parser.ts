@@ -1,7 +1,5 @@
-import { promises as fs } from 'fs';
-import { existsSync, mkdirSync } from 'fs';
-import path from 'path';
 import mammoth from 'mammoth';
+import { createClient } from '@supabase/supabase-js';
 
 export interface DocumentMetadata {
   id: string;
@@ -14,10 +12,28 @@ export interface DocumentMetadata {
   size: number;
 }
 
-const DOCUMENTS_DIR = path.join(process.cwd(), 'data', 'documents');
-const METADATA_FILE = path.join(process.cwd(), 'data', 'documents-metadata.json');
+interface DocumentRecord {
+  id: string;
+  filename: string;
+  original_name: string;
+  file_type: string;
+  uploaded_at: string;
+  category: string | null;
+  description: string | null;
+  size: number;
+}
 
-// Cache for parsed document content
+interface DocumentRecordWithContent extends DocumentRecord {
+  content: string;
+}
+
+// Create Supabase client
+const supabaseUrl = process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || '';
+const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY || process.env.SUPABASE_ANON_KEY || process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY || '';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
+
+// In-memory cache for document content
 interface CacheEntry {
   content: string;
   timestamp: number;
@@ -32,12 +48,43 @@ let metadataCacheTimestamp = 0;
 const METADATA_CACHE_TTL = 2 * 60 * 1000; // 2 minutes
 
 /**
- * Ensure documents directory exists (sync for initialization)
+ * Parse text from buffer based on type
  */
-function ensureDocumentsDir() {
-  if (!existsSync(DOCUMENTS_DIR)) {
-    mkdirSync(DOCUMENTS_DIR, { recursive: true });
+async function parseFileContent(buffer: Buffer, fileType: string, fileName: string): Promise<string> {
+  // Word documents (.docx)
+  if (fileType.includes('wordprocessingml') || fileName.endsWith('.docx')) {
+    const result = await mammoth.extractRawText({ buffer });
+    return result.value;
   }
+
+  // Text files
+  if (fileType.includes('text') || fileName.endsWith('.txt') || fileName.endsWith('.md')) {
+    return buffer.toString('utf-8');
+  }
+
+  // PDFs - basic extraction (just extract readable text)
+  if (fileType.includes('pdf') || fileName.endsWith('.pdf')) {
+    return buffer.toString('utf-8').replace(/[^\x20-\x7E\n\r]/g, ' ').trim();
+  }
+
+  // Default: try to read as text
+  return buffer.toString('utf-8');
+}
+
+/**
+ * Convert database record to metadata
+ */
+function recordToMetadata(record: DocumentRecord): DocumentMetadata {
+  return {
+    id: record.id,
+    filename: record.filename,
+    originalName: record.original_name,
+    fileType: record.file_type,
+    uploadedAt: record.uploaded_at,
+    category: record.category || undefined,
+    description: record.description || undefined,
+    size: record.size,
+  };
 }
 
 /**
@@ -52,14 +99,22 @@ export async function loadDocumentsMetadata(): Promise<DocumentMetadata[]> {
   }
 
   try {
-    const data = await fs.readFile(METADATA_FILE, 'utf-8');
-    metadataCache = JSON.parse(data);
+    const { data, error } = await supabase
+      .from('knowledge_documents')
+      .select('id, filename, original_name, file_type, uploaded_at, category, description, size')
+      .order('uploaded_at', { ascending: false });
+
+    if (error) {
+      console.error('Error loading documents from Supabase:', error);
+      return metadataCache || [];
+    }
+
+    metadataCache = (data || []).map(recordToMetadata);
     metadataCacheTimestamp = now;
-    return metadataCache!;
-  } catch {
-    metadataCache = [];
-    metadataCacheTimestamp = now;
-    return [];
+    return metadataCache;
+  } catch (error) {
+    console.error('Error loading documents:', error);
+    return metadataCache || [];
   }
 }
 
@@ -69,42 +124,6 @@ export async function loadDocumentsMetadata(): Promise<DocumentMetadata[]> {
 export function invalidateMetadataCache() {
   metadataCache = null;
   metadataCacheTimestamp = 0;
-}
-
-/**
- * Save document metadata (async)
- */
-async function saveDocumentsMetadata(metadata: DocumentMetadata[]) {
-  await fs.writeFile(METADATA_FILE, JSON.stringify(metadata, null, 2), 'utf-8');
-  // Update cache
-  metadataCache = metadata;
-  metadataCacheTimestamp = Date.now();
-}
-
-/**
- * Parse text from file based on type (async)
- */
-async function parseFileContent(filePath: string, fileType: string): Promise<string> {
-  const buffer = await fs.readFile(filePath);
-
-  // Word documents (.docx)
-  if (fileType.includes('wordprocessingml') || filePath.endsWith('.docx')) {
-    const result = await mammoth.extractRawText({ buffer });
-    return result.value;
-  }
-
-  // Text files
-  if (fileType.includes('text') || filePath.endsWith('.txt') || filePath.endsWith('.md')) {
-    return buffer.toString('utf-8');
-  }
-
-  // PDFs - basic extraction (just extract readable text)
-  if (fileType.includes('pdf') || filePath.endsWith('.pdf')) {
-    return buffer.toString('utf-8').replace(/[^\x20-\x7E\n\r]/g, ' ').trim();
-  }
-
-  // Default: try to read as text
-  return buffer.toString('utf-8');
 }
 
 /**
@@ -135,7 +154,7 @@ function setCachedContent(cacheKey: string, content: string) {
 }
 
 /**
- * Save uploaded document (async)
+ * Save uploaded document to Supabase
  */
 export async function saveDocument(
   fileBuffer: Buffer,
@@ -144,17 +163,35 @@ export async function saveDocument(
   category?: string,
   description?: string
 ): Promise<DocumentMetadata> {
-  ensureDocumentsDir();
-
   const id = `doc_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
-  const ext = path.extname(originalName);
-  const filename = `${id}${ext}`;
-  const filePath = path.join(DOCUMENTS_DIR, filename);
+  const filename = `${id}${originalName.substring(originalName.lastIndexOf('.'))}`;
 
-  // Save file
-  await fs.writeFile(filePath, fileBuffer);
+  // Parse content from buffer
+  const content = await parseFileContent(fileBuffer, fileType, originalName);
 
-  // Create metadata
+  // Save to Supabase
+  const { error } = await supabase
+    .from('knowledge_documents')
+    .insert({
+      id,
+      filename,
+      original_name: originalName,
+      file_type: fileType,
+      uploaded_at: new Date().toISOString(),
+      category: category || null,
+      description: description || null,
+      size: fileBuffer.length,
+      content,
+    });
+
+  if (error) {
+    console.error('Error saving document to Supabase:', error);
+    throw new Error(`Failed to save document: ${error.message}`);
+  }
+
+  // Invalidate cache
+  invalidateMetadataCache();
+
   const metadata: DocumentMetadata = {
     id,
     filename,
@@ -166,38 +203,25 @@ export async function saveDocument(
     size: fileBuffer.length,
   };
 
-  // Update metadata file
-  const allMetadata = await loadDocumentsMetadata();
-  allMetadata.push(metadata);
-  await saveDocumentsMetadata(allMetadata);
-
   return metadata;
 }
 
 /**
- * Delete document (async)
+ * Delete document from Supabase
  */
 export async function deleteDocument(id: string): Promise<void> {
-  const allMetadata = await loadDocumentsMetadata();
-  const doc = allMetadata.find(d => d.id === id);
+  const { error } = await supabase
+    .from('knowledge_documents')
+    .delete()
+    .eq('id', id);
 
-  if (!doc) {
-    throw new Error('Document not found');
+  if (error) {
+    console.error('Error deleting document from Supabase:', error);
+    throw new Error(`Failed to delete document: ${error.message}`);
   }
 
-  // Delete file
-  const filePath = path.join(DOCUMENTS_DIR, doc.filename);
-  try {
-    await fs.unlink(filePath);
-  } catch (error) {
-    console.error('Error deleting file:', error);
-  }
-
-  // Update metadata
-  const updatedMetadata = allMetadata.filter(d => d.id !== id);
-  await saveDocumentsMetadata(updatedMetadata);
-
-  // Invalidate cache for this document
+  // Invalidate caches
+  invalidateMetadataCache();
   documentCache.delete(id);
 }
 
@@ -211,24 +235,24 @@ export async function getDocumentContent(id: string): Promise<string> {
     return cached;
   }
 
-  const allMetadata = await loadDocumentsMetadata();
-  const doc = allMetadata.find(d => d.id === id);
+  const { data, error } = await supabase
+    .from('knowledge_documents')
+    .select('content')
+    .eq('id', id)
+    .single();
 
-  if (!doc) {
+  if (error || !data) {
     throw new Error('Document not found');
   }
 
-  const filePath = path.join(DOCUMENTS_DIR, doc.filename);
-  const content = await parseFileContent(filePath, doc.fileType);
-
   // Cache the content
-  setCachedContent(id, content);
+  setCachedContent(id, data.content);
 
-  return content;
+  return data.content;
 }
 
 /**
- * Read and parse all documents (legacy + uploaded)
+ * Read and parse all documents
  * Returns formatted knowledge context for AI
  */
 export async function loadDocumentKnowledge(category?: string): Promise<string> {
@@ -237,69 +261,38 @@ export async function loadDocumentKnowledge(category?: string): Promise<string> 
     const MAX_DOC_LENGTH = 3000;
     const MAX_TOTAL_LENGTH = 12000;
 
-    // Load legacy Word documents from data directory
-    const dataDir = path.join(process.cwd(), 'data');
-    try {
-      const files = await fs.readdir(dataDir);
-      const legacyFiles = files.filter(file => file.endsWith('.docx'));
+    // Build query
+    let query = supabase
+      .from('knowledge_documents')
+      .select('id, original_name, description, content, category')
+      .order('uploaded_at', { ascending: false });
 
-      for (const file of legacyFiles) {
-        if (documentContext.length >= MAX_TOTAL_LENGTH) break;
-
-        const cacheKey = `legacy_${file}`;
-        let text = getCachedContent(cacheKey);
-
-        if (text === null) {
-          const filePath = path.join(dataDir, file);
-          const buffer = await fs.readFile(filePath);
-
-          try {
-            const result = await mammoth.extractRawText({ buffer });
-            text = result.value.trim();
-            setCachedContent(cacheKey, text);
-          } catch (err) {
-            console.error(`Error parsing legacy document ${file}:`, err);
-            continue;
-          }
-        }
-
-        if (text) {
-          if (text.length > MAX_DOC_LENGTH) {
-            text = text.substring(0, MAX_DOC_LENGTH) + '... [content truncated]';
-          }
-          documentContext += `\n\n### Document: ${file}\n${text}\n`;
-        }
-      }
-    } catch {
-      // Data directory doesn't exist, skip legacy documents
+    if (category) {
+      query = query.ilike('category', `%${category}%`);
     }
 
-    // Load uploaded documents
-    const allMetadata = await loadDocumentsMetadata();
-    const relevantDocs = category
-      ? allMetadata.filter(doc => doc.category?.toLowerCase().includes(category.toLowerCase()))
-      : allMetadata;
+    const { data: documents, error } = await query;
 
-    for (const doc of relevantDocs) {
+    if (error) {
+      console.error('Error loading documents:', error);
+      return '';
+    }
+
+    for (const doc of documents || []) {
       if (documentContext.length >= MAX_TOTAL_LENGTH) break;
 
-      try {
-        let content = await getDocumentContent(doc.id);
-        content = content.trim();
+      let content = (doc.content || '').trim();
 
-        if (content) {
-          if (content.length > MAX_DOC_LENGTH) {
-            content = content.substring(0, MAX_DOC_LENGTH) + '... [content truncated]';
-          }
-
-          documentContext += `\n\n### ${doc.originalName}`;
-          if (doc.description) {
-            documentContext += `\n*${doc.description}*`;
-          }
-          documentContext += `\n${content}\n`;
+      if (content) {
+        if (content.length > MAX_DOC_LENGTH) {
+          content = content.substring(0, MAX_DOC_LENGTH) + '... [content truncated]';
         }
-      } catch (error) {
-        console.error(`Error loading document ${doc.id}:`, error);
+
+        documentContext += `\n\n### ${doc.original_name}`;
+        if (doc.description) {
+          documentContext += `\n*${doc.description}*`;
+        }
+        documentContext += `\n${content}\n`;
       }
     }
 

@@ -1,57 +1,66 @@
 ---
-description: Defines core data models, their relationships, and hierarchical structures for case management and knowledge systems
+description: Defines core data models, their relationships, and data flows for case management and knowledge systems
 ---
 
 
 # data-models-relationships
 
-Core Data Models:
+## Core Data Models
 
 1. Case Management Model
-- Hierarchical structure for managing social work cases
-- Real-time integration with resource databases
-- Relationship mapping between cases and local resources
-- Prioritization system based on urgency levels
-File: components/CaseManagementClient.tsx
+- Hierarchical case structure with client, treatment plans, and interventions
+- Links to resource recommendations through multi-faceted matching system
+- Stores case outcomes and intervention effectiveness metrics
+- Path: lib/engine.ts
+Importance Score: 90/100
 
-2. Knowledge Base Structure
-- Domain-specific categorization for social work practices
-- Hierarchical organization of treatment protocols
-- Relationship mapping between best practices and resources
-File: components/knowledge/BestPracticesManager.tsx
+2. Knowledge Base Model  
+- Treatment provider data with regional proximity scoring
+- Clinical protocols organized by intervention type
+- Service capability flags and specialization markers
+- Path: lib/knowledge-base.ts
+Importance Score: 85/100
 
-3. Resource Database Schema
-- Integration with 211 social services database
-- Local resource mapping and relationships
-- Service capability classifications
-- Geographic proximity relationships
-Path: app/api/generate-plan/stream/route.ts
+3. Research Integration Model
+- Evidence-based practice categorization system
+- Treatment outcome correlation tracking
+- Best practices linked to case types
+- Path: lib/research.ts
+Importance Score: 80/100
 
-4. Professional Development Model
-- Organizational knowledge hierarchy
-- Resource type classifications (worksheet, reading, exercise)
-- Relationship mapping to best practices
-Path: app/api/generate-skill-resource/route.ts
-
-Key Relationships:
+## Key Relationships
 
 1. Case-Resource Mapping
-- Cases link to multiple local resources
-- Resources categorized by service type
-- Priority-based relationship weighting
-- Geographic service area relationships
+- Cases link to multiple resource types through service flags
+- Bidirectional tracking of resource effectiveness
+- Treatment provider scoring based on case requirements
+Importance Score: 85/100
 
-2. Knowledge-Practice Integration  
-- Best practices link to multiple resources
-- Hierarchical categorization relationships
-- Domain-specific protocol mappings
-- Evidence-based practice relationships
+2. Knowledge-Case Integration
+- Clinical protocols map to case intervention strategies
+- Local partnerships connect through service categorization
+- Evidence-based practices inform case recommendations
+Importance Score: 80/100
 
-3. Client-Resource Connections
-- Client needs mapping to resource types
-- Accessibility-based relationship scoring
-- Trauma-informed content relationships
-Path: app/api/generate-client-resource/route.ts
+3. Treatment Provider Network
+- Regional provider clustering
+- Service capability matrix
+- Referral path tracking
+Importance Score: 75/100
+
+## Data Flow Architecture
+
+1. Case Planning Flow
+- Client needs assessment → Resource matching → Plan generation
+- Integrates knowledge base protocols during plan creation
+- Tracks intervention outcomes back to resource effectiveness
+Importance Score: 85/100
+
+2. Resource Recommendation Pipeline
+- Provider proximity scoring
+- Service capability matching
+- Outcome-based prioritization
+Importance Score: 80/100
 
 $END$
 

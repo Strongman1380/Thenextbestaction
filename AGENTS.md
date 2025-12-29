@@ -13,53 +13,57 @@
 - Explain your OBSERVATIONS clearly, then provide REASONING to identify the exact issue. Add console logs when needed to gather more information.
 
 
-Core Business Logic Organization
-=============================
+## Core Business Components
 
-Case Management Workflow Engine
------------------------------
-Central system orchestrating social work case management processes through:
+### Case Management Engine
+Centralizes decision-making for social service case recommendations through:
+- Playbook-based intervention matching
+- Urgency-based escalation workflows 
+- Treatment provider recommendation system
+- Outcome tracking and feedback collection
 
-1. Real-time Case Plan Generation
-- Streams AI-generated case plans with local resource matching
-- Integrates 211 database for service discovery
-- Implements urgency-based prioritization
-- Applies trauma-informed care principles
+### Knowledge Integration System
+Manages domain expertise through:
+- Regional treatment provider matching algorithms
+- Multi-faceted clinical guidelines search
+- Local partnership service categorization
+- ZIP code proximity scoring for provider recommendations
 
-2. Resource Generation System
-- Professional Development Materials
-  - Personalized skill-building content
-  - Organizational best practices integration
-  - Trauma-informed learning materials
+### Research Enhancement
+Specialized social work domain processing:
+- Evidence-based practice integration
+- Treatment protocol categorization
+- Crisis intervention best practices
+- Clinical findings extraction
 
-- Client-Facing Resources
-  - Self-help materials adapted to client needs
-  - Accessibility-focused content generation
-  - Organizational guideline compliance
+## Key Workflows
 
-Knowledge Management Framework
----------------------------
-- Domain-specific categorization for social work practices
-- Hierarchical organization of treatment protocols
-- Best practices integration
+### Case Plan Generation
+Implements trauma-informed planning through:
+- Real-time crisis warning detection
+- Multi-modal resource creation
+- Client-specific context building
+- Treatment capability mapping
 
-Critical Integration Points
--------------------------
-1. app/api/generate-plan/stream/route.ts
-   - Core case plan generation logic
-   - 211 database integration
-   - Resource matching algorithms
+### Provider Integration 
+Manages treatment facilities through:
+- Service capability flagging
+- Regional availability tracking
+- Partnership relationship management
+- Referral path optimization
 
-2. components/knowledge/BestPracticesManager.tsx
-   - Knowledge base organization
-   - Treatment protocol management
+## Business Impact Scores
 
-3. components/CaseManagementClient.tsx
-   - Workflow implementation
-   - Real-time plan streaming
-   - Quality improvement feedback loop
+Critical Components:
+- Knowledge Base Integration (90/100)
+- Case Management Engine (85/100) 
+- Case Plan Generation (85/100)
 
-Importance Score: 85/100
+Supporting Systems:
+- Research Enhancement (80/100)
+- Knowledge Management (75/100)
+- AI Integration (75/100)
+- Domain Forms (70/100)
 
 $END$
 

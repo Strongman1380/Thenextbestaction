@@ -1,15 +1,11 @@
 import { z } from 'zod';
+import { sanitizeTextInput, sanitizeForAI, sanitizeZipCode, sanitizeUrgency, sanitizeResourceType, sanitizeInitials } from '@/lib/security/input-sanitizer';
 
 /**
  * Sanitize text to prevent prompt injection
  * Removes potentially dangerous characters while preserving readability
  */
-const sanitizedText = z.string().transform(text =>
-  text
-    .replace(/```/g, '') // Remove code block markers
-    .replace(/\${/g, '') // Remove template literal starts
-    .slice(0, 5000) // Limit length
-);
+const sanitizedText = z.string().transform(text => sanitizeTextInput(text, 5000));
 
 /**
  * Optional sanitized text that can be empty
@@ -18,17 +14,17 @@ const optionalSanitizedText = z.string()
   .optional()
   .transform(text => {
     if (!text) return text;
-    return text
-      .replace(/```/g, '')
-      .replace(/\${/g, '')
-      .slice(0, 3000);
+    return sanitizeTextInput(text, 3000);
   });
 
 /**
  * ZIP code validation
  */
 const zipCode = z.string()
-  .regex(/^\d{5}$/, 'ZIP code must be exactly 5 digits')
+  .transform((val) => sanitizeZipCode(val))
+  .refine((val) => val !== null, {
+    message: 'ZIP code must be exactly 5 digits',
+  })
   .optional()
   .or(z.literal(''));
 
@@ -50,8 +46,18 @@ export const casePlanSchema = z.object({
     .refine(val => val.trim().length >= 10, {
       message: 'Primary need must be at least 10 characters',
     }),
-  urgency: urgencyLevel,
-  client_initials: z.string().max(5).optional(),
+  urgency: z.string()
+    .transform((val) => sanitizeUrgency(val))
+    .refine((val) => val !== null, {
+      message: 'Urgency must be low, medium, or high',
+    }),
+  client_initials: z.string()
+    .transform((val) => sanitizeInitials(val))
+    .refine((val) => val !== null, {
+      message: 'Initials must be 2-5 alphanumeric characters',
+    })
+    .optional()
+    .or(z.literal('')),
   caseworker_name: z.string().max(50).optional(),
   zip_code: zipCode,
   additional_context: optionalSanitizedText,
@@ -71,7 +77,11 @@ export const skillResourceSchema = z.object({
     .refine(val => val.trim().length >= 20, {
       message: 'Context must be at least 20 characters',
     }),
-  resource_type: resourceType,
+  resource_type: z.string()
+    .transform((val) => sanitizeResourceType(val))
+    .refine((val) => val !== null, {
+      message: 'Resource type must be worksheet, reading, exercise, or any',
+    }),
   enable_research: z.boolean().optional().default(true),
 });
 
@@ -87,7 +97,11 @@ export const clientResourceSchema = z.object({
     .refine(val => val.trim().length >= 20, {
       message: 'Context must be at least 20 characters',
     }),
-  resource_type: resourceType,
+  resource_type: z.string()
+    .transform((val) => sanitizeResourceType(val))
+    .refine((val) => val !== null, {
+      message: 'Resource type must be worksheet, reading, exercise, or any',
+    }),
   enable_research: z.boolean().optional().default(true),
 });
 

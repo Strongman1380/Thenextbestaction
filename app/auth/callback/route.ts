@@ -19,6 +19,6 @@ export async function GET(request: Request) {
     }
   }
 
-  // If no code or error, redirect to login
-  return NextResponse.redirect(`${requestUrl.origin}/login`);
+  // If no code or error, redirect to home
+  return NextResponse.redirect(`${requestUrl.origin}/`);
 }

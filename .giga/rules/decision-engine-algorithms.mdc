@@ -1,53 +1,48 @@
 ---
-description: Specification for analyzing decision engine algorithms including case plan generation, urgency prioritization, and resource matching logic
+description: Decision engine algorithms for trauma-informed care case planning and resource matching
 ---
 
 
 # decision-engine-algorithms
 
-Key Decision Engine Components:
+The decision engine comprises three core algorithmic components that work together to generate trauma-informed case plans:
 
-1. Case Plan Generation Algorithm
-Path: app/api/generate-plan/stream/route.ts
-- Real-time streaming case plan generation based on:
-  - Urgency level assessment and prioritization
-  - Integration with 211 database for local resource matching
-  - Trauma-informed care principles for response formatting
-  - Fallback resource search mechanisms
+## Case Plan Generation Algorithm
+Path: lib/engine.ts
+- Multi-stage decision tree incorporating trauma-informed care principles
+- Urgency-based prioritization (low/medium/high) affects resource allocation
+- Treatment matching based on:
+  - Client trauma history
+  - Current crisis level
+  - Available local resources
+  - Provider specializations
+Importance Score: 90/100
 
-2. Resource Matching Engine
-- Local service provider matching using 211 database integration
-- Multi-criteria resource prioritization:
-  - Geographic proximity
-  - Service capability alignment
-  - Availability status
-  - Urgency level requirements
-
-3. Trauma-Informed Decision Support
-- Content adaptation based on trauma-informed principles
-- Response formatting guidelines for sensitive information
-- Crisis-appropriate resource selection
-- Accessible language requirements
-
-4. Knowledge Integration Logic
-Path: components/knowledge/BestPracticesManager.tsx
-- Domain-specific categorization for social work practices
-- Hierarchical organization of treatment protocols
-- Integration of organizational best practices into decision flows
-
-Core Decision Workflows:
-1. Urgency Assessment & Prioritization
-- Crisis level classification
-- Response timing requirements
-- Resource priority assignment
-
-2. Resource Generation Rules
-- Professional development material adaptation
-- Client-facing content complexity adjustment
-- Organizational guideline compliance
-- Best practices integration
-
+## Resource Matching Logic
+Path: lib/knowledge-base.ts
+- Regional provider prioritization with ZIP code proximity scoring
+- Service capability mapping for treatment facilities
+- Partnership network traversal for optimal referral paths
+- Treatment protocol alignment checking
 Importance Score: 85/100
+
+## Evidence Integration System
+Path: lib/research.ts
+- Categorizes and weights evidence-based practices
+- Maps clinical guidelines to case scenarios
+- Automated extraction of relevant treatment protocols
+- Integration into recommendation engine
+Importance Score: 80/100
+
+Key Workflows:
+1. Initial case assessment
+2. Crisis level determination
+3. Provider capability matching
+4. Resource allocation prioritization
+5. Treatment protocol selection
+6. Care plan assembly
+
+The algorithms emphasize trauma-informed decision making while balancing resource availability and treatment urgency. Core logic focuses on matching client needs with appropriate interventions based on evidence-based practices and local provider capabilities.
 
 $END$
 

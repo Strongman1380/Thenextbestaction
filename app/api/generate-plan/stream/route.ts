@@ -6,6 +6,8 @@ import { researchCaseNeed, formatResearchForPrompt } from '@/lib/research';
 import { validateRequest } from '@/lib/validation/validate';
 import { casePlanSchema } from '@/lib/validation/schemas';
 import { checkRateLimit, getClientIdentifier, getRateLimitHeaders, RATE_LIMITS } from '@/lib/middleware/rate-limit';
+import { sanitizeForAI } from '@/lib/security/input-sanitizer';
+import { logError } from '@/lib/utils/error-handler';
 
 const perplexity = createPerplexityClient();
 
@@ -181,6 +183,10 @@ export async function POST(request: NextRequest) {
 
   const { primary_need, urgency, client_initials, caseworker_name, zip_code, additional_context, enable_research } = validatedData;
 
+  // Sanitize inputs for AI to prevent prompt injection
+  const sanitizedPrimaryNeed = sanitizeForAI(primary_need);
+  const sanitizedAdditionalContext = additional_context ? sanitizeForAI(additional_context) : '';
+
   const encoder = new TextEncoder();
 
   const stream = new ReadableStream({
@@ -196,7 +202,7 @@ export async function POST(request: NextRequest) {
 
         if (zip_code) {
           controller.enqueue(encoder.encode(formatSSE({ type: 'status', status: 'Searching local resources...' })));
-          const resourceResult = await search211Resources(zip_code, primary_need);
+          const resourceResult = await search211Resources(zip_code, sanitizedPrimaryNeed);
           localResources = resourceResult.resources;
           resourceWarning = resourceResult.warning;
 
@@ -212,7 +218,7 @@ export async function POST(request: NextRequest) {
         if (shouldResearch) {
           controller.enqueue(encoder.encode(formatSSE({ type: 'status', status: 'Researching best practices...' })));
           try {
-            const research = await researchCaseNeed(primary_need, urgency, additional_context);
+            const research = await researchCaseNeed(sanitizedPrimaryNeed, urgency, sanitizedAdditionalContext);
             researchContext = formatResearchForPrompt(research);
           } catch (error) {
             console.error('Research failed:', error);
@@ -222,19 +228,19 @@ export async function POST(request: NextRequest) {
 
         // Load knowledge base
         controller.enqueue(encoder.encode(formatSSE({ type: 'status', status: 'Loading knowledge base...' })));
-        const knowledgeBaseContext = formatKnowledgeBaseContext(primary_need, zip_code);
+        const knowledgeBaseContext = formatKnowledgeBaseContext(sanitizedPrimaryNeed, zip_code);
         const documentContext = await loadDocumentKnowledge();
 
         // Build the prompt
         const prompt = `You are creating a case plan to help a social worker address a client's needs. Your job is to carefully analyze ALL information provided and create a comprehensive, actionable plan.${knowledgeBaseContext}${documentContext}${researchContext}
 
 **CLIENT CASE INFORMATION:**
-- Primary Need: ${primary_need}
+- Primary Need: ${sanitizedPrimaryNeed}
 - Urgency Level: ${urgency}
 ${client_initials ? `- Client Initials: ${client_initials}` : ''}
 ${caseworker_name ? `- Case Worker: ${caseworker_name}` : ''}
 ${zip_code ? `- Location (ZIP): ${zip_code}` : ''}
-${additional_context ? `- Additional Context: ${additional_context}` : ''}
+${sanitizedAdditionalContext ? `- Additional Context: ${sanitizedAdditionalContext}` : ''}
 
 ${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localResources}\n` : ''}
 
@@ -244,7 +250,7 @@ ${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localRes
 3. Create a prioritized, actionable plan that connects the client to the right help
 
 **CRITICAL INSTRUCTIONS:**
-- Focus ONLY on resources that directly address the primary need: "${primary_need}"
+- Focus ONLY on resources that directly address the primary need: "${sanitizedPrimaryNeed}"
 - When local resources are provided, SELECT THE BEST MATCHES from that list - do NOT make up new resources
 - Prioritize based on urgency level: ${urgency}
 - Every recommendation must be specific and actionable
@@ -304,7 +310,7 @@ Format in clear sections with bullet points. Use compassionate, professional lan
         controller.enqueue(encoder.encode(formatSSE({ type: 'done' })));
 
       } catch (error: any) {
-        console.error('Error in streaming case plan:', error);
+        logError(error, 'generate-plan-stream-api');
         controller.enqueue(encoder.encode(formatSSE({
           type: 'error',
           error: error.message || 'Failed to generate case plan'

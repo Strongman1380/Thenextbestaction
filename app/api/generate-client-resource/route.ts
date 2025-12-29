@@ -3,6 +3,8 @@ import { getBestPractices } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 import { researchClientResource, formatResearchForPrompt } from '@/lib/research';
+import { sanitizeForAI } from '@/lib/security/input-sanitizer';
+import { logError } from '@/lib/utils/error-handler';
 
 const perplexity = createPerplexityClient();
 
@@ -11,19 +13,23 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { skill_topic, context, resource_type, enable_research } = body;
 
+    // Sanitize inputs for AI to prevent prompt injection
+    const sanitizedSkillTopic = sanitizeForAI(skill_topic);
+    const sanitizedContext = context ? sanitizeForAI(context) : '';
+
     // Research the topic if enabled (default: true)
     const shouldResearch = enable_research !== false;
     let researchContext = '';
 
     if (shouldResearch) {
-      console.log(`Researching client resource topic: ${skill_topic}`);
-      const research = await researchClientResource(skill_topic, context);
+      console.log(`Researching client resource topic: ${sanitizedSkillTopic}`);
+      const research = await researchClientResource(sanitizedSkillTopic, sanitizedContext);
       researchContext = formatResearchForPrompt(research);
       console.log('Research completed');
     }
 
     // Get relevant best practices from knowledge base
-    const bestPractices = getBestPractices(skill_topic);
+    const bestPractices = getBestPractices(sanitizedSkillTopic);
     
     // Load additional document knowledge
     const documentContext = await loadDocumentKnowledge();
@@ -46,12 +52,12 @@ export async function POST(request: NextRequest) {
       : 'Create the most appropriate resource type (worksheet, reading material, or exercise) based on the skill topic and context.';
 
     // Build the prompt for client-focused resources
-    const prompt = `A social worker needs help with a client issue. They need a self-help resource to GIVE TO THEIR CLIENT to help the client work on: "${skill_topic}".
+    const prompt = `A social worker needs help with a client issue. They need a self-help resource to GIVE TO THEIR CLIENT to help the client work on: "${sanitizedSkillTopic}".
 
 **THE SITUATION:**
 The worker is dealing with a client who has this issue/need. The worker wants to provide the client with something practical they can use on their own between sessions.${bestPracticesContext}${documentContext}${researchContext}
 
-${context ? `**What the worker told us about the client's situation:**\n${context}\n` : ''}
+${sanitizedContext ? `**What the worker told us about the client's situation:**\n${sanitizedContext}\n` : ''}
 
 **WHAT THEY NEED:**
 ${resourceTypeInstruction}
@@ -177,7 +183,7 @@ ${resource_type === 'any' ? `
     });
 
   } catch (error: any) {
-    console.error('Error generating client resource:', error);
+    logError(error, 'generate-client-resource-api');
     return NextResponse.json(
       {
         success: false,

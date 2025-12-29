@@ -1,40 +1,51 @@
 ---
-description: Knowledge management and domain-specific organization model for social work practices
+description: Defines the hierarchical structure and organization of domain knowledge, best practices, and practice-to-category mappings for social work case management
 ---
 
 
 # knowledge-management-model
 
-Importance Score: 85/100
+The knowledge management system organizes domain expertise across three key hierarchies:
 
-Domain Knowledge Organization:
-1. Hierarchical Structure (components/knowledge/BestPracticesManager.tsx)
-- Social work practice categorization system
-- Treatment protocols organized by domain specialization
-- Best practices integration framework
+## Practice Categories & Mappings (Importance: 85/100)
+- Treatment protocols mapped to specific intervention categories
+- Evidence-based practice classifications 
+- Regional prioritization and local partnership categorization
+- Service capability tagging system
 
-2. Practice-to-Category Mapping
-- Domain-specific categorization for social work methodologies
-- Organizational guidelines mapping
-- Treatment approach classification
+## Best Practices Integration (Importance: 90/100)
+File: components/knowledge/BestPracticesManager.tsx
+- Clinical guidelines organized by treatment domain
+- Trauma-informed care principles mapping
+- Context-aware formatting for AI prompt integration
+- Multi-faceted search across organizational protocols
 
-Knowledge Integration Components:
-1. Best Practices Manager
-- Manages organizational knowledge repository
-- Handles domain-specific workflow protocols
-- Integrates treatment guidelines and procedures
+## Local Resource Classification (Importance: 80/100)
+File: components/knowledge/LocalPartnershipsManager.tsx
+- Treatment provider categorization by service type:
+  - Detox centers
+  - Halfway houses
+  - Outpatient facilities
+  - Residential treatment
+  - Community resources
+- ZIP code-based regional organization
+- Service flag mapping system
+- Referral pathway tracking
 
-2. Trauma-Informed Content Framework
-- Content adaptation based on trauma-informed principles
-- Integration of organizational guidelines
-- Knowledge base filtering for accessibility
+Core Domain Organization:
+1. Treatment Protocols
+2. Clinical Guidelines
+3. Evidence-Based Practices
+4. Local Partnerships
+5. Regional Resources
+6. Service Capabilities
 
-Domain-Specific Features:
-- Social work practice hierarchies
-- Treatment protocol organization
-- Organizational best practices integration
-- Domain-specific categorization system
-- Professional development resource mapping
+The system maintains relationships between knowledge domains while supporting:
+- Context-aware knowledge retrieval
+- Domain-specific categorization
+- Treatment-to-provider mapping
+- Regional resource organization
+- Best practice integration
 
 $END$
 

@@ -3,7 +3,6 @@
 import { useState, useRef, useEffect } from 'react';
 import { DocumentMetadata } from '@/lib/document-parser';
 import { Upload, File, Trash2, FileText, AlertCircle, RefreshCw, ClipboardPaste } from 'lucide-react';
-import GoogleDriveBrowser from './GoogleDriveBrowser';
 
 export default function DocumentsManager() {
   const [documents, setDocuments] = useState<DocumentMetadata[]>([]);
@@ -34,9 +33,18 @@ export default function DocumentsManager() {
     fetchDocuments();
   }, []);
 
+  const MAX_FILE_SIZE = 4 * 1024 * 1024; // 4MB limit
+
   const handleFileSelect = async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (!file) return;
+
+    if (file.size > MAX_FILE_SIZE) {
+      setUploadError(`File too large. Maximum size is 4MB. Your file is ${(file.size / (1024 * 1024)).toFixed(1)}MB.`);
+      if (fileInputRef.current) fileInputRef.current.value = '';
+      return;
+    }
+
     await uploadData(file);
   };
 
@@ -64,6 +72,10 @@ export default function DocumentsManager() {
         method: 'POST',
         body: formData,
       });
+
+      if (response.status === 413) {
+        throw new Error('File too large. Maximum size is 4MB.');
+      }
 
       const responseData = await response.json();
 
@@ -230,14 +242,6 @@ export default function DocumentsManager() {
             Save Pasted Text
           </button>
         </div>
-      </div>
-
-      {/* Google Drive Integration */}
-      <div className="mb-8">
-        <GoogleDriveBrowser
-          category={category || undefined}
-          onImport={fetchDocuments}
-        />
       </div>
 
       {uploadError && (

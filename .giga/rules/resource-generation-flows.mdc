@@ -1,47 +1,50 @@
 ---
-description: Documents resource generation algorithms and workflows for both professional development and client resources
+description: Documents algorithms and workflows for generating professional and client resources in social work/case management context
 ---
 
 
 # resource-generation-flows
 
-## Core Resource Generation Flows
-The system implements three distinct resource generation pathways:
+The resource generation system implements specialized content creation workflows for both professional case management and client-facing materials.
 
-1. Case Plan Generation
-Path: app/api/generate-plan/stream/route.ts
-- Streams real-time case plan resources with 211 database integration
-- Prioritizes resources based on urgency classification
-- Formats content using trauma-informed care principles
+## Resource Generation Core Components
 
-2. Professional Development Resources  
-Path: app/api/generate-skill-resource/route.ts
-- Generates personalized learning materials from organizational knowledge base
-- Adapts content format based on resource type:
-  - Worksheets
-  - Reading materials
-  - Practical exercises
-- Incorporates trauma-informed approaches into materials
-
-3. Client-Facing Resources
+1. Client Resource Generation
 Path: app/api/generate-client-resource/route.ts
-- Creates self-help materials with adaptive complexity
-- Applies organizational guidelines and best practices
-- Ensures trauma-informed, accessible content formatting
-
-## Knowledge Integration
-Path: components/knowledge/BestPracticesManager.tsx
-- Manages categorized organizational knowledge for resource generation
-- Implements social work domain-specific categorization
-- Maintains hierarchical treatment protocol organization
-
-## Resource Generation Rules
-- All generated content must incorporate trauma-informed principles
-- Professional resources must align with organizational best practices
-- Client resources require complexity adaptation based on needs assessment
-- Case plans must integrate local resource availability from 211 database
-
+- Produces specialized therapeutic materials (worksheets, reading materials, exercises)
+- Adapts content based on trauma-informed language requirements
+- Formats resources according to client context and resource type
 Importance Score: 85/100
+
+2. Treatment Plan Generation
+Path: app/api/generate-plan/route.ts
+- Creates case plans using multi-stage context building
+- Integrates knowledge base best practices with local provider data
+- Applies client-specific context and urgency prioritization
+Importance Score: 90/100 
+
+3. Knowledge Management
+Path: app/api/knowledge/route.ts
+- Maintains treatment protocols and best practices database
+- Formats organizational knowledge for AI prompts
+- Manages local partnerships and referral pathways
+Importance Score: 75/100
+
+## Resource Types and Formats
+
+1. Professional Resources
+- Case plans with intervention strategies
+- Treatment provider recommendations
+- Evidence-based practice documentation
+- Clinical guidelines and protocols
+
+2. Client Resources  
+- Therapeutic worksheets
+- Reading materials
+- Skill-building exercises
+- Action planning templates
+
+The system emphasizes trauma-informed content generation and context-aware formatting based on resource type and intended audience.
 
 $END$
 

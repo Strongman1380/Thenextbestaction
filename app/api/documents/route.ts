@@ -1,6 +1,11 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { loadDocumentsMetadata, saveDocument, deleteDocument } from '@/lib/document-parser';
 
+export const dynamic = 'force-dynamic';
+
+// Increase body size limit to 10MB
+export const maxDuration = 60;
+
 // GET - List all documents (optionally filtered by category)
 export async function GET(request: NextRequest) {
   try {

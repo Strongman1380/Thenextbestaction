@@ -3,6 +3,8 @@ import { getBestPractices, loadKnowledgeBase } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
 import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
 import { researchSkillTopic, formatResearchForPrompt } from '@/lib/research';
+import { sanitizeForAI } from '@/lib/security/input-sanitizer';
+import { logError } from '@/lib/utils/error-handler';
 
 const perplexity = createPerplexityClient();
 
@@ -11,20 +13,25 @@ export async function POST(request: NextRequest) {
     const body = await request.json();
     const { skill_topic, worker_name, context, resource_type, enable_research } = body;
 
+    // Sanitize inputs for AI to prevent prompt injection
+    const sanitizedSkillTopic = sanitizeForAI(skill_topic);
+    const sanitizedContext = context ? sanitizeForAI(context) : '';
+    const sanitizedWorkerName = worker_name ? sanitizeForAI(worker_name) : '';
+
     // Research the topic if enabled (default: true)
     const shouldResearch = enable_research !== false;
     let researchContext = '';
 
     if (shouldResearch) {
-      console.log(`Researching skill topic: ${skill_topic}`);
-      const research = await researchSkillTopic(skill_topic, context);
+      console.log(`Researching skill topic: ${sanitizedSkillTopic}`);
+      const research = await researchSkillTopic(sanitizedSkillTopic, sanitizedContext);
       researchContext = formatResearchForPrompt(research);
       console.log('Research completed');
     }
 
     // Get organizational knowledge
     const kb = loadKnowledgeBase();
-    const bestPractices = getBestPractices(skill_topic);
+    const bestPractices = getBestPractices(sanitizedSkillTopic);
     
     // Load additional document knowledge
     const documentContext = await loadDocumentKnowledge();
@@ -48,12 +55,12 @@ export async function POST(request: NextRequest) {
       : 'Create the most appropriate resource type (worksheet, reading material, or exercise) based on the topic and context.';
 
     // Build the prompt for worker skill-building
-    const prompt = `A social worker ${worker_name ? `(${worker_name}) ` : ''}is seeking to build their OWN professional knowledge and skills. They want to learn and grow in this area: "${skill_topic}".
+    const prompt = `A social worker ${sanitizedWorkerName ? `(${sanitizedWorkerName}) ` : ''}is seeking to build their OWN professional knowledge and skills. They want to learn and grow in this area: "${sanitizedSkillTopic}".
 
 This is NOT about helping a client - this is about helping the WORKER themselves become better at their job.${bestPracticesContext}${documentContext}${researchContext}
 
 **WORKER'S LEARNING CONTEXT:**
-${context}
+${sanitizedContext}
 
 **WHAT THEY NEED:**
 ${resourceTypeInstruction}
@@ -130,7 +137,7 @@ Use clear headings, bullet points, and professional but supportive tone. Make it
     });
 
   } catch (error: any) {
-    console.error('Error generating skill resource:', error);
+    logError(error, 'generate-skill-resource-api');
     return NextResponse.json(
       {
         success: false,

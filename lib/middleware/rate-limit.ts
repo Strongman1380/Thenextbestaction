@@ -3,6 +3,8 @@
  * Simple in-memory rate limiter using sliding window
  */
 
+import { validateClientIdentifier } from '@/lib/security/input-sanitizer';
+
 interface RateLimitEntry {
   count: number;
   resetTime: number;
@@ -149,12 +151,14 @@ export function getClientIdentifier(request: Request): string {
   // Try to get real IP from headers (for proxied requests)
   const forwardedFor = request.headers.get('x-forwarded-for');
   if (forwardedFor) {
-    return forwardedFor.split(',')[0].trim();
+    // Extract the first IP from the forwarded-for header
+    const firstIp = forwardedFor.split(',')[0].trim();
+    return validateClientIdentifier(firstIp);
   }
 
   const realIp = request.headers.get('x-real-ip');
   if (realIp) {
-    return realIp;
+    return validateClientIdentifier(realIp);
   }
 
   // Fallback to a generic identifier
