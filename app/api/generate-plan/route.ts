@@ -180,7 +180,7 @@ export async function POST(request: NextRequest) {
 
     if (shouldResearch) {
       console.log(`Researching topic: ${sanitizedPrimaryNeed}`);
-      const research = await researchCaseNeed(sanitizedPrimaryNeed, urgency, sanitizedAdditionalContext);
+      const research = await researchCaseNeed(sanitizedPrimaryNeed, urgency || 'medium', sanitizedAdditionalContext);
       researchContext = formatResearchForPrompt(research);
       console.log('Research completed');
     }
@@ -188,8 +188,8 @@ export async function POST(request: NextRequest) {
     // Load organizational knowledge base context (includes treatment providers if ZIP provided)
     const knowledgeBaseContext = formatEnhancedKnowledgeContext({
       needType: sanitizedPrimaryNeed,
-      location: zip_code,
-      zipCode: zip_code,
+      location: zip_code || undefined,
+      zipCode: zip_code || undefined,
       includeProviders: true,
     });
 

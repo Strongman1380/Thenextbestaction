@@ -218,7 +218,7 @@ export async function POST(request: NextRequest) {
         if (shouldResearch) {
           controller.enqueue(encoder.encode(formatSSE({ type: 'status', status: 'Researching best practices...' })));
           try {
-            const research = await researchCaseNeed(sanitizedPrimaryNeed, urgency, sanitizedAdditionalContext);
+            const research = await researchCaseNeed(sanitizedPrimaryNeed, urgency || 'medium', sanitizedAdditionalContext);
             researchContext = formatResearchForPrompt(research);
           } catch (error) {
             console.error('Research failed:', error);
@@ -228,7 +228,7 @@ export async function POST(request: NextRequest) {
 
         // Load knowledge base
         controller.enqueue(encoder.encode(formatSSE({ type: 'status', status: 'Loading knowledge base...' })));
-        const knowledgeBaseContext = formatKnowledgeBaseContext(sanitizedPrimaryNeed, zip_code);
+        const knowledgeBaseContext = formatKnowledgeBaseContext(sanitizedPrimaryNeed, zip_code || undefined);
         const documentContext = await loadDocumentKnowledge();
 
         // Build the prompt
