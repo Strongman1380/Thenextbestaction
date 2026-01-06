@@ -38,8 +38,8 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
       method: 'GET',
       headers: {
         'Api-Key': API_KEY, // 211 API uses Api-Key header for authentication
-        'locationMode': 'Near', // Search mode: Near, Within, Serving
-        'distance': '25', // Search within 25 miles
+        'locationMode': 'Within', // Search mode: Within (strict radius), Near (nearby), Serving (service area)
+        'distance': '50', // Search within 50 miles
         'size': '10', // Return up to 10 results
         'orderByDistance': 'true', // Sort by nearest first
       },

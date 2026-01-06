@@ -52,8 +52,8 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
       method: 'GET',
       headers: {
         'Api-Key': API_KEY,
-        'locationMode': 'Near',
-        'distance': '25',
+        'locationMode': 'Within',
+        'distance': '50',
         'size': '10',
         'orderByDistance': 'true',
       },
