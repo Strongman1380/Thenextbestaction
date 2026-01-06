@@ -64,6 +64,7 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
         // Extract organization and service names
         const orgName = result.nameOrganization || 'Resource';
         const serviceName = result.nameService || '';
+        const locationName = result.nameLocation || '';
 
         // Get description (remove HTML tags)
         let description = result.descriptionService || result.descriptionOrganization || '';
@@ -75,20 +76,39 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
           formattedResults += `   - Service: ${serviceName}\n`;
         }
 
-        if (description) {
-          const desc = description.substring(0, 200).trim();
-          formattedResults += `   - ${desc}${description.length > 200 ? '...' : ''}\n`;
+        if (locationName && locationName !== orgName) {
+          formattedResults += `   - Location: ${locationName}\n`;
         }
 
-        // Get address
+        if (description) {
+          const desc = description.substring(0, 250).trim();
+          formattedResults += `   - Description: ${desc}${description.length > 250 ? '...' : ''}\n`;
+        }
+
+        // Get address with coordinates
         if (result.address) {
           const addr = result.address;
           const addressParts = [addr.streetAddress, addr.city, addr.stateProvince, addr.postalCode].filter(Boolean);
           if (addressParts.length > 0) {
             formattedResults += `   - Address: ${addressParts.join(', ')}\n`;
           }
+          if (addr.county) {
+            formattedResults += `   - County: ${addr.county}\n`;
+          }
         }
 
+        // Add service areas if available
+        if (result.serviceAreas && result.serviceAreas.length > 0) {
+          const areas = result.serviceAreas.map((sa: any) => sa.value).join(', ');
+          formattedResults += `   - Service Areas: ${areas}\n`;
+        }
+
+        // Add 211 ID for reference
+        if (result.idServiceAtLocation) {
+          formattedResults += `   - 211 ID: ${result.idServiceAtLocation}\n`;
+        }
+
+        formattedResults += `   - **IMPORTANT**: Call 211 directly at 2-1-1 to get current phone numbers, hours, and eligibility requirements for this resource.\n`;
         formattedResults += '\n';
       });
 
@@ -235,7 +255,7 @@ ${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localRes
    - Include trauma-informed approaches
 
 3. **Best-Matched Local Resources** ${zip_code ? `(ZIP ${zip_code})` : ''}:
-   ${localResources ? '**SELECT ONLY THE MOST RELEVANT resources from the list above.**\n\n   Format each resource clearly for easy reading and printing:\n\n   **[Resource Name]**\n   - **Why This Fits:** [Explain specifically why this resource matches the client\'s need]\n   - **Contact:** [Phone, website, and/or address - make it easy to find and reach them]\n   - **Services:** [List the specific services they offer that are relevant to this case]\n   - **Important Notes:** [Eligibility requirements, hours, any barriers, or special considerations]\n\n   List resources in priority order (most urgent/relevant first). Use clear spacing between resources for readability.' : 'Recommend specific resources with complete contact information and explanation of relevance.'}
+   ${localResources ? '**SELECT ONLY THE MOST RELEVANT resources from the list above.**\n\n   Format each resource clearly for easy reading and printing:\n\n   **[Resource Name]**\n   - **Why This Fits:** [Explain specifically why this resource matches the client\'s need]\n   - **How to Contact:** [Include ALL available contact methods from the resource details above: address, 211 reference number, and remind them to call 2-1-1 for phone/hours/eligibility]\n   - **Services:** [List the specific services they offer that are relevant to this case]\n   - **Location:** [Full address and service areas from the details above]\n   - **Important Notes:** [Eligibility requirements, hours, any barriers, or special considerations. If phone/website not listed, note "Call 2-1-1 for current contact info"]\n\n   CRITICAL: Include the complete address, 211 ID, and all information provided in the resource list above. Direct caseworkers to call 2-1-1 for phone numbers and current details.\n\n   List resources in priority order (most urgent/relevant first). Use clear spacing between resources for readability.' : 'Recommend specific resources with complete contact information and explanation of relevance.'}
 
 4. **Risk Assessment**:
    - Identify immediate safety concerns
