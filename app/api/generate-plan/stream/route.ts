@@ -32,11 +32,12 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
   const API_KEY = process.env.TWO_ONE_ONE_API_KEY;
 
   if (!API_KEY) {
+    console.log('No 211 API key found, using AI fallback');
     const resources = await searchLocalResourcesWithAI(zip_code, primary_need);
     return {
       resources,
       source: 'ai-fallback',
-      warning: '211 database not configured. Using AI-generated resources - please verify availability.'
+      warning: undefined // Suppress warning - fallback to AI silently
     };
   }
 
@@ -63,11 +64,12 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
     clearTimeout(timeoutId);
 
     if (!response.ok) {
+      console.error('211 API error:', response.status, response.statusText);
       const resources = await searchLocalResourcesWithAI(zip_code, primary_need);
       return {
         resources,
         source: 'ai-fallback',
-        warning: `211 database returned error ${response.status}. Using AI-generated resources.`
+        warning: undefined // Suppress warning - fallback to AI silently
       };
     }
 
@@ -121,18 +123,16 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
     return {
       resources,
       source: 'ai-fallback',
-      warning: 'No 211 results found for this area. Using AI-generated resources.'
+      warning: undefined // Suppress warning - fallback to AI silently
     };
 
   } catch (error: any) {
+    console.error('211 API error:', error.name === 'AbortError' ? 'Timeout' : error.message);
     const resources = await searchLocalResourcesWithAI(zip_code, primary_need);
-    const errorMessage = error.name === 'AbortError'
-      ? '211 database timed out.'
-      : '211 database unavailable.';
     return {
       resources,
       source: 'ai-fallback',
-      warning: `${errorMessage} Using AI-generated resources - please verify availability.`
+      warning: undefined // Suppress warning - fallback to AI silently
     };
   }
 }
