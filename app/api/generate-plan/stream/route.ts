@@ -266,6 +266,7 @@ ${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localRes
 
 **CRITICAL INSTRUCTIONS:**
 - Focus ONLY on resources that directly address the primary need: "${sanitizedPrimaryNeed}"
+${localResources ? '- Local resources have ALREADY BEEN FOUND from the 211 database and are listed above - USE THESE SPECIFIC RESOURCES in your action steps\n- DO NOT tell the caseworker to "call 2-1-1 to find resources" - the resources are ALREADY PROVIDED above\n- The caseworker should only call 2-1-1 to get PHONE NUMBERS for the specific resources you recommend from the list above' : ''}
 - When local resources are provided, SELECT THE BEST MATCHES from that list - do NOT make up new resources
 - Prioritize based on urgency level: ${urgency}
 - Every recommendation must be specific and actionable
@@ -281,7 +282,7 @@ ${localResources ? `**AVAILABLE LOCAL RESOURCES (ZIP ${zip_code}):**\n${localRes
 2. **Immediate Action Steps** (what needs to happen first):
    - List 3-5 concrete steps in priority order
    - Each step should specify WHO does WHAT and WHEN
-   - Be specific (not "find housing" but "call [specific resource] at [number] today")
+${localResources ? '   - Be specific using the resources from the list above (e.g., "Contact [Organization Name from list] at [Address from list]")\n   - First action should be contacting a specific resource from the list, NOT calling 2-1-1 to search for resources' : '   - Be specific (not "find housing" but "call [specific resource] at [number] today")'}
    - Include trauma-informed approaches
 
 3. **Best-Matched Local Resources** ${zip_code ? `(ZIP ${zip_code})` : ''}:
