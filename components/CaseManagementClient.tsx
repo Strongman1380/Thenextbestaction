@@ -386,6 +386,7 @@ export default function CaseManagementClient() {
                   skillTopic={skillTopic}
                   onRegenerate={handleRegenerateSkillResource}
                   onCreateNew={handleNewSkillResource}
+                  resourceType="worker"
                 />
               )}
             </>
@@ -430,6 +431,7 @@ export default function CaseManagementClient() {
                   skillTopic={clientTopic}
                   onRegenerate={handleRegenerateClientResource}
                   onCreateNew={handleNewClientResource}
+                  resourceType="client"
                 />
               )}
             </>

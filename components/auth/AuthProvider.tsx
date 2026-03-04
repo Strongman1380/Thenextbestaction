@@ -26,6 +26,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const router = useRouter();
   const supabase = createClientComponentClient();
 
+  // Helper function to log session events
+  const logSessionEvent = async (email: string, action: 'sign_in' | 'sign_out' | 'token_refresh', userId?: string) => {
+    try {
+      await supabase.from('session_logs').insert({
+        user_email: email,
+        user_id: userId,
+        action,
+        metadata: {
+          timestamp: new Date().toISOString(),
+        },
+        user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
+      });
+    } catch (err) {
+      // Silent fail - don't block auth flow if logging fails
+      console.error('Failed to log session event:', err);
+    }
+  };
+
   useEffect(() => {
     const setData = async () => {
       const { data: { session }, error } = await supabase.auth.getSession();
@@ -38,12 +56,18 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       setLoading(false);
     };
 
-    const { data: listener } = supabase.auth.onAuthStateChange((_event, session) => {
+    const { data: listener } = supabase.auth.onAuthStateChange(async (_event, session) => {
       setSession(session);
       setUser(session?.user ?? null);
       setLoading(false);
-      if (_event === 'SIGNED_OUT') {
+      
+      // Log auth events
+      if (_event === 'SIGNED_IN' && session?.user?.email) {
+        await logSessionEvent(session.user.email, 'sign_in', session.user.id);
+      } else if (_event === 'SIGNED_OUT') {
         router.refresh();
+      } else if (_event === 'TOKEN_REFRESHED' && session?.user?.email) {
+        await logSessionEvent(session.user.email, 'token_refresh', session.user.id);
       }
     });
 
@@ -55,6 +79,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   }, [supabase, router]);
 
   const signOut = async () => {
+    // Log sign out before actually signing out
+    if (user?.email) {
+      await logSessionEvent(user.email, 'sign_out', user.id);
+    }
     await supabase.auth.signOut();
     router.push('/');
   };

@@ -21,10 +21,10 @@ interface ParsedSection {
   borderColor: string;
 }
 
-const urgencyStyles: Record<string, { label: string; gradient: string; bgLight: string }> = {
-  high: { label: 'High urgency', gradient: 'from-red-500 to-red-600', bgLight: 'bg-red-50' },
-  medium: { label: 'Medium urgency', gradient: 'from-amber-500 to-amber-600', bgLight: 'bg-amber-50' },
-  low: { label: 'Low urgency', gradient: 'from-emerald-500 to-emerald-600', bgLight: 'bg-emerald-50' },
+const urgencyStyles: Record<string, { label: string; gradient: string }> = {
+  high: { label: 'High urgency', gradient: 'from-red-500 to-red-600' },
+  medium: { label: 'Medium urgency', gradient: 'from-amber-500 to-amber-600' },
+  low: { label: 'Low urgency', gradient: 'from-emerald-500 to-emerald-600' },
 };
 
 // Icons for each section
@@ -170,20 +170,24 @@ const markdownComponents = {
     <h4 className="text-sm font-semibold text-gray-800 mb-1 mt-2 first:mt-0" {...props} />
   ),
   ul: ({ ...props }: React.HTMLAttributes<HTMLUListElement>) => (
-    <ul className="space-y-2 mb-4" {...props} />
+    <ul className="space-y-2 mb-4 ml-4" {...props} />
   ),
   ol: ({ ...props }: React.HTMLAttributes<HTMLOListElement>) => (
-    <ol className="space-y-2 mb-4 list-decimal list-inside" {...props} />
+    <ol className="space-y-2 mb-4 list-decimal ml-4" {...props} />
   ),
-  li: ({ children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className="text-gray-700 leading-relaxed flex gap-2" {...props}>
-      <span className="text-primary mt-1.5 flex-shrink-0">
-        <svg className="w-1.5 h-1.5 fill-current" viewBox="0 0 6 6">
-          <circle cx="3" cy="3" r="3" />
-        </svg>
-      </span>
-      <span className="flex-1">{children}</span>
-    </li>
+  li: ({ children, ordered, ...props }: React.HTMLAttributes<HTMLLIElement> & { ordered?: boolean }) => (
+    ordered ? (
+      <li className="text-gray-700 leading-relaxed pl-1" {...props}>{children}</li>
+    ) : (
+      <li className="text-gray-700 leading-relaxed flex gap-2" {...props}>
+        <span className="text-primary mt-1.5 flex-shrink-0">
+          <svg className="w-1.5 h-1.5 fill-current" viewBox="0 0 6 6">
+            <circle cx="3" cy="3" r="3" />
+          </svg>
+        </span>
+        <span className="flex-1">{children}</span>
+      </li>
+    )
   ),
   p: ({ ...props }: React.HTMLAttributes<HTMLParagraphElement>) => (
     <p className="text-gray-700 mb-3 leading-relaxed last:mb-0" {...props} />
@@ -205,15 +209,19 @@ const resourceMarkdownComponents = {
   h4: ({ ...props }: React.HTMLAttributes<HTMLHeadingElement>) => (
     <h4 className="text-sm font-semibold text-purple-800 mb-1 mt-2 first:mt-0" {...props} />
   ),
-  li: ({ children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-    <li className="text-gray-700 leading-relaxed flex gap-2 py-0.5" {...props}>
-      <span className="text-purple-500 mt-1.5 flex-shrink-0">
-        <svg className="w-1.5 h-1.5 fill-current" viewBox="0 0 6 6">
-          <circle cx="3" cy="3" r="3" />
-        </svg>
-      </span>
-      <span className="flex-1">{children}</span>
-    </li>
+  li: ({ children, ordered, ...props }: React.HTMLAttributes<HTMLLIElement> & { ordered?: boolean }) => (
+    ordered ? (
+      <li className="text-gray-700 leading-relaxed pl-1 py-0.5" {...props}>{children}</li>
+    ) : (
+      <li className="text-gray-700 leading-relaxed flex gap-2 py-0.5" {...props}>
+        <span className="text-purple-500 mt-1.5 flex-shrink-0">
+          <svg className="w-1.5 h-1.5 fill-current" viewBox="0 0 6 6">
+            <circle cx="3" cy="3" r="3" />
+          </svg>
+        </span>
+        <span className="flex-1">{children}</span>
+      </li>
+    )
   ),
 };
 
@@ -270,10 +278,12 @@ export default function CasePlanCard({ casePlan, urgency, onNewCase }: Props) {
       subtitle: 'AI-Generated Recommendations',
       content: casePlan,
       type: 'case-plan',
+      audience: 'caseworker',
       metadata: {
         'Urgency Level': urgency.charAt(0).toUpperCase() + urgency.slice(1),
         'Date Generated': new Date().toLocaleDateString(),
-        'Status': 'Draft / Review Needed'
+        'Status': 'Draft / Review Needed',
+        'Audience': 'Caseworker view'
       }
     });
   };
@@ -321,13 +331,13 @@ export default function CasePlanCard({ casePlan, urgency, onNewCase }: Props) {
             <button
               onClick={handleExport}
               className="btn-outline flex items-center gap-2 text-sm"
-              title="Export to Word (.docx)"
+              title="Download as text file"
               disabled={isExporting}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
               </svg>
-              {isExporting ? '...' : 'Export'}
+              {isExporting ? '...' : 'Download'}
             </button>
             <button
               onClick={printPlan}
@@ -364,7 +374,7 @@ export default function CasePlanCard({ casePlan, urgency, onNewCase }: Props) {
         {sections.length > 0 ? (
           <div className="space-y-4">
             {sections.map((section, index) => (
-              <div key={index} id={`section-${index}`}>
+              <div key={index} id={`section-${index}`} className="scroll-mt-4">
                 <SectionCard section={section} />
               </div>
             ))}

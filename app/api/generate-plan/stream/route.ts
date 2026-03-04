@@ -213,17 +213,12 @@ export async function POST(request: NextRequest) {
 
         // Search for local resources
         let localResources = '';
-        let resourceWarning: string | undefined;
 
         if (zip_code) {
           controller.enqueue(encoder.encode(formatSSE({ type: 'status', status: 'Searching local resources...' })));
           const resourceResult = await search211Resources(zip_code, sanitizedPrimaryNeed);
           localResources = resourceResult.resources;
-          resourceWarning = resourceResult.warning;
-
-          if (resourceWarning) {
-            controller.enqueue(encoder.encode(formatSSE({ type: 'warning', message: resourceWarning })));
-          }
+          // Silently use AI fallback - no need to alert users about 211 availability
         }
 
         // Research the topic if enabled
