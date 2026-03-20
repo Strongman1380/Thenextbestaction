@@ -13,7 +13,7 @@ interface PrintOptions {
 
 export const printDocument = (options: PrintOptions) => {
   const { title, subtitle, content, metadata, type } = options;
-  const audience = options.audience || (type === 'resource' ? 'caseworker' : 'caseworker');
+  const audience = options.audience || 'caseworker';
 
   const theme = (() => {
     if (type === 'case-plan') {
@@ -89,12 +89,15 @@ export const printDocument = (options: PrintOptions) => {
     ol: ({ ...props }: React.HTMLAttributes<HTMLOListElement>) => (
       <ol className="mk-ol" {...props} />
     ),
-    li: ({ children, ...props }: React.HTMLAttributes<HTMLLIElement>) => (
-      <li className="mk-li" {...props}>
-        <span className="mk-li-marker" aria-hidden="true"></span>
-        <div className="mk-li-content">{children}</div>
-      </li>
-    ),
+    li: ({ children, node, ...props }: React.HTMLAttributes<HTMLLIElement> & { node?: any }) => {
+      const isOrdered = node?.parentNode?.tagName === 'ol' || node?.parent?.tagName === 'ol';
+      return (
+        <li className="mk-li" {...props}>
+          {!isOrdered && <span className="mk-li-marker" aria-hidden="true"></span>}
+          <div className="mk-li-content">{children}</div>
+        </li>
+      );
+    },
     blockquote: ({ ...props }: React.HTMLAttributes<HTMLQuoteElement>) => (
       <blockquote className="mk-quote" {...props} />
     ),

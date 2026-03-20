@@ -1,11 +1,13 @@
 // Admin configuration for the application
 // This file defines admin users and their permissions
+// Set ADMIN_EMAILS env var as a comma-separated list of emails
 
-export const ADMIN_EMAILS = [
-  'bhinrichs1380@gmail.com',
-] as const;
+export const ADMIN_EMAILS: string[] = (process.env.NEXT_PUBLIC_ADMIN_EMAILS || process.env.ADMIN_EMAILS || '')
+  .split(',')
+  .map(e => e.trim().toLowerCase())
+  .filter(e => e.length > 0);
 
-export type AdminEmail = (typeof ADMIN_EMAILS)[number];
+export type AdminEmail = string;
 
 export function isAdminEmail(email: string | null | undefined): boolean {
   if (!email) return false;

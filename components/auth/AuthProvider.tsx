@@ -27,16 +27,22 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
   const supabase = createClientComponentClient();
 
   // Helper function to log session events
+  // Uses user_id as primary identifier; email is only stored as a hash for privacy
   const logSessionEvent = async (email: string, action: 'sign_in' | 'sign_out' | 'token_refresh', userId?: string) => {
     try {
+      // Hash the email to avoid storing PII directly
+      const encoder = new TextEncoder();
+      const data = encoder.encode(email.toLowerCase());
+      const hashBuffer = await crypto.subtle.digest('SHA-256', data);
+      const emailHash = Array.from(new Uint8Array(hashBuffer)).map(b => b.toString(16).padStart(2, '0')).join('');
+
       await supabase.from('session_logs').insert({
-        user_email: email,
+        email_hash: emailHash,
         user_id: userId,
         action,
         metadata: {
           timestamp: new Date().toISOString(),
         },
-        user_agent: typeof navigator !== 'undefined' ? navigator.userAgent : null,
       });
     } catch (err) {
       // Silent fail - don't block auth flow if logging fails

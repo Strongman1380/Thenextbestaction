@@ -331,7 +331,7 @@ export default function CasePlanCard({ casePlan, urgency, onNewCase }: Props) {
             <button
               onClick={handleExport}
               className="btn-outline flex items-center gap-2 text-sm"
-              title="Download as text file"
+              title="Download as DOCX"
               disabled={isExporting}
             >
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>

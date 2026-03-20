@@ -75,31 +75,38 @@ export default function AdminDashboard() {
 
       if (sessionsError) {
         console.error('Error fetching sessions:', sessionsError);
+        setError(`Failed to load session logs: ${sessionsError.message}`);
       } else {
         setRecentSessions(sessions || []);
       }
 
-      // Calculate today's sessions
-      const today = new Date();
-      today.setHours(0, 0, 0, 0);
-      
+      // Calculate today's sessions using UTC bounds
+      const now = new Date();
+      const utcStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate()));
+      const utcNextStart = new Date(Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate() + 1));
+
       const { count: todayCount } = await supabase
         .from('session_logs')
         .select('*', { count: 'exact', head: true })
-        .gte('created_at', today.toISOString());
+        .gte('created_at', utcStart.toISOString())
+        .lt('created_at', utcNextStart.toISOString());
 
       // Get total sessions count
       const { count: totalCount } = await supabase
         .from('session_logs')
         .select('*', { count: 'exact', head: true });
 
-      // Get unique users from session logs
-      const { data: uniqueUsers } = await supabase
+      // Get unique user count via distinct user_id
+      let uniqueUserCount = 0;
+      const { data: distinctUsers, error: distinctError } = await supabase
         .from('session_logs')
-        .select('user_email')
-        .limit(1000);
-      
-      const uniqueEmails = new Set(uniqueUsers?.map(u => u.user_email) || []);
+        .select('user_id')
+        .not('user_id', 'is', null);
+
+      if (!distinctError && distinctUsers) {
+        const uniqueIds = new Set(distinctUsers.map(u => u.user_id));
+        uniqueUserCount = uniqueIds.size;
+      }
 
       // Get case plans count
       const { count: casePlansCount } = await supabase
@@ -107,7 +114,7 @@ export default function AdminDashboard() {
         .select('*', { count: 'exact', head: true });
 
       setStats({
-        totalUsers: uniqueEmails.size,
+        totalUsers: uniqueUserCount,
         totalSessions: totalCount || 0,
         todaySessions: todayCount || 0,
         totalCasePlans: casePlansCount || 0,

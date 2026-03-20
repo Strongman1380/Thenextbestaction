@@ -210,15 +210,18 @@ function parseResourceContent(content: string): ParsedSection[] {
   const sectionMatches: { type: string; title: string; start: number; end: number; configType: string }[] = [];
 
   for (const pattern of sectionPatterns) {
-    const match = content.match(pattern.regex);
-    if (match && match.index !== undefined) {
+    // Use a new RegExp with global flag to find all occurrences
+    const globalRegex = new RegExp(pattern.regex.source, pattern.regex.flags.includes('g') ? pattern.regex.flags : pattern.regex.flags + 'g');
+    let match: RegExpExecArray | null;
+    while ((match = globalRegex.exec(content)) !== null) {
       // Avoid duplicates for the same position
-      const existingAtPosition = sectionMatches.find(m => Math.abs(m.start - (match.index! + match[0].length)) < 10);
+      const matchStart = match.index + match[0].length;
+      const existingAtPosition = sectionMatches.find(m => Math.abs(m.start - matchStart) < 10);
       if (!existingAtPosition) {
         sectionMatches.push({
           type: pattern.type,
           title: pattern.title,
-          start: match.index + match[0].length,
+          start: matchStart,
           end: content.length,
           configType: pattern.configType,
         });
@@ -370,8 +373,13 @@ export default function SkillResourceCard({ skillResource, skillTopic, onRegener
 
   const handleExport = () => {
     setIsExporting(true);
-    exportPlanToText(skillResource, `${typeLabel}: ${skillTopic}`);
-    setTimeout(() => setIsExporting(false), 500);
+    try {
+      exportPlanToText(skillResource, `${typeLabel}: ${skillTopic}`);
+    } catch (err) {
+      console.error('Export failed:', err);
+    } finally {
+      setTimeout(() => setIsExporting(false), 500);
+    }
   };
 
   const printResource = () => {

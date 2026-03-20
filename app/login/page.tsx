@@ -17,8 +17,19 @@ function LoginForm() {
   const searchParams = useSearchParams();
   const supabase = createClientComponentClient();
 
-  // Get the redirect URL from query params
-  const redirectTo = searchParams.get('redirectTo') || '/';
+  // Get the redirect URL from query params, validated to prevent open redirects
+  const rawRedirect = searchParams.get('redirectTo') || '/';
+  const redirectTo = (() => {
+    try {
+      const url = new URL(rawRedirect, window.location.origin);
+      // Only allow same-origin redirects
+      if (url.origin !== window.location.origin) return '/';
+      return url.pathname + url.search + url.hash;
+    } catch {
+      // If it's a relative path starting with /, use it; otherwise fallback
+      return rawRedirect.startsWith('/') && !rawRedirect.startsWith('//') ? rawRedirect : '/';
+    }
+  })();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

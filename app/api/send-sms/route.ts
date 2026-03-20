@@ -51,8 +51,8 @@ function markdownToPlainText(markdown: string): string {
     .replace(/^#{1,6}\s+(.+)$/gm, '\n$1\n')
     // Convert bullet points
     .replace(/^[-*]\s+/gm, '• ')
-    // Convert numbered lists
-    .replace(/^\d+\.\s+/gm, (match) => match)
+    // Convert numbered lists to bullets
+    .replace(/^\d+\.\s+/gm, '- ')
     // Remove links but keep text
     .replace(/\[(.+?)\]\(.+?\)/g, '$1')
     // Clean up extra whitespace
@@ -132,7 +132,8 @@ export async function POST(request: NextRequest) {
       ? `Hi ${clientName},\n\n`
       : 'Hi,\n\n';
 
-    const intro = `Your caseworker has shared a resource with you about "${resourceTopic}":\n\n`;
+    const safeTopic = resourceTopic || 'a resource';
+    const intro = `Your caseworker has shared a resource with you about "${safeTopic}":\n\n`;
 
     const footer = '\n\n---\nSent with care from Next Right Step Recovery';
 
