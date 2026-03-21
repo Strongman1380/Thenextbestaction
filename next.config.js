@@ -6,6 +6,9 @@ const nextConfig = {
       bodySizeLimit: '10mb',
     },
   },
+  outputFileTracingIncludes: {
+    '/api/knowledge': ['./data/**/*'],
+  },
 }
 
 module.exports = nextConfig
