@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBestPractices, loadKnowledgeBase } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
-import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
+import { anthropic, MODEL } from '@/lib/anthropic-client';
 import { researchSkillTopic, formatResearchForPrompt } from '@/lib/research';
 import { sanitizeForAI } from '@/lib/security/input-sanitizer';
 import { logError } from '@/lib/utils/error-handler';
-
-const perplexity = createPerplexityClient();
 
 export async function POST(request: NextRequest) {
   try {
@@ -107,23 +105,14 @@ Create a professional development resource specifically for this social worker t
 
 Use clear headings, bullet points, and professional but supportive tone. Make it immediately useful for their learning.`;
 
-    const completion = await perplexity.chat.completions.create({
-      model: DEFAULT_MODEL,
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an expert social work educator and professional development specialist. You create learning resources specifically designed for social workers to develop THEIR OWN skills and knowledge. You understand that the worker is the learner here - not teaching a client, but learning themselves. Your materials help professionals grow, build competence, and gain confidence in their practice through self-directed learning.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
+    const completion = await anthropic.messages.create({
+      model: MODEL,
       max_tokens: 3000,
-      temperature: 0.7,
+      system: 'You are an expert social work educator and professional development specialist. You create learning resources specifically designed for social workers to develop THEIR OWN skills and knowledge. You understand that the worker is the learner here - not teaching a client, but learning themselves. Your materials help professionals grow, build competence, and gain confidence in their practice through self-directed learning.',
+      messages: [{ role: 'user', content: prompt }],
     });
 
-    const skillResource = completion.choices[0]?.message?.content || '';
+    const skillResource = completion.content[0].type === 'text' ? completion.content[0].text : '';
 
     return NextResponse.json({
       success: true,

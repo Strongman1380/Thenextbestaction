@@ -1,12 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getBestPractices } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
-import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
+import { anthropic, MODEL } from '@/lib/anthropic-client';
 import { researchClientResource, formatResearchForPrompt } from '@/lib/research';
 import { sanitizeForAI } from '@/lib/security/input-sanitizer';
 import { logError } from '@/lib/utils/error-handler';
-
-const perplexity = createPerplexityClient();
 
 export async function POST(request: NextRequest) {
   try {
@@ -153,23 +151,14 @@ ${resource_type === 'any' ? `
 
 **REMEMBER:** The worker will HAND THIS to their client. The client will read it alone. Make it work for the CLIENT, help the WORKER address the issue.`;
 
-    const completion = await perplexity.chat.completions.create({
-      model: DEFAULT_MODEL,
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a compassionate social worker who creates client-facing self-help materials. You understand that workers need practical handouts to give their clients - tools clients can use independently between sessions. Your materials are written DIRECTLY TO the client (not about them), using simple language, warm tone, and practical exercises. You help workers help their clients by creating empowering, trauma-informed resources that clients can actually use on their own.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
+    const completion = await anthropic.messages.create({
+      model: MODEL,
       max_tokens: 2048,
-      temperature: 0.7,
+      system: 'You are a compassionate social worker who creates client-facing self-help materials. You understand that workers need practical handouts to give their clients - tools clients can use independently between sessions. Your materials are written DIRECTLY TO the client (not about them), using simple language, warm tone, and practical exercises. You help workers help their clients by creating empowering, trauma-informed resources that clients can actually use on their own.',
+      messages: [{ role: 'user', content: prompt }],
     });
 
-    const clientResource = completion.choices[0]?.message?.content || '';
+    const clientResource = completion.content[0].type === 'text' ? completion.content[0].text : '';
 
     return NextResponse.json({
       success: true,

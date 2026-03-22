@@ -1,15 +1,13 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { formatEnhancedKnowledgeContext } from '@/lib/knowledge-base';
 import { loadDocumentKnowledge } from '@/lib/document-parser';
-import { createPerplexityClient, DEFAULT_MODEL } from '@/lib/perplexity-client';
+import { anthropic, MODEL } from '@/lib/anthropic-client';
 import { researchCaseNeed, formatResearchForPrompt } from '@/lib/research';
 import { validateRequest } from '@/lib/validation/validate';
 import { casePlanSchema } from '@/lib/validation/schemas';
 import { checkRateLimit, getClientIdentifier, getRateLimitHeaders, RATE_LIMITS } from '@/lib/middleware/rate-limit';
 import { sanitizeForAI } from '@/lib/security/input-sanitizer';
 import { logError } from '@/lib/utils/error-handler';
-
-const perplexity = createPerplexityClient();
 
 /**
  * Search 211 database for local resources based on ZIP code and need type
@@ -132,23 +130,14 @@ async function search211Resources(zip_code: string, primary_need: string): Promi
  */
 async function searchLocalResourcesWithAI(zip_code: string, primary_need: string): Promise<string> {
   try {
-    const resourceSearch = await perplexity.chat.completions.create({
-      model: DEFAULT_MODEL,
-      messages: [
-        {
-          role: 'system',
-          content: 'You are a resource finder with knowledge of 211 databases and local social services. Provide real, verifiable local resources with contact information based on your training data.'
-        },
-        {
-          role: 'user',
-          content: `Find 5-8 real local resources for "${primary_need}" in ZIP code ${zip_code}. Include organization names, phone numbers, websites if available, physical addresses, and brief descriptions of services. Format as a numbered list with clear contact details. Focus on verified organizations like United Way 211, local nonprofits, government services, hospitals, and community centers.`
-        }
-      ],
+    const resourceSearch = await anthropic.messages.create({
+      model: MODEL,
       max_tokens: 800,
-      temperature: 0.3,
+      system: 'You are a resource finder with knowledge of 211 databases and local social services. Provide real, verifiable local resources with contact information based on your training data.',
+      messages: [{ role: 'user', content: `Find 5-8 real local resources for "${primary_need}" in ZIP code ${zip_code}. Include organization names, phone numbers, websites if available, physical addresses, and brief descriptions of services. Format as a numbered list with clear contact details. Focus on verified organizations like United Way 211, local nonprofits, government services, hospitals, and community centers.` }],
     });
 
-    return resourceSearch.choices[0]?.message?.content || '';
+    return resourceSearch.content[0].type === 'text' ? resourceSearch.content[0].text : '';
   } catch (error) {
     console.error('Error with AI resource search:', error);
     return '';
@@ -272,29 +261,20 @@ ${localResources ? '   - Be specific using the resources from the list above (e.
 
 Format in clear sections with bullet points. Use compassionate, professional language.`;
 
-    const completion = await perplexity.chat.completions.create({
-      model: DEFAULT_MODEL,
-      messages: [
-        {
-          role: 'system',
-          content: 'You are an expert case manager specializing in trauma-informed care and crisis intervention. You excel at reading case information carefully, understanding context deeply, and selecting the BEST resources from available options. You never recommend random resources - you always choose based on what truly fits the client\'s specific situation. You create actionable, prioritized plans that connect clients to real help.'
-        },
-        {
-          role: 'user',
-          content: prompt
-        }
-      ],
+    const completion = await anthropic.messages.create({
+      model: MODEL,
       max_tokens: 2048,
-      temperature: 0.7,
+      system: 'You are an expert case manager specializing in trauma-informed care and crisis intervention. You excel at reading case information carefully, understanding context deeply, and selecting the BEST resources from available options. You never recommend random resources - you always choose based on what truly fits the client\'s specific situation. You create actionable, prioritized plans that connect clients to real help.',
+      messages: [{ role: 'user', content: prompt }],
     });
 
-    const casePlan = completion.choices[0]?.message?.content || '';
+    const casePlan = completion.content[0].type === 'text' ? completion.content[0].text : '';
 
     return NextResponse.json({
       success: true,
       case_plan: casePlan,
       metadata: {
-        model: DEFAULT_MODEL,
+        model: MODEL,
         urgency,
         timestamp: new Date().toISOString(),
       }

@@ -1,4 +1,4 @@
-import { createPerplexityClient } from './perplexity-client';
+import { anthropic, MODEL } from './anthropic-client';
 
 export interface ResearchResult {
   summary: string;
@@ -7,17 +7,13 @@ export interface ResearchResult {
 }
 
 /**
- * Research a topic using Perplexity AI's search capability
- * This provides current, evidence-based information to enhance AI-generated content
+ * Research a topic using Claude
  */
 export async function researchTopic(
   topic: string,
   context?: string,
   focusArea?: 'best_practices' | 'treatment_approaches' | 'crisis_intervention' | 'evidence_based'
 ): Promise<ResearchResult> {
-  const perplexity = createPerplexityClient();
-
-  // Construct a focused research query
   let researchQuery = '';
 
   switch (focusArea) {
@@ -42,133 +38,72 @@ export async function researchTopic(
   }
 
   try {
-    const response = await perplexity.chat.completions.create({
-      model: 'sonar', // Perplexity's search model
-      messages: [
-        {
-          role: 'system',
-          content: `You are a research assistant for social workers and case managers. Provide concise, evidence-based information that is actionable and trauma-informed. Focus on practical guidance that can be immediately applied.`
-        },
-        {
-          role: 'user',
-          content: researchQuery
-        }
-      ],
+    const response = await anthropic.messages.create({
+      model: MODEL,
       max_tokens: 1000,
-      temperature: 0.3, // Lower temperature for more factual responses
+      system: 'You are a research assistant for social workers and case managers. Provide concise, evidence-based information that is actionable and trauma-informed. Focus on practical guidance that can be immediately applied.',
+      messages: [{ role: 'user', content: researchQuery }],
     });
 
-    const researchContent = response.choices[0]?.message?.content || '';
-
-    // Parse the response into structured findings
+    const researchContent = response.content[0].type === 'text' ? response.content[0].text : '';
     const keyFindings = extractKeyFindings(researchContent);
 
-    return {
-      summary: researchContent,
-      keyFindings,
-    };
+    return { summary: researchContent, keyFindings };
   } catch (error) {
     console.error('Research error:', error);
-    // Return empty result on error so generation can continue
-    return {
-      summary: '',
-      keyFindings: [],
-    };
+    return { summary: '', keyFindings: [] };
   }
 }
 
-/**
- * Extract key bullet points from research content
- */
 function extractKeyFindings(content: string): string[] {
   const findings: string[] = [];
-
-  // Look for numbered or bulleted lists
   const lines = content.split('\n');
   for (const line of lines) {
     const trimmed = line.trim();
-    // Match lines starting with numbers, bullets, or dashes
     if (trimmed.match(/^[\d\-\*•][\.\):]?\s+/)) {
       const cleaned = trimmed.replace(/^[\d\-\*•][\.\):]?\s+/, '');
-      if (cleaned.length > 10) { // Ignore very short lines
-        findings.push(cleaned);
-      }
+      if (cleaned.length > 10) findings.push(cleaned);
     }
   }
-
-  // If no clear findings, take first few sentences
   if (findings.length === 0) {
     const sentences = content.match(/[^.!?]+[.!?]+/g) || [];
     return sentences.slice(0, 5).map(s => s.trim());
   }
-
-  return findings.slice(0, 8); // Limit to 8 key findings
+  return findings.slice(0, 8);
 }
 
-/**
- * Format research results for inclusion in AI prompts
- */
 export function formatResearchForPrompt(research: ResearchResult): string {
-  if (!research.summary && research.keyFindings.length === 0) {
-    return '';
-  }
+  if (!research.summary && research.keyFindings.length === 0) return '';
 
   let formatted = '\n\n## CURRENT RESEARCH & EVIDENCE-BASED GUIDANCE\n\n';
-
   if (research.keyFindings.length > 0) {
     formatted += 'Key Evidence-Based Findings:\n';
     research.keyFindings.forEach((finding, index) => {
       formatted += `${index + 1}. ${finding}\n`;
     });
   }
-
   formatted += '\n**Important**: Incorporate these evidence-based insights into your recommendations where relevant.\n';
-
   return formatted;
 }
 
-/**
- * Research multiple aspects of a case simultaneously
- */
 export async function researchCaseNeed(
   primaryNeed: string,
   urgency: string,
   additionalContext?: string
 ): Promise<ResearchResult> {
-  // Determine focus based on urgency
   let focusArea: 'best_practices' | 'treatment_approaches' | 'crisis_intervention' | 'evidence_based';
-
-  if (urgency === 'high') {
-    focusArea = 'crisis_intervention';
-  } else if (urgency === 'low') {
-    focusArea = 'evidence_based';
-  } else {
-    focusArea = 'best_practices';
-  }
-
-  return await researchTopic(primaryNeed, additionalContext, focusArea);
+  if (urgency === 'high') focusArea = 'crisis_intervention';
+  else if (urgency === 'low') focusArea = 'evidence_based';
+  else focusArea = 'best_practices';
+  return researchTopic(primaryNeed, additionalContext, focusArea);
 }
 
-/**
- * Research a skill development topic for workers
- */
-export async function researchSkillTopic(
-  skillTopic: string,
-  context?: string
-): Promise<ResearchResult> {
+export async function researchSkillTopic(skillTopic: string, context?: string): Promise<ResearchResult> {
   const query = `Professional development and skill building for social workers and case managers: ${skillTopic}. What are effective learning strategies, exercises, and resources?`;
-
-  return await researchTopic(query, context, 'evidence_based');
+  return researchTopic(query, context, 'evidence_based');
 }
 
-/**
- * Research client self-help resources
- */
-export async function researchClientResource(
-  topic: string,
-  context?: string
-): Promise<ResearchResult> {
+export async function researchClientResource(topic: string, context?: string): Promise<ResearchResult> {
   const query = `Self-help strategies and coping skills for ${topic}. What are evidence-based techniques that individuals can use independently?`;
-
-  return await researchTopic(query, context, 'evidence_based');
+  return researchTopic(query, context, 'evidence_based');
 }
