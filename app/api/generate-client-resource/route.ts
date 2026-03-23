@@ -164,7 +164,7 @@ ${resource_type === 'any' ? `
       success: true,
       client_resource: clientResource,
       metadata: {
-        model: DEFAULT_MODEL,
+        model: MODEL,
         topic: skill_topic,
         resource_type,
         timestamp: new Date().toISOString(),
