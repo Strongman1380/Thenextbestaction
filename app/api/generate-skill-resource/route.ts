@@ -118,7 +118,7 @@ Use clear headings, bullet points, and professional but supportive tone. Make it
       success: true,
       skill_resource: skillResource,
       metadata: {
-        model: DEFAULT_MODEL,
+        model: MODEL,
         skill_topic,
         resource_type,
         timestamp: new Date().toISOString(),
