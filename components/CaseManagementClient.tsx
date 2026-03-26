@@ -1,6 +1,7 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect, useRef } from 'react';
+import gsap from 'gsap';
 import CaseInputForm, { type FormData } from '@/components/CaseInputForm';
 import CasePlanCard from '@/components/CasePlanCard';
 import SkillBuildingForm, { type SkillBuildingData } from '@/components/SkillBuildingForm';
@@ -33,6 +34,36 @@ export default function CaseManagementClient() {
     reset: resetStream,
     abort: abortStream,
   } = useStreamingAI('/api/generate-plan/stream');
+
+  const panelsRef = useRef<HTMLDivElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const mainRef = useRef<HTMLElement>(null);
+
+  // Stagger in the stat panels on mount
+  useEffect(() => {
+    if (!panelsRef.current) return;
+    const ctx = gsap.context(() => {
+      gsap.from(panelsRef.current!.children, {
+        y: 24,
+        opacity: 0,
+        duration: 0.55,
+        stagger: 0.1,
+        ease: 'power3.out',
+        delay: 0.4,
+      });
+    }, panelsRef);
+    return () => ctx.revert();
+  }, []);
+
+  // Cross-fade tab content on switch
+  useEffect(() => {
+    if (!contentRef.current) return;
+    gsap.fromTo(
+      contentRef.current,
+      { opacity: 0, y: 14 },
+      { opacity: 1, y: 0, duration: 0.32, ease: 'power2.out' }
+    );
+  }, [activeTab]);
 
   const [lastActivity, setLastActivity] = useState('No activity yet');
 
@@ -166,7 +197,7 @@ export default function CaseManagementClient() {
   };
 
   return (
-    <main className="min-h-screen px-4 py-6 md:px-6 md:py-8 lg:px-10">
+    <main ref={mainRef} className="min-h-screen px-4 py-6 md:px-6 md:py-8 lg:px-10">
       <Header />
 
       {/* The rest of your JSX from app/page.tsx goes here */}
@@ -185,7 +216,7 @@ export default function CaseManagementClient() {
             </div>
           </div>
 
-          <div className="grid gap-4 md:grid-cols-3">
+          <div ref={panelsRef} className="grid gap-4 md:grid-cols-3">
             <div className="panel">
               <span className="panel-header">Active tab</span>
               <span className="panel-value">
@@ -253,45 +284,45 @@ export default function CaseManagementClient() {
           </div>
         </div>
 
-        <div className="flex flex-wrap gap-3">
+        <div className="flex flex-wrap gap-2">
           <button
             onClick={() => setActiveTab('case-plan')}
-            className={activeTab === 'case-plan' ? 'btn-primary' : 'btn-outline'}
+            className={activeTab === 'case-plan' ? 'tab-active' : 'tab-inactive'}
           >
-            <div className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 12h6M9 16h6M9 8h4" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M4 6h16v12H4z" />
               </svg>
               Case Plan
-            </div>
+            </span>
           </button>
           <button
             onClick={() => setActiveTab('skill-building')}
-            className={activeTab === 'skill-building' ? 'btn-primary' : 'btn-outline'}
+            className={activeTab === 'skill-building' ? 'tab-active' : 'tab-inactive'}
           >
-            <div className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 5v14M5 12h14" />
                 <path strokeLinecap="round" strokeLinejoin="round" d="M9 9l6 6" />
               </svg>
               Worker Skills
-            </div>
+            </span>
           </button>
           <button
             onClick={() => setActiveTab('client-resources')}
-            className={activeTab === 'client-resources' ? 'btn-primary' : 'btn-outline'}
+            className={activeTab === 'client-resources' ? 'tab-active' : 'tab-inactive'}
           >
-            <div className="flex items-center gap-2">
+            <span className="flex items-center gap-2">
               <svg className="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
               </svg>
               Client Resources
-            </div>
+            </span>
           </button>
         </div>
 
-        <div className="rounded-3xl border border-slate-200 bg-slate-50/90 p-4 sm:p-6">
+        <div ref={contentRef} className="rounded-2xl border border-slate-200 bg-slate-50 p-4 sm:p-6">
           {activeTab === 'case-plan' && (
             <>
               {/* Show streaming content while generating */}
